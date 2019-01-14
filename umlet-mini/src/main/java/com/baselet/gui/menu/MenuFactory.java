@@ -16,17 +16,5 @@ public class MenuFactory {
 	// These components should only be enabled if the drawpanel is not empty
 	protected List<JComponent> diagramDependendComponents = new ArrayList<JComponent>();
 
-	public void updateDiagramDependendComponents() {
-		DrawPanel currentDiagram = CurrentGui.getInstance().getGui().getCurrentDiagram();
-		if (currentDiagram == null) {
-			return; // Possible if method is called at loading a palette
-		}
-		DiagramHandler handler = currentDiagram.getHandler();
-		boolean enable = !(handler == null || handler.getDrawPanel().getGridElements().isEmpty());
-		for (JComponent component : diagramDependendComponents) {
-			component.setEnabled(enable);
-		}
-
-	}
 
 }

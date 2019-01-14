@@ -90,13 +90,6 @@ public class Main implements CanCloseProgram, CanOpenDiagram {
 		}
 	}
 
-	public void doOpenFromFileChooser() {
-		List<String> files = new OpenFileChooser().getFilesToOpen(CurrentGui.getInstance().getGui().getMainFrame());
-		for (String file : files) {
-			doOpen(file);
-		}
-	}
-
 	@Override
 	public void doOpen(final String filename) {
 	}

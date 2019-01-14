@@ -79,28 +79,6 @@ public class DrawPanel extends JLayeredPane implements Printable {
 
 		p.setBorder(null);
 		setScrollPanel(p);
-
-		if (Program.getInstance().getRuntimeType() != RuntimeType.BATCH) {
-			// Wait until drawpanel is valid (eg: after loading a diagramm) and then update panel and scrollbars
-			// Otherwise palettes which are larger than the viewable area would sometimes not have visible scrollbars until the first click into the palette
-			new Timer("updatePanelAndScrollbars", true).schedule(new TimerTask() {
-				@Override
-				public void run() {
-					if (isValid()) {
-						updatePanelAndScrollbars();
-						cancel();
-					}
-				}
-			}, 25, 25);
-
-			if (initStartupTextAndFiledrop) {
-				StartUpHelpText startupHelpText = new StartUpHelpText(this);
-				add(startupHelpText);
-				@SuppressWarnings("unused")
-				FileDrop fd = new FileDrop(startupHelpText, new FileDropListener()); // only init if this is not a BATCH call. Also fixes Issue 81
-			}
-		}
-
 		this.repaint(); // repaint the drawpanel to be sure everything is visible (startuphelp etc)
 	}
 
