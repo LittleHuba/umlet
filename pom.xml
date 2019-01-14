@@ -46,6 +46,8 @@
 		<module>umlet-eclipse-feature</module>
 		<module>umlet-eclipse-p2</module>
 		<module>umlet-gwt</module>
+		<module>umlet-api</module>
+		<module>umlet-mini</module>
 	</modules>
 
 	<dependencies>
@@ -218,7 +220,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore />
+										<ignore/>
 									</action>
 								</pluginExecution>
 								<pluginExecution>
