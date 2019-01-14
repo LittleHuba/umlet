@@ -1,18 +1,13 @@
 package com.baselet.control;
 
-import com.baselet.control.config.handler.ConfigHandler;
 import com.baselet.control.constants.Constants;
 import com.baselet.control.enums.Program;
 import com.baselet.control.util.CanOpenDiagram;
 import com.baselet.control.util.Path;
-import com.baselet.diagram.CurrentDiagram;
 import com.baselet.diagram.DiagramHandler;
 import com.baselet.diagram.PaletteHandler;
 import com.baselet.element.interfaces.GridElement;
-import com.baselet.gui.CurrentGui;
-import com.baselet.gui.pane.OwnSyntaxPane;
 
-import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.util.ArrayList;
@@ -33,66 +28,8 @@ public class Main implements CanCloseProgram, CanOpenDiagram {
 		return main;
 	}
 
-	public void setPropertyPanelToGridElement(final GridElement e) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				setPropertyPanelToGridElementHelper(e);
-			}
-		});
-	}
-
-	private void setPropertyPanelToGridElementHelper(GridElement e) {
-		editedGridElement = e;
-		OwnSyntaxPane propertyPane = CurrentGui.getInstance().getGui().getPropertyPane();
-		if (e != null) {
-			propertyPane.switchToElement(e);
-		} else {
-			DiagramHandler handler = CurrentDiagram.getInstance().getDiagramHandler();
-			if (handler == null) {
-				propertyPane.switchToNonElement("");
-			} else {
-				propertyPane.switchToNonElement(handler.getHelpText());
-			}
-		}
-	}
-
-	public void doNew() {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				doNewHelper();
-			}
-		});
-	}
-
-	private void doNewHelper() {
-		if (lastTabIsEmpty()) {
-			return; // If the last tab is empty do nothing (it's already new)
-		}
-		DiagramHandler diagram = new DiagramHandler(null);
-		diagrams.add(diagram);
-		CurrentGui.getInstance().getGui().open(diagram);
-		if (diagrams.size() == 1) {
-			setPropertyPanelToGridElement(null);
-		}
-	}
-
 	@Override
 	public void doOpen(final String filename) {
-	}
-
-	/**
-	 * If the last diagram tab and it's undo history (=controller) is empty return true, else return false
-	 */
-	private boolean lastTabIsEmpty() {
-		if (!diagrams.isEmpty()) {
-			DiagramHandler lastDiagram = diagrams.get(diagrams.size() - 1);
-			if (lastDiagram.getController().isEmpty() && lastDiagram.getDrawPanel().getGridElements().isEmpty()) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	/**
@@ -100,7 +37,6 @@ public class Main implements CanCloseProgram, CanOpenDiagram {
 	 */
 	@Override
 	public void closeProgram() {
-		ConfigHandler.saveConfig(CurrentGui.getInstance().getGui());
 	}
 
 	public TreeMap<String, PaletteHandler> getPalettes() {
@@ -161,10 +97,6 @@ public class Main implements CanCloseProgram, CanOpenDiagram {
 	}
 
 	public PaletteHandler getPalette() {
-		String name = CurrentGui.getInstance().getGui().getSelectedPalette();
-		if (name != null) {
-			return getPalettes().get(name);
-		}
 		return null;
 	}
 

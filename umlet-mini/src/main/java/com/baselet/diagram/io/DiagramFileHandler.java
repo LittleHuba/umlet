@@ -11,14 +11,12 @@ import com.baselet.diagram.Notifier;
 import com.baselet.element.NewGridElement;
 import com.baselet.element.interfaces.GridElement;
 import com.baselet.element.old.custom.CustomElement;
-import com.baselet.gui.CurrentGui;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
@@ -154,7 +152,6 @@ public class DiagramFileHandler {
 
 	private void setFileName(String fileName) {
 		this.fileName = fileName;
-		CurrentGui.getInstance().getGui().updateDiagramName(handler, handler.getName());
 	}
 
 	private void createXMLOutputDoc(Document doc, Collection<GridElement> elements, Element current) {
@@ -391,18 +388,6 @@ public class DiagramFileHandler {
 
 		setAvailableFileFilters(ownXmlFormat, fileChooser);
 		fileChooser.setFileFilter(filefilter);
-
-		int returnVal = fileChooser.showSaveDialog(CurrentGui.getInstance().getGui().getMainFrame());
-		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			File selectedFileWithExt = getFileWithExtension(fileChooser);
-			if (selectedFileWithExt.exists()) {
-				int overwriteQuestionResult = JOptionPane.showConfirmDialog(CurrentGui.getInstance().getGui().getMainFrame(), "File already exists! Overwrite?", "Overwrite File", JOptionPane.YES_NO_OPTION);
-				if (overwriteQuestionResult == JOptionPane.NO_OPTION) {
-					return chooseFileName(ownXmlFormat, filefilter, fileChooser);
-				}
-			}
-			fileName = selectedFileWithExt.getAbsolutePath();
-		}
 		return fileName;
 	}
 

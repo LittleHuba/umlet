@@ -1,14 +1,11 @@
 package com.baselet.gui.listener;
 
 import com.baselet.control.Main;
-import com.baselet.control.basics.Converter;
 import com.baselet.control.basics.geom.Point;
 import com.baselet.control.constants.SystemInfo;
 import com.baselet.diagram.CurrentDiagram;
 import com.baselet.diagram.DiagramHandler;
 import com.baselet.diagram.SelectorFrame;
-import com.baselet.element.interfaces.CursorOwn;
-import com.baselet.gui.CurrentGui;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,7 +50,6 @@ public class DiagramListener extends UniversalListener implements MouseWheelList
 	@Override
 	public void mouseMoved(MouseEvent me) {
 		super.mouseMoved(me);
-		CurrentGui.getInstance().getGui().setCursor(Converter.convert(CursorOwn.DEFAULT));
 	}
 
 	@Override

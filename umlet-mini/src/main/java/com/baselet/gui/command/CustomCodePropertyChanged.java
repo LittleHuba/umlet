@@ -2,9 +2,7 @@ package com.baselet.gui.command;
 
 import com.baselet.control.Main;
 import com.baselet.diagram.DiagramHandler;
-import com.baselet.diagram.SelectorOld;
 import com.baselet.element.interfaces.GridElement;
-import com.baselet.gui.CurrentGui;
 
 public class CustomCodePropertyChanged extends Command {
 	// private GridElement _entity;
@@ -45,11 +43,6 @@ public class CustomCodePropertyChanged extends Command {
 
 		// select grid element if nothing is selected
 		if (gridElement == null) {
-			SelectorOld selector = CurrentGui.getInstance().getGui().getCurrentCustomHandler().getPreviewHandler().getDrawPanel().getSelector();
-			selector.selectAll();
-			if (selector.getSelectedElements().size() >= 1) {
-				gridElement = selector.getSelectedElements().get(0);
-			}
 		}
 	}
 
@@ -62,11 +55,6 @@ public class CustomCodePropertyChanged extends Command {
 
 		// select grid element
 		if (gridElement == null) {
-			SelectorOld selector = CurrentGui.getInstance().getGui().getCurrentCustomHandler().getPreviewHandler().getDrawPanel().getSelector();
-			selector.selectAll();
-			if (selector.getSelectedElements().size() >= 1) {
-				gridElement = selector.getSelectedElements().get(0);
-			}
 		}
 	}
 

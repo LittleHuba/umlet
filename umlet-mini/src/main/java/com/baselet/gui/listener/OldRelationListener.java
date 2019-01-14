@@ -1,7 +1,6 @@
 package com.baselet.gui.listener;
 
 import com.baselet.control.HandlerElementMap;
-import com.baselet.control.basics.Converter;
 import com.baselet.control.basics.geom.Point;
 import com.baselet.control.enums.Direction;
 import com.baselet.diagram.CurrentDiagram;
@@ -9,7 +8,6 @@ import com.baselet.diagram.DiagramHandler;
 import com.baselet.element.interfaces.CursorOwn;
 import com.baselet.element.old.element.Relation;
 import com.baselet.element.sticking.StickableMap;
-import com.baselet.gui.CurrentGui;
 import com.baselet.gui.command.Command;
 import com.baselet.gui.command.Move;
 import com.baselet.gui.command.OldMoveLinePoint;
@@ -171,7 +169,6 @@ public class OldRelationListener extends GridElementListener {
 		} else {
 			cursor = CursorOwn.CROSS;
 		}
-		CurrentGui.getInstance().getGui().setCursor(Converter.convert(cursor));
 		return;
 	}
 

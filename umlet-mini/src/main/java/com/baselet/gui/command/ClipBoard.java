@@ -5,7 +5,6 @@ import com.baselet.diagram.DiagramHandler;
 import com.baselet.diagram.io.OutputHandler;
 import com.baselet.element.ElementFactorySwing;
 import com.baselet.element.interfaces.GridElement;
-import com.baselet.gui.CurrentGui;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -41,7 +40,6 @@ public class ClipBoard implements Transferable {
 			this.entities.add(ElementFactorySwing.createCopy(entitiy, dhNew));
 		}
 		DiagramHandler.zoomEntities(handler.getGridSize(), Constants.DEFAULTGRIDSIZE, this.entities);
-		CurrentGui.getInstance().getGui().enablePasteMenuEntry();
 
 		if (clipboard != null) { // Issue 230: copy after zooming the entities
 			clipboard.setContents(this, null);

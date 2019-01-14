@@ -1,8 +1,6 @@
 package com.baselet.diagram;
 
-import com.baselet.control.ErrorMessages;
 import com.baselet.control.HandlerElementMap;
-import com.baselet.control.Main;
 import com.baselet.control.SharedUtils;
 import com.baselet.control.basics.Converter;
 import com.baselet.control.basics.geom.Point;
@@ -13,8 +11,6 @@ import com.baselet.element.NewGridElement;
 import com.baselet.element.interfaces.GridElement;
 import com.baselet.element.old.custom.CustomElement;
 import com.baselet.element.old.element.Relation;
-import com.baselet.gui.BaseGUI;
-import com.baselet.gui.CurrentGui;
 import com.baselet.gui.command.Controller;
 import com.baselet.gui.listener.DiagramListener;
 import com.baselet.gui.listener.GridElementListener;
@@ -22,11 +18,9 @@ import com.baselet.gui.listener.OldRelationListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.swing.JOptionPane;
 import java.awt.Component;
 import java.awt.MouseInfo;
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
 
@@ -120,10 +114,6 @@ public class DiagramHandler {
 	public void setChanged(boolean changed) {
 		if (isChanged != changed) {
 			isChanged = changed;
-			BaseGUI gui = CurrentGui.getInstance().getGui();
-			if (gui != null) {
-				gui.setDiagramChanged(this, changed);
-			}
 		}
 	}
 
@@ -143,39 +133,11 @@ public class DiagramHandler {
 		return controller;
 	}
 
-	public String doSaveAs(String filePath, String extension) {
-		if (drawpanel.getGridElements().isEmpty()) {
-			displayError(ErrorMessages.ERROR_SAVING_EMPTY_DIAGRAM);
-			return null;
-		} else {
-			try {
-				String savedFilePath = fileHandler.doSaveAs(filePath, extension);
-				reloadPalettes();
-				CurrentGui.getInstance().getGui().afterSaving();
-				return savedFilePath;
-			} catch (IOException e) {
-				log.error(ErrorMessages.ERROR_SAVING_FILE, e);
-				displayError(ErrorMessages.ERROR_SAVING_FILE + e.getMessage());
-				return null;
-			}
-		}
-	}
-
 	// reloads the diagram from file + updates gui
 	public void reload() {
 		drawpanel.removeAll();
 		fileHandler.doOpen();
 		drawpanel.updatePanelAndScrollbars();
-	}
-
-	// reloads palettes if the palette has been changed.
-	private void reloadPalettes() {
-		for (DiagramHandler d : Main.getInstance().getPalettes().values()) {
-			if (d.getFileHandler().equals(getFileHandler()) && !d.equals(this)) {
-				d.reload();
-			}
-		}
-		getDrawPanel().getSelector().updateSelectorInformation(); // Must be updated to remain in the current Property Panel
 	}
 
 	public String getName() {
@@ -353,11 +315,6 @@ public class DiagramHandler {
 				setChanged(true);
 			}
 
-			BaseGUI gui = CurrentGui.getInstance().getGui();
-			if (gui != null) {
-				gui.setValueOfZoomDisplay(factor);
-			}
-
 			float zoomFactor = CurrentDiagram.getInstance().getDiagramHandler().getZoomFactor() * 100;
 			String zoomtext;
 			if (CurrentDiagram.getInstance().getDiagramHandler() instanceof PaletteHandler) {
@@ -367,10 +324,6 @@ public class DiagramHandler {
 			}
 			Notifier.getInstance().showInfo(zoomtext);
 		}
-	}
-
-	private void displayError(String error) {
-		JOptionPane.showMessageDialog(CurrentGui.getInstance().getGui().getMainFrame(), error, "ERROR", JOptionPane.ERROR_MESSAGE);
 	}
 
 	public void setHandlerAndInitListeners(GridElement element) {

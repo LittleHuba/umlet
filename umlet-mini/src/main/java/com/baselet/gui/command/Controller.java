@@ -1,8 +1,6 @@
 package com.baselet.gui.command;
 
-import com.baselet.diagram.CurrentDiagram;
 import com.baselet.diagram.DiagramHandler;
-import com.baselet.gui.CurrentGui;
 
 import java.util.Vector;
 
@@ -43,7 +41,6 @@ public class Controller {
 			handler.setChanged(true);
 		}
 
-		CurrentGui.getInstance().getGui().updateGrayedOutMenuItems(handler);
 	}
 
 	public void undo() {
@@ -55,7 +52,6 @@ public class Controller {
 				handler.setChanged(true);
 			}
 		}
-		CurrentGui.getInstance().getGui().updateGrayedOutMenuItems(CurrentDiagram.getInstance().getDiagramHandler());
 	}
 
 	public void redo() {
@@ -67,7 +63,6 @@ public class Controller {
 				handler.setChanged(true);
 			}
 		}
-		CurrentGui.getInstance().getGui().updateGrayedOutMenuItems(CurrentDiagram.getInstance().getDiagramHandler());
 	}
 
 	public boolean isEmpty() {

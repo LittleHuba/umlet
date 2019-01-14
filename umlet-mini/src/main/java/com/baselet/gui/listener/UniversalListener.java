@@ -10,7 +10,6 @@ import com.baselet.diagram.SelectorFrame;
 import com.baselet.diagram.SelectorOld;
 import com.baselet.element.interfaces.GridElement;
 import com.baselet.element.sticking.StickableMap;
-import com.baselet.gui.CurrentGui;
 import com.baselet.gui.command.Command;
 import com.baselet.gui.command.Controller;
 import com.baselet.gui.command.Macro;
@@ -53,7 +52,6 @@ public abstract class UniversalListener extends ComponentAdapter implements Mous
 	@Override
 	public void mousePressed(MouseEvent me) {
 		disableElementMovement = false;
-		CurrentGui.getInstance().getGui().requestFocus(); // to avoid beeing stuck in the propertyPanel
 		Point off = getOffset(me);
 		_xOffset = off.x;
 		_yOffset = off.y;

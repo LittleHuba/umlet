@@ -18,8 +18,6 @@ import java.awt.Component;
 @SuppressWarnings("serial")
 public class CustomElementPanel extends JPanel {
 
-	private final CustomElementAddDiscardListener saveListener = new CustomElementAddDiscardListener();
-
 	private final JSplitPane custompanelsplitleft;
 	private final JSplitPane custompanelsplitright;
 	private final JLabel savelabel;
@@ -61,10 +59,8 @@ public class CustomElementPanel extends JPanel {
 			public void setEnabled(boolean en) {
 				if (!enabled && en) {
 					enabled = en;
-					addMouseListener(saveListener);
 				} else if (enabled && !en) {
 					enabled = en;
-					removeMouseListener(saveListener);
 				}
 			}
 		};
@@ -75,7 +71,6 @@ public class CustomElementPanel extends JPanel {
 		JLabel discardlabel = new JLabel("Discard and close editor");
 		discardlabel.setFont(DerivedConfig.getPanelHeaderFont());
 		discardlabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		discardlabel.addMouseListener(saveListener);
 
 		custompanel3.add(previewlabel);
 		custompanel3.add(custompreviewpanel.getScrollPane());

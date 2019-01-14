@@ -19,7 +19,6 @@ import com.baselet.element.old.element.Relation;
 import com.baselet.element.sticking.StickableMap;
 import com.baselet.element.sticking.Stickables;
 import com.baselet.element.sticking.StickingPolygon;
-import com.baselet.gui.CurrentGui;
 import com.baselet.gui.command.AddElement;
 import com.baselet.gui.command.Command;
 import com.baselet.gui.command.Macro;
@@ -32,8 +31,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.JComponent;
-import javax.swing.JPopupMenu;
-import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
 import java.util.Collection;
@@ -110,9 +107,6 @@ public class GridElementListener extends UniversalListener {
 		Point point = new Point(me.getX() + e.getRectangle().getX(), me.getY() + e.getRectangle().getY());
 
 		CursorOwn cursor = e.getCursor(point, resizeDirections);
-		if (cursor != null) {
-			CurrentGui.getInstance().getGui().setCursor(Converter.convert(cursor));
-		}
 	}
 
 	private void showContextMenu(GridElement ge, int x, int y) {
@@ -123,10 +117,6 @@ public class GridElementListener extends UniversalListener {
 
 		selector.setDominantEntity(ge);
 
-		JPopupMenu contextMenu = CurrentGui.getInstance().getGui().getContextMenu(ge);
-		if (contextMenu != null) {
-			contextMenu.show((Component) ge.getComponent(), x, y);
-		}
 	}
 
 	@Override
@@ -231,7 +221,6 @@ public class GridElementListener extends UniversalListener {
 		selframe.setLocation(Converter.convert(mousePressedPoint));
 		selframe.setSize(1, 1);
 		CurrentDiagram.getInstance().getDiagramHandler().getDrawPanel().add(selframe, 0);
-		CurrentGui.getInstance().getGui().setCursor(Converter.convert(CursorOwn.DEFAULT));
 	}
 
 	private void dragLasso(MouseEvent me, GridElement e) {
