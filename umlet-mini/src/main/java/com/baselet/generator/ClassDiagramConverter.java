@@ -9,7 +9,6 @@ import com.baselet.control.enums.generator.SignatureOptions;
 import com.baselet.diagram.CurrentDiagram;
 import com.baselet.diagram.DiagramHandler;
 import com.baselet.diagram.FontHandler;
-import com.baselet.diagram.Notifier;
 import com.baselet.element.ElementFactorySwing;
 import com.baselet.element.interfaces.GridElement;
 import com.baselet.generator.java.Accessible.AccessFlag;
@@ -71,7 +70,6 @@ public class ClassDiagramConverter {
 		}
 
 		if (!failures.isEmpty()) {
-			Notifier.getInstance().showError(ClassDiagramConverter.convertFailuresToString(failures));
 			return; // if errors are in any of the files don't add any of them
 		}
 

@@ -7,7 +7,6 @@ import com.baselet.control.util.Path;
 import com.baselet.control.util.RecentlyUsedFilesList;
 import com.baselet.diagram.CurrentDiagram;
 import com.baselet.diagram.DiagramHandler;
-import com.baselet.diagram.Notifier;
 import com.baselet.element.NewGridElement;
 import com.baselet.element.interfaces.GridElement;
 import com.baselet.element.old.custom.CustomElement;
@@ -380,7 +379,6 @@ public class DiagramFileHandler {
 			handler.setChanged(false);
 			RecentlyUsedFilesList.getInstance().add(saveToFile.getAbsolutePath());
 		}
-		Notifier.getInstance().showInfo(saveToFile.getAbsolutePath() + " saved");
 	}
 
 	private String chooseFileName(boolean ownXmlFormat, FileFilter filefilter, JFileChooser fileChooser) {

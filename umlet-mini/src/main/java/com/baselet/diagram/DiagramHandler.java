@@ -322,7 +322,6 @@ public class DiagramHandler {
 			} else {
 				zoomtext = "Diagram zoomed to " + Integer.toString((int) zoomFactor) + "%";
 			}
-			Notifier.getInstance().showInfo(zoomtext);
 		}
 	}
 
