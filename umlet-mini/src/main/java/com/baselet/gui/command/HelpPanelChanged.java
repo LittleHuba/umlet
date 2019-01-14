@@ -1,12 +1,12 @@
 package com.baselet.gui.command;
 
-import java.util.Vector;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.baselet.control.constants.Constants;
 import com.baselet.control.util.Utils;
 import com.baselet.diagram.DiagramHandler;
+
+import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class HelpPanelChanged extends Command {
 	private final String changed_to;

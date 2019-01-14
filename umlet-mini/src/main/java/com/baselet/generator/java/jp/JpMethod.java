@@ -1,11 +1,11 @@
 package com.baselet.generator.java.jp;
 
-import java.util.List;
-
 import com.baselet.generator.java.Method;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.ModifierSet;
 import com.github.javaparser.ast.body.Parameter;
+
+import java.util.List;
 
 public class JpMethod implements Method {
 
@@ -37,8 +37,7 @@ public class JpMethod implements Method {
 			if (first) {
 				first = false;
 				sb.append(param.toString());
-			}
-			else {
+			} else {
 				sb.append(", ").append(param.toString());
 			}
 		}
@@ -54,14 +53,11 @@ public class JpMethod implements Method {
 		int modifiers = method.getModifiers();
 		if ((modifiers & ModifierSet.PUBLIC) != 0) {
 			return AccessFlag.PUBLIC;
-		}
-		else if ((modifiers & ModifierSet.PROTECTED) != 0) {
+		} else if ((modifiers & ModifierSet.PROTECTED) != 0) {
 			return AccessFlag.PROTECTED;
-		}
-		else if ((modifiers & ModifierSet.PRIVATE) != 0) {
+		} else if ((modifiers & ModifierSet.PRIVATE) != 0) {
 			return AccessFlag.PRIVATE;
-		}
-		else {
+		} else {
 			return AccessFlag.PACKAGE;
 		}
 	}

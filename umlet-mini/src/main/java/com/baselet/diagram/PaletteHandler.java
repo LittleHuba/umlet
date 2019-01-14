@@ -1,10 +1,10 @@
 package com.baselet.diagram;
 
-import java.io.File;
-
 import com.baselet.element.interfaces.GridElement;
 import com.baselet.gui.listener.GridElementListener;
 import com.baselet.gui.listener.PaletteEntityListener;
+
+import java.io.File;
 
 public class PaletteHandler extends DiagramHandler {
 

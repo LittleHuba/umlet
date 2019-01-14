@@ -1,15 +1,14 @@
 package com.baselet.diagram.io;
 
+import com.baselet.control.config.Config;
+import com.baselet.control.enums.Program;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
 import java.awt.Frame;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
-
-import com.baselet.control.config.Config;
-import com.baselet.control.enums.Program;
 
 public class OpenFileChooser {
 

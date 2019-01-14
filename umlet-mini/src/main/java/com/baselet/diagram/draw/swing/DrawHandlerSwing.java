@@ -1,14 +1,5 @@
 package com.baselet.diagram.draw.swing;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.geom.Arc2D;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Path2D;
-import java.awt.geom.RoundRectangle2D;
-
 import com.baselet.control.StringStyle;
 import com.baselet.control.basics.Converter;
 import com.baselet.control.basics.geom.DimensionDouble;
@@ -22,6 +13,15 @@ import com.baselet.diagram.draw.DrawHandler;
 import com.baselet.diagram.draw.helper.ColorOwn;
 import com.baselet.diagram.draw.helper.Style;
 import com.baselet.element.interfaces.GridElement;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.Arc2D;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Path2D;
+import java.awt.geom.RoundRectangle2D;
 
 public class DrawHandlerSwing extends DrawHandler {
 
@@ -128,8 +128,7 @@ public class DrawHandlerSwing extends DrawHandler {
 				else if (i == lastIdx && points[0].equals(points[lastIdx])) {
 					path.closePath();
 					fillShape = true;
-				}
-				else {
+				} else {
 					path.lineTo(x, y);
 				}
 			}

@@ -1,14 +1,13 @@
 package com.baselet.gui.listener;
 
+import com.baselet.control.Main;
+import com.baselet.gui.CurrentGui;
+
+import javax.swing.JComboBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
-
-import javax.swing.JComboBox;
-
-import com.baselet.control.Main;
-import com.baselet.gui.CurrentGui;
 
 public class PaletteComboBoxListener implements ActionListener, MouseWheelListener {
 

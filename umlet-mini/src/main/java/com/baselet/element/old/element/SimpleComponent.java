@@ -1,14 +1,15 @@
 package com.baselet.element.old.element;
 
 // Some import to have access to more Java features
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.util.Vector;
 
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.util.Utils;
 import com.baselet.element.old.OldGridElement;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.Vector;
 
 @SuppressWarnings("serial")
 public class SimpleComponent extends OldGridElement {

@@ -1,12 +1,5 @@
 package com.baselet.element.old.element;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.font.TextLayout;
-import java.awt.geom.Rectangle2D;
-import java.util.Set;
-import java.util.Vector;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.enums.Direction;
@@ -14,6 +7,13 @@ import com.baselet.control.util.Utils;
 import com.baselet.element.old.OldGridElement;
 import com.baselet.element.sticking.StickingPolygon;
 import com.baselet.gui.command.OldResize;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.font.TextLayout;
+import java.awt.geom.Rectangle2D;
+import java.util.Set;
+import java.util.Vector;
 
 @SuppressWarnings("serial")
 public class SynchBarHorizontal extends OldGridElement {

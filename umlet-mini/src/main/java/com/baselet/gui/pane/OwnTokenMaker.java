@@ -1,12 +1,12 @@
 /* Based on WindowsBatchTokenMaker.java - Scanner for Windows batch files. This library is distributed under a modified BSD license. See the included RSyntaxTextArea.License.txt file for details. */
 package com.baselet.gui.pane;
 
-import javax.swing.text.Segment;
-
 import org.fife.ui.rsyntaxtextarea.AbstractTokenMaker;
 import org.fife.ui.rsyntaxtextarea.Token;
 import org.fife.ui.rsyntaxtextarea.TokenMap;
 import org.fife.ui.rsyntaxtextarea.TokenTypes;
+
+import javax.swing.text.Segment;
 
 /**
  * see http://fifesoft.com/rsyntaxtextarea/doc/CustomSyntaxHighlighting.html for more infos about own syntax
@@ -41,9 +41,9 @@ public class OwnTokenMaker extends AbstractTokenMaker {
 	 * Returns a list of tokens representing the given text.
 	 * Based on http://fifesoft.com/rsyntaxtextarea/doc/CustomSyntaxHighlighting.html but reduced to our highlighting
 	 *
-	 * @param text The text to break into tokens.
+	 * @param text           The text to break into tokens.
 	 * @param startTokenType The token with which to start tokenizing.
-	 * @param startOffset The offset at which the line of tokens begins.
+	 * @param startOffset    The offset at which the line of tokens begins.
 	 * @return A linked list of tokens representing <code>text</code>.
 	 */
 	@Override

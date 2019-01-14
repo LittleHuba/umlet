@@ -1,14 +1,7 @@
 package com.baselet.custom;
 
-import java.awt.BorderLayout;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-
-import javax.swing.JPanel;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.text.JTextComponent;
-import javax.swing.text.PlainDocument;
-
+import com.baselet.control.config.DerivedConfig;
+import com.baselet.element.old.custom.CustomElement;
 import org.fife.ui.autocomplete.AutoCompletion;
 import org.fife.ui.autocomplete.BasicCompletion;
 import org.fife.ui.autocomplete.DefaultCompletionProvider;
@@ -16,8 +9,13 @@ import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
 
-import com.baselet.control.config.DerivedConfig;
-import com.baselet.element.old.custom.CustomElement;
+import javax.swing.JPanel;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.text.JTextComponent;
+import javax.swing.text.PlainDocument;
+import java.awt.BorderLayout;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 public class CustomCodeSyntaxPane {
 

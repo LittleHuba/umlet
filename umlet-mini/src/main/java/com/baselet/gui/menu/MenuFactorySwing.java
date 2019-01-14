@@ -1,5 +1,27 @@
 package com.baselet.gui.menu;
 
+import com.baselet.control.Main;
+import com.baselet.control.constants.Constants;
+import com.baselet.control.constants.SystemInfo;
+import com.baselet.control.enums.Os;
+import com.baselet.control.util.RecentlyUsedFilesList;
+import com.baselet.diagram.draw.helper.ColorOwn;
+import com.baselet.gui.helper.PlainColorIcon;
+
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Locale;
+
 import static com.baselet.control.constants.MenuConstants.ABOUT_PROGRAM;
 import static com.baselet.control.constants.MenuConstants.ALIGN;
 import static com.baselet.control.constants.MenuConstants.CLOSE;
@@ -41,29 +63,6 @@ import static com.baselet.control.constants.MenuConstants.UNDO;
 import static com.baselet.control.constants.MenuConstants.UNGROUP;
 import static com.baselet.control.constants.MenuConstants.VIDEO_TUTORIAL;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Locale;
-
-import javax.swing.AbstractAction;
-import javax.swing.JComponent;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
-
-import com.baselet.control.Main;
-import com.baselet.control.constants.Constants;
-import com.baselet.control.constants.SystemInfo;
-import com.baselet.control.enums.Os;
-import com.baselet.control.util.RecentlyUsedFilesList;
-import com.baselet.diagram.draw.helper.ColorOwn;
-import com.baselet.gui.helper.PlainColorIcon;
-
 public class MenuFactorySwing extends MenuFactory {
 
 	private static MenuFactorySwing instance = null;
@@ -93,10 +92,12 @@ public class MenuFactorySwing extends MenuFactory {
 		recentFiles.setMnemonic(KeyEvent.VK_R);
 		recentFiles.addMenuListener(new MenuListener() {
 			@Override
-			public void menuDeselected(MenuEvent e) {}
+			public void menuDeselected(MenuEvent e) {
+			}
 
 			@Override
-			public void menuCanceled(MenuEvent e) {}
+			public void menuCanceled(MenuEvent e) {
+			}
 
 			@Override
 			public void menuSelected(MenuEvent e) {
@@ -198,11 +199,10 @@ public class MenuFactorySwing extends MenuFactory {
 	}
 
 	public JMenuItem createDelete() {
-		int[] keys = new int[] { KeyEvent.VK_BACK_SPACE, KeyEvent.VK_DELETE }; // backspace AND delete both work for deleting elements
+		int[] keys = new int[]{KeyEvent.VK_BACK_SPACE, KeyEvent.VK_DELETE}; // backspace AND delete both work for deleting elements
 		if (SystemInfo.OS == Os.MAC) { // MacOS shows the backspace key mapping because it's the only one working - see http://stackoverflow.com/questions/4881262/java-keystroke-for-delete/4881606#4881606
 			return createJMenuItem(false, DELETE, keys, KeyEvent.VK_D, KeyEvent.VK_BACK_SPACE);
-		}
-		else {
+		} else {
 			return createJMenuItem(false, DELETE, keys, KeyEvent.VK_D, KeyEvent.VK_DELETE);
 		}
 	}
@@ -294,7 +294,7 @@ public class MenuFactorySwing extends MenuFactory {
 
 	public JMenu createAlign() {
 		JMenu alignMenu = new JMenu(ALIGN);
-		for (String direction : new String[] { "Left", "Right", "Top", "Bottom" }) {
+		for (String direction : new String[]{"Left", "Right", "Top", "Bottom"}) {
 			alignMenu.add(createJMenuItem(false, direction, ALIGN, direction));
 		}
 		return alignMenu;
@@ -302,7 +302,7 @@ public class MenuFactorySwing extends MenuFactory {
 
 	public JMenu createLayerUp() {
 		JMenu alignMenu = new JMenu(LAYER);
-		for (String direction : new String[] { LAYER_DOWN, LAYER_UP }) {
+		for (String direction : new String[]{LAYER_DOWN, LAYER_UP}) {
 			alignMenu.add(createJMenuItem(false, direction, LAYER, direction));
 		}
 		return alignMenu;
@@ -346,6 +346,7 @@ public class MenuFactorySwing extends MenuFactory {
 
 	/**
 	 * Create a JMenuItem with multiple key bindings (only one mnemonic can be set at any time).
+	 *
 	 * @see "http://docs.oracle.com/javase/tutorial/uiswing/misc/action.html"
 	 */
 	private JMenuItem createJMenuItem(boolean grayWithoutDiagram, final String name, int[] keyEvents, int mnemonic, int shortcut) {

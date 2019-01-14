@@ -1,10 +1,10 @@
 package com.baselet.element.old.activity;
 
-import java.awt.Graphics2D;
-import java.awt.Point;
-
 import com.baselet.control.enums.Direction;
 import com.baselet.diagram.DiagramHandler;
+
+import java.awt.Graphics2D;
+import java.awt.Point;
 
 public class Sync extends StopElement {
 
@@ -44,16 +44,14 @@ public class Sync extends StopElement {
 
 		if (dir.equals(Direction.LEFT)) {
 			c2.x -= (int) (10 * getZoom());
-		}
-		else if (dir.equals(Direction.RIGHT)) {
+		} else if (dir.equals(Direction.RIGHT)) {
 			c2.x += (int) (10 * getZoom());
 		}
 		c2.y -= (int) (10 * getZoom());
 
 		if (arrowIn()) {
 			Connector.drawArrow(getGraphics(), getZoom(), c2.x, c2.y, c.x, c.y);
-		}
-		else {
+		} else {
 			getGraphics().drawLine(c2.x, c2.y, c.x, c.y);
 		}
 		return c2;
@@ -64,8 +62,7 @@ public class Sync extends StopElement {
 		Point c = getConnect(Direction.DOWN);
 		if (dir.equals(Direction.LEFT)) {
 			c.x -= (int) (10 * getZoom());
-		}
-		else if (dir.equals(Direction.RIGHT)) {
+		} else if (dir.equals(Direction.RIGHT)) {
 			c.x += (int) (10 * getZoom());
 		}
 
@@ -86,18 +83,15 @@ public class Sync extends StopElement {
 
 		if (dir == Direction.UP) {
 			c.y += (pad - h) / 2;
-		}
-		else if (dir == Direction.DOWN) {
+		} else if (dir == Direction.DOWN) {
 			c.y += (pad + h) / 2;
-		}
-		else if (dir == Direction.LEFT) {
+		} else if (dir == Direction.LEFT) {
 			if (c.x - current_left_x < w / 2 - con_pad) {
 				current_left_x -= con_pad;
 			}
 			c.x = current_left_x;
 			c.y += (pad - h) / 2;
-		}
-		else if (dir == Direction.RIGHT) {
+		} else if (dir == Direction.RIGHT) {
 			if (current_right_x - c.x < w / 2 - con_pad) {
 				current_right_x += con_pad;
 			}
@@ -115,11 +109,9 @@ public class Sync extends StopElement {
 				Point from = e.getConnect(Direction.DOWN);
 				if (from.x == to.x) {
 					to = getConnect(Direction.UP);
-				}
-				else if (from.x < to.x) {
+				} else if (from.x < to.x) {
 					to = getConnect(Direction.LEFT);
-				}
-				else if (from.x > to.x) {
+				} else if (from.x > to.x) {
 					to = getConnect(Direction.RIGHT);
 				}
 
@@ -130,8 +122,7 @@ public class Sync extends StopElement {
 
 				if (arrowIn() && e.arrowOut()) {
 					Connector.drawArrow(getGraphics(), getZoom(), from.x, from.y, to.x, to.y);
-				}
-				else {
+				} else {
 					getGraphics().drawLine(from.x, from.y, to.x, to.y);
 				}
 			}

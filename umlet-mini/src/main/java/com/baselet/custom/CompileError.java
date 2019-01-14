@@ -1,11 +1,11 @@
 package com.baselet.custom;
 
+import com.baselet.control.constants.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.baselet.control.constants.Constants;
 
 public class CompileError {
 

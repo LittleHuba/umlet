@@ -1,35 +1,25 @@
 package com.baselet.control;
 
+import com.baselet.control.config.handler.ConfigHandler;
+import com.baselet.control.constants.Constants;
+import com.baselet.control.enums.Program;
+import com.baselet.control.util.CanOpenDiagram;
+import com.baselet.control.util.Path;
+import com.baselet.diagram.CurrentDiagram;
+import com.baselet.diagram.DiagramHandler;
+import com.baselet.diagram.PaletteHandler;
+import com.baselet.element.interfaces.GridElement;
+import com.baselet.gui.CurrentGui;
+import com.baselet.gui.pane.OwnSyntaxPane;
+
+import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.TreeMap;
-
-import javax.swing.SwingUtilities;
-import javax.swing.ToolTipManager;
-import javax.swing.filechooser.FileSystemView;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.baselet.control.config.Config;
-import com.baselet.control.config.handler.ConfigHandler;
-import com.baselet.control.constants.Constants;
-import com.baselet.control.enums.Program;
-import com.baselet.control.util.CanOpenDiagram;
-import com.baselet.control.util.Path;
-import com.baselet.control.util.RecentlyUsedFilesList;
-import com.baselet.diagram.CurrentDiagram;
-import com.baselet.diagram.DiagramHandler;
-import com.baselet.diagram.Notifier;
-import com.baselet.diagram.PaletteHandler;
-import com.baselet.diagram.io.OpenFileChooser;
-import com.baselet.element.interfaces.GridElement;
-import com.baselet.gui.BaseGUI;
-import com.baselet.gui.CurrentGui;
-import com.baselet.gui.pane.OwnSyntaxPane;
 
 public class Main implements CanCloseProgram, CanOpenDiagram {
 
@@ -57,13 +47,11 @@ public class Main implements CanCloseProgram, CanOpenDiagram {
 		OwnSyntaxPane propertyPane = CurrentGui.getInstance().getGui().getPropertyPane();
 		if (e != null) {
 			propertyPane.switchToElement(e);
-		}
-		else {
+		} else {
 			DiagramHandler handler = CurrentDiagram.getInstance().getDiagramHandler();
 			if (handler == null) {
 				propertyPane.switchToNonElement("");
-			}
-			else {
+			} else {
 				propertyPane.switchToNonElement(handler.getHelpText());
 			}
 		}

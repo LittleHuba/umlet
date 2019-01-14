@@ -1,13 +1,5 @@
 package com.baselet.generator.java.jp;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.baselet.generator.java.Field;
 import com.baselet.generator.java.JavaClass;
 import com.baselet.generator.java.Method;
@@ -21,6 +13,13 @@ import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.ModifierSet;
 import com.github.javaparser.ast.body.TypeDeclaration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JpJavaClass implements JavaClass {
 
@@ -62,11 +61,9 @@ public class JpJavaClass implements JavaClass {
 			for (BodyDeclaration member : members) {
 				if (member instanceof FieldDeclaration) {
 					fields.add((FieldDeclaration) member);
-				}
-				else if (member instanceof ConstructorDeclaration) {
+				} else if (member instanceof ConstructorDeclaration) {
 					constructors.add((ConstructorDeclaration) member);
-				}
-				else if (member instanceof MethodDeclaration) {
+				} else if (member instanceof MethodDeclaration) {
 					methods.add((MethodDeclaration) member);
 				}
 			}
@@ -111,11 +108,9 @@ public class JpJavaClass implements JavaClass {
 	public ClassRole getRole() {
 		if (clazz.isInterface()) {
 			return ClassRole.INTERFACE;
-		}
-		else if ((clazz.getModifiers() & ModifierSet.ABSTRACT) != 0) {
+		} else if ((clazz.getModifiers() & ModifierSet.ABSTRACT) != 0) {
 			return ClassRole.ABSTRACT;
-		}
-		else {
+		} else {
 			return ClassRole.CLASS;
 		}
 	}

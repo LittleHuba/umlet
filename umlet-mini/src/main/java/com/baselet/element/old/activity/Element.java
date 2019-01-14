@@ -1,10 +1,10 @@
 package com.baselet.element.old.activity;
 
-import java.awt.Graphics2D;
-import java.awt.Point;
-
 import com.baselet.control.enums.Direction;
 import com.baselet.diagram.DiagramHandler;
+
+import java.awt.Graphics2D;
+import java.awt.Point;
 
 public abstract class Element {
 
@@ -144,14 +144,11 @@ public abstract class Element {
 		Point c = (Point) cord.clone();
 		if (dir == Direction.UP) {
 			c.y -= getHeight() / 2;
-		}
-		else if (dir == Direction.DOWN) {
+		} else if (dir == Direction.DOWN) {
 			c.y += getHeight() - getHeight() / 2;
-		}
-		else if (dir == Direction.LEFT) {
+		} else if (dir == Direction.LEFT) {
 			c.x -= getLeftWidth();
-		}
-		else if (dir == Direction.RIGHT) {
+		} else if (dir == Direction.RIGHT) {
 			c.x += getRightWidth();
 		}
 		return c;

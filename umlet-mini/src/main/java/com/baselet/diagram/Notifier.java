@@ -1,13 +1,12 @@
 package com.baselet.diagram;
 
+import com.baselet.control.basics.Converter;
+
+import javax.swing.SwingUtilities;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.swing.SwingUtilities;
-
-import com.baselet.control.basics.Converter;
 
 public class Notifier {
 

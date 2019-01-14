@@ -1,5 +1,12 @@
 package com.baselet.gui.command;
 
+import com.baselet.control.constants.Constants;
+import com.baselet.diagram.DiagramHandler;
+import com.baselet.diagram.io.OutputHandler;
+import com.baselet.element.ElementFactorySwing;
+import com.baselet.element.interfaces.GridElement;
+import com.baselet.gui.CurrentGui;
+
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -8,14 +15,9 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.baselet.control.constants.Constants;
-import com.baselet.diagram.DiagramHandler;
-import com.baselet.diagram.io.OutputHandler;
-import com.baselet.element.ElementFactorySwing;
-import com.baselet.element.interfaces.GridElement;
-import com.baselet.gui.CurrentGui;
-
-/** Copies and Pastes images to the system clipboard. Requires Java 2, v1.4. */
+/**
+ * Copies and Pastes images to the system clipboard. Requires Java 2, v1.4.
+ */
 public class ClipBoard implements Transferable {
 
 	private final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -52,7 +54,7 @@ public class ClipBoard implements Transferable {
 
 	@Override
 	public DataFlavor[] getTransferDataFlavors() {
-		return new DataFlavor[] { DataFlavor.imageFlavor };
+		return new DataFlavor[]{DataFlavor.imageFlavor};
 	}
 
 	@Override

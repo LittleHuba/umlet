@@ -1,19 +1,17 @@
 package com.baselet.control.config;
 
-import java.awt.Font;
-import java.awt.Point;
-import java.io.File;
-
-import javax.swing.UIManager;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.baselet.control.basics.geom.Dimension;
 import com.baselet.control.constants.SystemInfo;
 import com.baselet.control.enums.Os;
 import com.baselet.control.enums.Program;
 import com.baselet.control.enums.RuntimeType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.swing.UIManager;
+import java.awt.Font;
+import java.awt.Point;
+import java.io.File;
 
 public class Config {
 
@@ -63,11 +61,9 @@ public class Config {
 		// The default MacOS theme looks ugly, therefore we set metal
 		if (SystemInfo.OS == Os.MAC) {
 			uiManager = "javax.swing.plaf.metal.MetalLookAndFeel";
-		}
-		else if (Program.getInstance().getRuntimeType() == RuntimeType.ECLIPSE_PLUGIN && UIManager.getSystemLookAndFeelClassName().equals("com.sun.java.swing.plaf.gtk.GTKLookAndFeel")) {
+		} else if (Program.getInstance().getRuntimeType() == RuntimeType.ECLIPSE_PLUGIN && UIManager.getSystemLookAndFeelClassName().equals("com.sun.java.swing.plaf.gtk.GTKLookAndFeel")) {
 			uiManager = "javax.swing.plaf.metal.MetalLookAndFeel";
-		}
-		else {
+		} else {
 			uiManager = UIManager.getSystemLookAndFeelClassName();
 		}
 	}

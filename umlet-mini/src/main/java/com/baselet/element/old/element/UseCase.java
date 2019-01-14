@@ -1,10 +1,5 @@
 package com.baselet.element.old.element;
 
-import java.awt.Composite;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.util.Vector;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.enums.LineType;
@@ -12,6 +7,11 @@ import com.baselet.control.util.Utils;
 import com.baselet.diagram.DiagramHandler;
 import com.baselet.element.old.OldGridElement;
 import com.baselet.element.sticking.StickingPolygon;
+
+import java.awt.Composite;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.Vector;
 
 @SuppressWarnings("serial")
 public class UseCase extends OldGridElement {
@@ -42,8 +42,7 @@ public class UseCase extends OldGridElement {
 		g2.setComposite(composites[0]);
 		if (handlerForElement.getDrawPanel().getSelector().isSelected(this)) {
 			g2.setColor(fgColor);
-		}
-		else {
+		} else {
 			g2.setColor(fgColorBase);
 		}
 
@@ -58,8 +57,7 @@ public class UseCase extends OldGridElement {
 			yPos = (b - y) / 2;
 			g2.drawLine(a - x, b - y, a + x, b - y);
 			found = true;
-		}
-		else {
+		} else {
 			yPos = getRectangle().height / 2 - tmp.size() * (int) (handlerForElement.getFontHandler().getFontSize() + handlerForElement.getFontHandler().getDistanceBetweenTexts()) / 2;
 		}
 
@@ -67,13 +65,11 @@ public class UseCase extends OldGridElement {
 			String s = tmp.elementAt(i);
 			if (s.equals("--") && found) {
 				yPos = yPos1;
-			}
-			else if (found) {
+			} else if (found) {
 				handlerForElement.getFontHandler().writeText(g2, s, a, yPos + 5, AlignHorizontal.CENTER);
 				yPos += 5 * handlerForElement.getFontHandler().getDistanceBetweenTexts();
 
-			}
-			else {
+			} else {
 				yPos += (int) handlerForElement.getFontHandler().getFontSize();
 				handlerForElement.getFontHandler().writeText(g2, s, getRectangle().width / 2.0, yPos, AlignHorizontal.CENTER);
 				yPos += handlerForElement.getFontHandler().getDistanceBetweenTexts();

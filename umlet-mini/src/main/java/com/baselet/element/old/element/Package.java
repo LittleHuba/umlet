@@ -1,16 +1,16 @@
 package com.baselet.element.old.element;
 
-import java.awt.Composite;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.geom.Area;
-import java.util.Vector;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.util.Utils;
 import com.baselet.element.old.OldGridElement;
 import com.baselet.element.sticking.StickingPolygon;
+
+import java.awt.Composite;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Area;
+import java.util.Vector;
 
 @SuppressWarnings("serial")
 public class Package extends OldGridElement {
@@ -61,8 +61,7 @@ public class Package extends OldGridElement {
 				g2.setComposite(composites[0]);
 				if (HandlerElementMap.getHandlerForElement(this).getDrawPanel().getSelector().isSelected(this)) {
 					g2.setColor(fgColor);
-				}
-				else {
+				} else {
 					g2.setColor(fgColorBase);
 				}
 
@@ -70,18 +69,14 @@ public class Package extends OldGridElement {
 				g2.drawRect(0, yPosBorder, getRectangle().width - 1, getRectangle().height - yPosBorder - 1);
 				// yPos to write the String centered
 				yPosBorder = (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2 + yPosBorder / 2 + getRectangle().height / 2 - (tmp.size() - lines) * (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() + (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts()) / 2;
-			}
-			else if (!normal && i > 1 && tmp.elementAt(i - 1).equals("--") && tmp.elementAt(i).startsWith("left:")) {
+			} else if (!normal && i > 1 && tmp.elementAt(i - 1).equals("--") && tmp.elementAt(i).startsWith("left:")) {
 				yPosBorder = (lines + 1) * (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() + HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts()) / 2 + (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts() + (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() + HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts());
-			}
-			else if (!borders) {
+			} else if (!borders) {
 				maxUpperBox = (int) Math.max(maxUpperBox, HandlerElementMap.getHandlerForElement(this).getFontHandler().getTextWidth(s) + (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize());
 				yPosBorder += (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() + HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts());
-			}
-			else if (normal) {
+			} else if (normal) {
 				yPosBorder += (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() + HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts());
-			}
-			else if (!normal) {
+			} else if (!normal) {
 				yPosBorder += (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() + HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts());
 			}
 		}
@@ -99,8 +94,7 @@ public class Package extends OldGridElement {
 				// g2.drawRect(0,yPos,this.getWidth()-1,this.getHeight()-yPos-1);
 				// yPos to write the String centered
 				yPos = (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2 + yPos / 2 + getRectangle().height / 2 - (tmp.size() - lines) * (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() + HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts()) / 2;
-			}
-			else if (!normal && i > 1 && tmp.elementAt(i - 1).equals("--") && tmp.elementAt(i).startsWith("left:")) {
+			} else if (!normal && i > 1 && tmp.elementAt(i - 1).equals("--") && tmp.elementAt(i).startsWith("left:")) {
 				// writes the string normal
 				yPos = (lines + 1) * (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() + HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts()) / 2;
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
@@ -108,8 +102,7 @@ public class Package extends OldGridElement {
 				HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s.substring(5), (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2.0, yPos, AlignHorizontal.LEFT);
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
 				normal = true;
-			}
-			else if (!borders) {
+			} else if (!borders) {
 
 				lines++;
 				maxUpperBox = (int) Math.max(maxUpperBox, HandlerElementMap.getHandlerForElement(this).getFontHandler().getTextWidth(s) + (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize());
@@ -117,15 +110,13 @@ public class Package extends OldGridElement {
 				HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2.0, yPos, AlignHorizontal.LEFT);
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
 
-			}
-			else if (normal) {
+			} else if (normal) {
 
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize();
 				HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2), yPos, AlignHorizontal.LEFT);
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
 
-			}
-			else if (!normal) {
+			} else if (!normal) {
 
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize();
 				HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, getRectangle().width / 2.0, yPos, AlignHorizontal.CENTER);
@@ -158,8 +149,7 @@ public class Package extends OldGridElement {
 			// G.Mueller End
 			if (s.equals("--") && !borders) {
 				borders = true;
-			}
-			else if (!borders) {
+			} else if (!borders) {
 				maxUpperBox = (int) Math.max(maxUpperBox, HandlerElementMap.getHandlerForElement(this).getFontHandler().getTextWidth(s) + (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize());
 				yPos += (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() + HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts());
 			}

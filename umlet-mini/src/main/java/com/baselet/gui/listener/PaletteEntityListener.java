@@ -1,13 +1,5 @@
 package com.baselet.gui.listener;
 
-import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
-import java.util.Vector;
-
 import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.control.constants.Constants;
 import com.baselet.diagram.CurrentDiagram;
@@ -20,6 +12,14 @@ import com.baselet.element.interfaces.GridElement;
 import com.baselet.gui.CurrentGui;
 import com.baselet.gui.command.AddElement;
 import com.baselet.gui.command.Command;
+
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
 
 public class PaletteEntityListener extends GridElementListener {
 
@@ -65,8 +65,7 @@ public class PaletteEntityListener extends GridElementListener {
 
 		if (IS_DRAGGED_FROM_PALETTE) {
 			moveDraggedEntities();
-		}
-		else if (entity.getRectangle().x + entity.getRectangle().width <= 0) {
+		} else if (entity.getRectangle().x + entity.getRectangle().width <= 0) {
 			resetEntities();
 			insertDraggedEntities(me);
 			handler.getDrawPanel().getSelector().deselectAllWithoutUpdatePropertyPanel();
@@ -175,8 +174,8 @@ public class PaletteEntityListener extends GridElementListener {
 		int upperLeftX = (int) (viewp.getX() - viewp.getX() % oldZoomDiagram);
 		int upperLeftY = (int) (viewp.getY() - viewp.getY() % oldZoomDiagram);
 		cmd = new AddElement(e,
-				handler.realignToGrid((upperLeftX / oldZoomDiagram + Constants.PASTE_DISPLACEMENT_GRIDS) * Constants.DEFAULTGRIDSIZE),
-				handler.realignToGrid((upperLeftY / oldZoomDiagram + Constants.PASTE_DISPLACEMENT_GRIDS) * Constants.DEFAULTGRIDSIZE));
+			handler.realignToGrid((upperLeftX / oldZoomDiagram + Constants.PASTE_DISPLACEMENT_GRIDS) * Constants.DEFAULTGRIDSIZE),
+			handler.realignToGrid((upperLeftY / oldZoomDiagram + Constants.PASTE_DISPLACEMENT_GRIDS) * Constants.DEFAULTGRIDSIZE));
 		currentDiagram.getHandler().getController().executeCommand(cmd);
 		currentDiagram.getSelector().selectOnly(e);
 

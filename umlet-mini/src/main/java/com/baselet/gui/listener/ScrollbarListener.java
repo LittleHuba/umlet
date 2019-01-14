@@ -1,11 +1,11 @@
 package com.baselet.gui.listener;
 
+import com.baselet.diagram.DrawPanel;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
-
-import com.baselet.diagram.DrawPanel;
 
 public class ScrollbarListener implements MouseListener, MouseWheelListener {
 
@@ -17,16 +17,20 @@ public class ScrollbarListener implements MouseListener, MouseWheelListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {}
+	public void mouseClicked(MouseEvent e) {
+	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {}
+	public void mouseEntered(MouseEvent e) {
+	}
 
 	@Override
-	public void mouseExited(MouseEvent e) {}
+	public void mouseExited(MouseEvent e) {
+	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {}
+	public void mousePressed(MouseEvent e) {
+	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {

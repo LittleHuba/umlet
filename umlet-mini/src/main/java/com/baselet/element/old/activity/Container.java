@@ -1,12 +1,12 @@
 package com.baselet.element.old.activity;
 
+import com.baselet.control.enums.Direction;
+import com.baselet.diagram.DiagramHandler;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import com.baselet.control.enums.Direction;
-import com.baselet.diagram.DiagramHandler;
 
 public class Container extends Element {
 
@@ -34,8 +34,7 @@ public class Container extends Element {
 
 		if (autoInsertIF.get() && this.parent != null) {
 			setStartElement(new If(handler, g, null));
-		}
-		else if (this.parent != null) {
+		} else if (this.parent != null) {
 			setStartElement(new StartElement(handler, g, 0, null));
 		}
 	}
@@ -70,8 +69,7 @@ public class Container extends Element {
 	public Container close() {
 		if (autoInsertIF.get() && parent != null) {
 			setStopElement(new EndIf(getHandler(), getGraphics(), null));
-		}
-		else if (parent != null) {
+		} else if (parent != null) {
 			setStopElement(new StopElement(getHandler(), getGraphics(), 0, null));
 		}
 		return parent;
@@ -155,8 +153,7 @@ public class Container extends Element {
 	public boolean arrowIn() {
 		if (start == null) {
 			return false;
-		}
-		else {
+		} else {
 			return start.arrowIn();
 		}
 	}
@@ -300,8 +297,7 @@ public class Container extends Element {
 
 		if (columns.size() == 1) {
 			columns.get(0).setX(x);
-		}
-		else {
+		} else {
 			x -= getLeftWidth();
 			int i = 1;
 			for (Column c : columns) {
@@ -326,11 +322,10 @@ public class Container extends Element {
 
 	public void removeEmptyColumns() {
 		// remove empty columns first (may be possible because of goto element
-		for (int i = 0; i < columns.size();) {
+		for (int i = 0; i < columns.size(); ) {
 			if (columns.get(i).isEmpty()) {
 				columns.remove(i);
-			}
-			else {
+			} else {
 				i++;
 			}
 		}

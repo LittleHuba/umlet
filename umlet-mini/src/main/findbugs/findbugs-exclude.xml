@@ -1,6 +1,6 @@
 <FindBugsFilter>
 	<Match>
 		<!-- TODO fix existing bugs and enable findbugs on this project -->
-		<Package name="~com.baselet.*" />
+		<Package name="~com.baselet.*"/>
 	</Match>
 </FindBugsFilter>

@@ -1,13 +1,13 @@
 package com.baselet.element.old.element;
 
+import com.baselet.control.HandlerElementMap;
+import com.baselet.control.util.Utils;
+import com.baselet.element.old.OldGridElement;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Vector;
-
-import com.baselet.control.HandlerElementMap;
-import com.baselet.control.util.Utils;
-import com.baselet.element.old.OldGridElement;
 
 @SuppressWarnings("serial")
 public class InitialFinalState extends OldGridElement {
@@ -34,8 +34,7 @@ public class InitialFinalState extends OldGridElement {
 			g2.drawOval(0, 0, getRectangle().width - 1, getRectangle().height - 1);
 
 			g2.fillOval((int) (4 * zoom), (int) (4 * zoom), getRectangle().width - (int) (8 * zoom), getRectangle().height - (int) (8 * zoom));
-		}
-		else {
+		} else {
 			g2.fillOval(0, 0, getRectangle().width, getRectangle().height);
 		}
 	}

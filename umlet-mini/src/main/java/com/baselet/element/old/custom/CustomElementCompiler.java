@@ -1,5 +1,17 @@
 package com.baselet.element.old.custom;
 
+import com.baselet.control.config.Config;
+import com.baselet.control.config.SharedConfig;
+import com.baselet.control.constants.Constants;
+import com.baselet.control.enums.Program;
+import com.baselet.control.enums.RuntimeType;
+import com.baselet.control.util.Path;
+import com.baselet.custom.CompileError;
+import com.baselet.element.interfaces.GridElement;
+import com.baselet.element.old.element.ErrorOccurred;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,19 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.baselet.control.config.Config;
-import com.baselet.control.config.SharedConfig;
-import com.baselet.control.constants.Constants;
-import com.baselet.control.enums.Program;
-import com.baselet.control.enums.RuntimeType;
-import com.baselet.control.util.Path;
-import com.baselet.custom.CompileError;
-import com.baselet.element.interfaces.GridElement;
-import com.baselet.element.old.element.ErrorOccurred;
 
 public class CustomElementCompiler {
 
@@ -60,15 +59,13 @@ public class CustomElementCompiler {
 			try {
 				if (template_match.matches()) {
 					beforecodelines = template_match.group(1).split(Constants.NEWLINE).length;
-				}
-				else {
+				} else {
 					global_error = true;
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
-		}
-		else {
+		} else {
 			global_error = true;
 		}
 
@@ -93,9 +90,9 @@ public class CustomElementCompiler {
 			// Compiler Information at http://dev.eclipse.org/viewcvs/index.cgi/jdt-core-home/howto/batch%20compile/batchCompile.html?revision=1.7
 			@SuppressWarnings("deprecation")
 			boolean compilationSuccessful = org.eclipse.jdt.internal.compiler.batch.Main.compile(
-					javaVersion + " " + classpath + " " + sourcefile,
-					new PrintWriter(System.out),
-					compilerErrorMessagePW);
+				javaVersion + " " + classpath + " " + sourcefile,
+				new PrintWriter(System.out),
+				compilerErrorMessagePW);
 
 			if (compilationSuccessful) {
 				FileClassLoader fcl = new FileClassLoader(Thread.currentThread().getContextClassLoader());
@@ -103,8 +100,7 @@ public class CustomElementCompiler {
 				if (c != null) {
 					entity = (CustomElement) c.newInstance();
 				}
-			}
-			else {
+			} else {
 				compilation_errors = CompileError.getListFromString(compilerErrorMessageSW.toString(), beforecodelines);
 			}
 		} catch (Exception e) {
@@ -120,8 +116,7 @@ public class CustomElementCompiler {
 		// If the Eclipse Plugin is started from Eclipse (for debugging), the other projects are linked source dirs and therefore all classes are in the same target dir
 		if (!Path.executable().endsWith(".jar") && Program.getInstance().getRuntimeType() == RuntimeType.ECLIPSE_PLUGIN) {
 			return Path.executable() + "target/classes";
-		}
-		else {
+		} else {
 			return Path.executable() + "\"" + File.pathSeparator + "\"" + Path.executableShared();
 		}
 	}
@@ -168,18 +163,17 @@ public class CustomElementCompiler {
 		Matcher m = template_pattern.matcher(template);
 		if (m.matches()) {
 			return m.group(3);
-		}
-		else {
+		} else {
 			return "";
 		}
 	}
 
 	private String parseCodeIntoTemplate(String code) {
 		return template_match.group(1).replaceFirst("<!CLASSNAME!>", classname) +
-				template_match.group(2) +
-				code +
-				template_match.group(4) +
-				template_match.group(5);
+			template_match.group(2) +
+			code +
+			template_match.group(4) +
+			template_match.group(5);
 	}
 
 	public GridElement genEntity(String code, ErrorHandler errorhandler) {

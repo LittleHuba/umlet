@@ -1,26 +1,5 @@
 package com.baselet.diagram.io;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.util.Collection;
-
-import javax.imageio.ImageIO;
-import javax.swing.JLayeredPane;
-
-import org.apache.batik.dom.GenericDOMImplementation;
-import org.apache.batik.svggen.SVGGraphics2D;
-import org.sourceforge.jlibeps.epsgraphics.EpsGraphics2D;
-import org.w3c.dom.DOMImplementation;
-import org.w3c.dom.Element;
-
 import com.baselet.control.basics.Converter;
 import com.baselet.control.basics.geom.Dimension;
 import com.baselet.control.basics.geom.Rectangle;
@@ -36,10 +15,30 @@ import com.baselet.element.interfaces.GridElement;
 import com.itextpdf.awt.FontMapper;
 import com.itextpdf.awt.PdfGraphics2D;
 import com.itextpdf.text.pdf.PdfWriter;
+import org.apache.batik.dom.GenericDOMImplementation;
+import org.apache.batik.svggen.SVGGraphics2D;
+import org.sourceforge.jlibeps.epsgraphics.EpsGraphics2D;
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Element;
+
+import javax.imageio.ImageIO;
+import javax.swing.JLayeredPane;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.Collection;
 
 public class OutputHandler {
 
-	private OutputHandler() {} // private constructor to avoid instantiation
+	private OutputHandler() {
+	} // private constructor to avoid instantiation
 
 	public static void createAndOutputToFile(String extension, File file, DiagramHandler handler) throws Exception {
 		OutputStream ostream = new FileOutputStream(file);
@@ -70,17 +69,13 @@ public class OutputHandler {
 		}
 		if (extension.equals("eps")) {
 			exportEps(ostream, entities, diagramFont);
-		}
-		else if (extension.equals("pdf")) {
+		} else if (extension.equals("pdf")) {
 			exportPdf(ostream, entities, diagramFont);
-		}
-		else if (extension.equals("svg")) {
+		} else if (extension.equals("svg")) {
 			exportSvg(ostream, entities, diagramFont);
-		}
-		else if (isImageExtension(extension)) {
+		} else if (isImageExtension(extension)) {
 			exportImg(extension, ostream, entities, diagramFont);
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException(extension + " is an invalid format");
 		}
 	}

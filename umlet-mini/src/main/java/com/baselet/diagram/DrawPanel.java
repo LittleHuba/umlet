@@ -1,5 +1,22 @@
 package com.baselet.diagram;
 
+import com.baselet.control.basics.geom.Rectangle;
+import com.baselet.control.config.Config;
+import com.baselet.control.config.SharedConfig;
+import com.baselet.control.constants.Constants;
+import com.baselet.control.util.Utils;
+import com.baselet.element.interfaces.GridElement;
+import com.baselet.element.old.element.Relation;
+import com.baselet.gui.listener.ScrollbarListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.swing.JComponent;
+import javax.swing.JLayeredPane;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.RepaintManager;
+import javax.swing.ScrollPaneConstants;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -13,31 +30,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import javax.swing.JComponent;
-import javax.swing.JLayeredPane;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.RepaintManager;
-import javax.swing.ScrollPaneConstants;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.baselet.control.basics.geom.Rectangle;
-import com.baselet.control.config.Config;
-import com.baselet.control.config.SharedConfig;
-import com.baselet.control.constants.Constants;
-import com.baselet.control.enums.Program;
-import com.baselet.control.enums.RuntimeType;
-import com.baselet.control.util.Utils;
-import com.baselet.element.interfaces.GridElement;
-import com.baselet.element.old.element.Relation;
-import com.baselet.gui.filedrop.FileDrop;
-import com.baselet.gui.filedrop.FileDropListener;
-import com.baselet.gui.listener.ScrollbarListener;
 
 @SuppressWarnings("serial")
 public class DrawPanel extends JLayeredPane implements Printable {
@@ -91,8 +83,7 @@ public class DrawPanel extends JLayeredPane implements Printable {
 		}
 		if (en) {
 			setBackground(new Color(255, 255, 255));
-		}
-		else {
+		} else {
 			setBackground(new Color(235, 235, 235));
 		}
 	}
@@ -113,10 +104,8 @@ public class DrawPanel extends JLayeredPane implements Printable {
 	/**
 	 * Returns the smalles possible rectangle which contains all entities and a border space around it
 	 *
-	 * @param borderSpace
-	 *            the borderspace around the rectangle
-	 * @param entities
-	 *            the entities which should be included
+	 * @param borderSpace the borderspace around the rectangle
+	 * @param entities    the entities which should be included
 	 * @return Rectangle which contains all entities with border space
 	 */
 	public static Rectangle getContentBounds(int borderSpace, Collection<GridElement> entities) {
@@ -142,8 +131,7 @@ public class DrawPanel extends JLayeredPane implements Printable {
 	public int print(Graphics g, PageFormat pageFormat, int pageIndex) {
 		if (pageIndex > 0) {
 			return NO_SUCH_PAGE;
-		}
-		else {
+		} else {
 			Graphics2D g2d = (Graphics2D) g;
 			RepaintManager currentManager = RepaintManager.currentManager(this);
 			currentManager.setDoubleBufferingEnabled(false);
@@ -151,7 +139,7 @@ public class DrawPanel extends JLayeredPane implements Printable {
 			g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
 			AffineTransform t = g2d.getTransform();
 			double scale = Math.min(pageFormat.getImageableWidth() / bounds.width,
-					pageFormat.getImageableHeight() / bounds.height);
+				pageFormat.getImageableHeight() / bounds.height);
 			if (scale < 1) {
 				t.scale(scale, scale);
 				g2d.setTransform(t);
@@ -174,7 +162,7 @@ public class DrawPanel extends JLayeredPane implements Printable {
 
 	public List<com.baselet.element.relation.Relation> getStickables(Collection<GridElement> excludeList) {
 		if (!SharedConfig.getInstance().isStickingEnabled() || handler instanceof PaletteHandler) {
-			return Collections.<com.baselet.element.relation.Relation> emptyList();
+			return Collections.<com.baselet.element.relation.Relation>emptyList();
 		}
 		List<com.baselet.element.relation.Relation> returnList = getHelper(com.baselet.element.relation.Relation.class);
 		returnList.removeAll(excludeList);
@@ -277,8 +265,7 @@ public class DrawPanel extends JLayeredPane implements Printable {
 		if (_scr.getHorizontalScrollBar().isShowing()) {
 			if (horSbPos > diaWithoutWhite.getX()) {
 				newX = diaWithoutWhite.getX();
-			}
-			else {
+			} else {
 				newX = horSbPos;
 			}
 		}
@@ -287,8 +274,7 @@ public class DrawPanel extends JLayeredPane implements Printable {
 		if (_scr.getVerticalScrollBar().isShowing()) {
 			if (verSbPos > diaWithoutWhite.getY()) {
 				newY = diaWithoutWhite.getY();
-			}
-			else {
+			} else {
 				newY = verSbPos;
 			}
 		}
@@ -349,21 +335,17 @@ public class DrawPanel extends JLayeredPane implements Printable {
 		// If the horizontal scrollbar is on the most left point && the the right end of the diagram without whitespace <= the viewable width incl. the width of the vertical scrollbar we hide the horizontal scrollbar
 		if (_scr.getHorizontalScrollBar().getValue() < handler.getGridSize() && diaWithoutWhite.getX() + diaWithoutWhite.getWidth() <= viewSize.getWidth() + verSbWidth) {
 			setHorizontalScrollbarVisibility(false);
-		}
-		else if (_scr.getHorizontalScrollBar().getValue() < handler.getGridSize() && getViewableDiagrampanelSize().width + _scr.getHorizontalScrollBar().getValue() == diaWithoutWhite.getX() + diaWithoutWhite.getWidth()) {
+		} else if (_scr.getHorizontalScrollBar().getValue() < handler.getGridSize() && getViewableDiagrampanelSize().width + _scr.getHorizontalScrollBar().getValue() == diaWithoutWhite.getX() + diaWithoutWhite.getWidth()) {
 			setHorizontalScrollbarVisibility(false);
-		}
-		else {
+		} else {
 			setHorizontalScrollbarVisibility(true);
 		}
 
 		if (_scr.getVerticalScrollBar().getValue() < handler.getGridSize() && diaWithoutWhite.getY() + diaWithoutWhite.getHeight() <= viewSize.getHeight() + horSbHeight) {
 			setVerticalScrollbarVisibility(false);
-		}
-		else if (_scr.getVerticalScrollBar().getValue() < handler.getGridSize() && getViewableDiagrampanelSize().height + _scr.getVerticalScrollBar().getValue() == diaWithoutWhite.getY() + diaWithoutWhite.getHeight()) {
+		} else if (_scr.getVerticalScrollBar().getValue() < handler.getGridSize() && getViewableDiagrampanelSize().height + _scr.getVerticalScrollBar().getValue() == diaWithoutWhite.getY() + diaWithoutWhite.getHeight()) {
 			setVerticalScrollbarVisibility(false);
-		}
-		else {
+		} else {
 			setVerticalScrollbarVisibility(true);
 		}
 
@@ -387,8 +369,7 @@ public class DrawPanel extends JLayeredPane implements Printable {
 	private void setHorizontalScrollbarVisibility(boolean visible) {
 		if (visible) {
 			_scr.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		}
-		else {
+		} else {
 			_scr.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		}
 	}
@@ -396,8 +377,7 @@ public class DrawPanel extends JLayeredPane implements Printable {
 	private void setVerticalScrollbarVisibility(boolean visible) {
 		if (visible) {
 			_scr.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		}
-		else {
+		} else {
 			_scr.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		}
 	}
@@ -476,8 +456,8 @@ public class DrawPanel extends JLayeredPane implements Printable {
 	public Point getOriginAtDefaultZoom() {
 		Point originCopy = new Point(origin);
 		originCopy.setLocation(
-				origin.x * Constants.DEFAULTGRIDSIZE / handler.getGridSize(),
-				origin.y * Constants.DEFAULTGRIDSIZE / handler.getGridSize());
+			origin.x * Constants.DEFAULTGRIDSIZE / handler.getGridSize(),
+			origin.y * Constants.DEFAULTGRIDSIZE / handler.getGridSize());
 		return originCopy;
 	}
 
@@ -507,11 +487,9 @@ public class DrawPanel extends JLayeredPane implements Printable {
 	 * AB: Zoom the origin from the old grid size to the new grid size
 	 * this method is mainly used by the DiagramHandler classes setGridAndZoom method.
 	 *
+	 * @param oldGridSize the old grid size
+	 * @param newGridSize the new grid size
 	 * @see DiagramHandler#setGridAndZoom(int)
-	 * @param oldGridSize
-	 *            the old grid size
-	 * @param newGridSize
-	 *            the new grid size
 	 */
 	public void zoomOrigin(int oldGridSize, int newGridSize) {
 		log.trace("Zoom origin to: " + origin);

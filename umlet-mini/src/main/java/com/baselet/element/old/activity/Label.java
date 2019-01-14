@@ -1,10 +1,10 @@
 package com.baselet.element.old.activity;
 
+import com.baselet.diagram.DiagramHandler;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;
-
-import com.baselet.diagram.DiagramHandler;
 
 public class Label extends Element {
 
@@ -43,7 +43,7 @@ public class Label extends Element {
 		int y = cord.y - getHeight() / 2 - getPadding();
 		for (int i = 0; i < label.length; i++) {
 			getGraphics().drawString(label[i], cord.x - getWidth() / 2,
-					y + getHeight() - (label.length - i - 1) * line_height - 1);
+				y + getHeight() - (label.length - i - 1) * line_height - 1);
 		}
 	}
 }

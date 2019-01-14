@@ -113,40 +113,35 @@ public class Arrow extends Rectangle {
 			if (other._arrowEndA != null) {
 				return false;
 			}
-		}
-		else if (!_arrowEndA.equals(other._arrowEndA)) {
+		} else if (!_arrowEndA.equals(other._arrowEndA)) {
 			return false;
 		}
 		if (_arrowEndB == null) {
 			if (other._arrowEndB != null) {
 				return false;
 			}
-		}
-		else if (!_arrowEndB.equals(other._arrowEndB)) {
+		} else if (!_arrowEndB.equals(other._arrowEndB)) {
 			return false;
 		}
 		if (_arrowType == null) {
 			if (other._arrowType != null) {
 				return false;
 			}
-		}
-		else if (!_arrowType.equals(other._arrowType)) {
+		} else if (!_arrowType.equals(other._arrowType)) {
 			return false;
 		}
 		if (_crossEndA == null) {
 			if (other._crossEndA != null) {
 				return false;
 			}
-		}
-		else if (!_crossEndA.equals(other._crossEndA)) {
+		} else if (!_crossEndA.equals(other._crossEndA)) {
 			return false;
 		}
 		if (_crossEndB == null) {
 			if (other._crossEndB != null) {
 				return false;
 			}
-		}
-		else if (!_crossEndB.equals(other._crossEndB)) {
+		} else if (!_crossEndB.equals(other._crossEndB)) {
 			return false;
 		}
 		return true;

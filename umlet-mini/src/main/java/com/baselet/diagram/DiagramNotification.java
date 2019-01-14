@@ -1,5 +1,9 @@
 package com.baselet.diagram;
 
+import com.baselet.control.basics.geom.DimensionDouble;
+import com.baselet.control.basics.geom.Rectangle;
+
+import javax.swing.JComponent;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Composite;
@@ -7,11 +11,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.font.FontRenderContext;
-
-import javax.swing.JComponent;
-
-import com.baselet.control.basics.geom.DimensionDouble;
-import com.baselet.control.basics.geom.Rectangle;
 
 public class DiagramNotification extends JComponent {
 
@@ -83,7 +82,7 @@ public class DiagramNotification extends JComponent {
 	private String[] safeSplit(String message) {
 		String[] line = message.split("\n");
 		if (line.length == 0) {
-			line = new String[] { message };
+			line = new String[]{message};
 		}
 		return line;
 	}

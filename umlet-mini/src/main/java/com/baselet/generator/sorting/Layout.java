@@ -1,12 +1,12 @@
 package com.baselet.generator.sorting;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import com.baselet.control.basics.geom.Dimension;
 import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.diagram.CurrentDiagram;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public abstract class Layout {
 
@@ -55,8 +55,7 @@ public abstract class Layout {
 				curY += maxHeightThisRow + GRIDSIZE;
 				curX = GRIDSIZE;
 				maxHeightThisRow = 0;
-			}
-			else {
+			} else {
 				curX += e.getElement().getRectangle().width + GRIDSIZE;
 			}
 			// determine outer y-bounds of alle elements placed

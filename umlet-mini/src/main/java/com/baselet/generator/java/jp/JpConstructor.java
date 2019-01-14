@@ -1,11 +1,11 @@
 package com.baselet.generator.java.jp;
 
-import java.util.List;
-
 import com.baselet.generator.java.Method;
 import com.github.javaparser.ast.body.ConstructorDeclaration;
 import com.github.javaparser.ast.body.ModifierSet;
 import com.github.javaparser.ast.body.Parameter;
+
+import java.util.List;
 
 public class JpConstructor implements Method {
 
@@ -24,14 +24,11 @@ public class JpConstructor implements Method {
 		int modifiers = constructor.getModifiers();
 		if ((modifiers & ModifierSet.PUBLIC) != 0) {
 			return AccessFlag.PUBLIC;
-		}
-		else if ((modifiers & ModifierSet.PROTECTED) != 0) {
+		} else if ((modifiers & ModifierSet.PROTECTED) != 0) {
 			return AccessFlag.PROTECTED;
-		}
-		else if ((modifiers & ModifierSet.PRIVATE) != 0) {
+		} else if ((modifiers & ModifierSet.PRIVATE) != 0) {
 			return AccessFlag.PRIVATE;
-		}
-		else {
+		} else {
 			return AccessFlag.PACKAGE;
 		}
 	}

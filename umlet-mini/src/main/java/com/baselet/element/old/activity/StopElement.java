@@ -1,10 +1,10 @@
 package com.baselet.element.old.activity;
 
-import java.awt.Graphics2D;
-import java.awt.Point;
-
 import com.baselet.control.enums.Direction;
 import com.baselet.diagram.DiagramHandler;
+
+import java.awt.Graphics2D;
+import java.awt.Point;
 
 public class StopElement extends Element {
 
@@ -29,11 +29,9 @@ public class StopElement extends Element {
 				Point from = e.getConnect(Direction.DOWN);
 				if (from.x == to.x) {
 					to = getConnect(Direction.UP);
-				}
-				else if (from.x < to.x) {
+				} else if (from.x < to.x) {
 					to = getConnect(Direction.LEFT);
-				}
-				else if (from.x > to.x) {
+				} else if (from.x > to.x) {
 					to = getConnect(Direction.RIGHT);
 				}
 
@@ -41,16 +39,13 @@ public class StopElement extends Element {
 					getGraphics().drawLine(from.x, from.y, from.x, to.y);
 					if (arrowIn() && e.arrowOut()) {
 						Connector.drawArrow(getGraphics(), getZoom(), from.x, to.y, to.x, to.y);
-					}
-					else {
+					} else {
 						getGraphics().drawLine(from.x, to.y, to.x, to.y);
 					}
-				}
-				else {
+				} else {
 					if (arrowIn() && e.arrowOut()) {
 						Connector.drawArrow(getGraphics(), getZoom(), from.x, from.y, to.x, to.y);
-					}
-					else {
+					} else {
 						getGraphics().drawLine(from.x, from.y, to.x, to.y);
 					}
 				}

@@ -1,14 +1,5 @@
 package com.baselet.gui.listener;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
-
-import javax.swing.JComponent;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.baselet.control.Main;
 import com.baselet.control.basics.Converter;
 import com.baselet.control.basics.geom.Point;
@@ -18,6 +9,13 @@ import com.baselet.diagram.DiagramHandler;
 import com.baselet.diagram.SelectorFrame;
 import com.baselet.element.interfaces.CursorOwn;
 import com.baselet.gui.CurrentGui;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.swing.JComponent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 public class DiagramListener extends UniversalListener implements MouseWheelListener {
 
@@ -77,8 +75,7 @@ public class DiagramListener extends UniversalListener implements MouseWheelList
 			int actualZoom = CurrentDiagram.getInstance().getDiagramHandler().getGridSize();
 			// e.getWheelRotation is -1 if scrolling up and +1 if scrolling down therefore we subtract it
 			CurrentDiagram.getInstance().getDiagramHandler().setGridAndZoom(actualZoom - e.getWheelRotation());
-		}
-		else { // otherwise scroll the diagram
+		} else { // otherwise scroll the diagram
 			CurrentDiagram.getInstance().getDiagramHandler().getDrawPanel().scroll(e.getWheelRotation());
 		}
 	}

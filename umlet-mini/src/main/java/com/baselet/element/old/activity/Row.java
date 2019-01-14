@@ -13,8 +13,7 @@ public class Row {
 	public void exchangeElementOrInsert(Element old_element, Element new_element) {
 		if (elements.contains(old_element)) {
 			elements.set(elements.indexOf(old_element), new_element);
-		}
-		else {
+		} else {
 			addElement(new_element);
 		}
 		new_element.setRow(this);

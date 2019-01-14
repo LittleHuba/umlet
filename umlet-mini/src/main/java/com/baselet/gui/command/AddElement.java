@@ -1,15 +1,14 @@
 package com.baselet.gui.command;
 
-import java.awt.Point;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.constants.Constants;
 import com.baselet.diagram.DiagramHandler;
 import com.baselet.diagram.DrawPanel;
 import com.baselet.element.interfaces.GridElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.awt.Point;
 
 public class AddElement extends Command {
 
@@ -27,8 +26,7 @@ public class AddElement extends Command {
 		// AB: use default grid size since we zoom the whole entity on execution
 		if (_zoom) {
 			return _x * Constants.DEFAULTGRIDSIZE;// _entity.getHandler().getGridSize();
-		}
-		else {
+		} else {
 			return _x;
 		}
 	}
@@ -37,8 +35,7 @@ public class AddElement extends Command {
 		// AB: use default grid size since we zoom the whole entity on execution
 		if (_zoom) {
 			return _y * Constants.DEFAULTGRIDSIZE;// _entity.getHandler().getGridSize();
-		}
-		else {
+		} else {
 			return _y;
 		}
 	}
@@ -54,8 +51,7 @@ public class AddElement extends Command {
 			_x = x / HandlerElementMap.getHandlerForElement(e).getGridSize();
 			_y = y / HandlerElementMap.getHandlerForElement(e).getGridSize();
 			DiagramHandler.zoomEntity(HandlerElementMap.getHandlerForElement(e).getGridSize(), Constants.DEFAULTGRIDSIZE, e);
-		}
-		else {
+		} else {
 			_x = x;
 			_y = y;
 		}

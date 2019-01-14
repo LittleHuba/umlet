@@ -1,10 +1,10 @@
 package com.baselet.element.old.activity;
 
-import java.awt.Graphics2D;
-import java.awt.Point;
-
 import com.baselet.control.enums.Direction;
 import com.baselet.diagram.DiagramHandler;
+
+import java.awt.Graphics2D;
+import java.awt.Point;
 
 public abstract class WhileElement extends Element {
 
@@ -20,8 +20,7 @@ public abstract class WhileElement extends Element {
 			getGraphics().drawLine(from.x, from.y, from.x, to.y);
 			if (arrowOut() && start.arrowIn()) {
 				Connector.drawArrow(getGraphics(), getZoom(), from.x, to.y, to.x, to.y);
-			}
-			else {
+			} else {
 				getGraphics().drawLine(from.x, to.y, to.x, to.y);
 			}
 		}
@@ -33,8 +32,7 @@ public abstract class WhileElement extends Element {
 			getGraphics().drawLine(from.x, from.y, to.x, from.y);
 			if (arrowIn() && stop.arrowOut()) {
 				Connector.drawArrow(getGraphics(), getZoom(), to.x, from.y, to.x, to.y);
-			}
-			else {
+			} else {
 				getGraphics().drawLine(to.x, from.y, to.x, to.y);
 			}
 		}

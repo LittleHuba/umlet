@@ -1,16 +1,15 @@
 package com.baselet.gui.filedrop;
 
+import com.baselet.control.Main;
+import com.baselet.diagram.Notifier;
+import com.baselet.generator.ClassDiagramConverter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.baselet.control.Main;
-import com.baselet.diagram.Notifier;
-import com.baselet.generator.ClassDiagramConverter;
 
 public class FileDropListener implements FileDrop.Listener {
 
@@ -35,8 +34,7 @@ public class FileDropListener implements FileDrop.Listener {
 
 		if (generateDiagram) {
 			new ClassDiagramConverter().createClassDiagrams(filenames);
-		}
-		else {
+		} else {
 			for (String filename : filenames) {
 				Main.getInstance().doOpen(filename);
 			}

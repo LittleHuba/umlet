@@ -1,16 +1,15 @@
 package com.baselet.diagram.io;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
+import com.baselet.control.config.Config;
+import com.baselet.gui.CurrentGui;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
-
-import com.baselet.control.config.Config;
-import com.baselet.gui.CurrentGui;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
 
 public class ClassChooser {
 
@@ -50,9 +49,9 @@ public class ClassChooser {
 			Config.getInstance().setOpenFileHome(selectedFiles[0].getAbsoluteFile().getParent());
 			if (fileNames.size() > TOO_MANY_FILES) {
 				returnVal = JOptionPane.showConfirmDialog(CurrentGui.getInstance().getGui().getMainFrame(),
-						"Your selection contains " + fileNames.size() + " files which may " +
+					"Your selection contains " + fileNames.size() + " files which may " +
 						"clutter up your diagram. Continue?",
-						"Confirm selection", JOptionPane.OK_CANCEL_OPTION);
+					"Confirm selection", JOptionPane.OK_CANCEL_OPTION);
 				if (returnVal == JOptionPane.CANCEL_OPTION) {
 					fileNames.clear();
 				}
@@ -64,8 +63,7 @@ public class ClassChooser {
 	private static void searchRecursively(File file, List<String> fileNames) {
 		if (Pattern.matches(ALLOWED_EXTENSIONS, file.getName())) {
 			fileNames.add(file.getAbsolutePath());
-		}
-		else if (file.isDirectory()) {
+		} else if (file.isDirectory()) {
 			File[] files = file.listFiles();
 			for (File f : files) {
 				searchRecursively(f, fileNames);

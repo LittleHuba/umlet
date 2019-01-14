@@ -1,5 +1,9 @@
 package com.baselet.element.old.element;
 
+import com.baselet.control.HandlerElementMap;
+import com.baselet.control.enums.Direction;
+import com.baselet.element.old.OldGridElement;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -7,10 +11,6 @@ import java.awt.font.LineMetrics;
 import java.awt.geom.Rectangle2D;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.baselet.control.HandlerElementMap;
-import com.baselet.control.enums.Direction;
-import com.baselet.element.old.OldGridElement;
 
 @SuppressWarnings("serial")
 public class HistoryState extends OldGridElement {

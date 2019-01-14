@@ -1,12 +1,12 @@
 package com.baselet.element.old.custom;
 
+import com.baselet.custom.CompileError;
+import com.baselet.custom.CustomCodeSyntaxPane;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.HashMap;
 import java.util.List;
-
-import com.baselet.custom.CompileError;
-import com.baselet.custom.CustomCodeSyntaxPane;
 
 public class ErrorHandler implements MouseMotionListener {
 
@@ -29,8 +29,7 @@ public class ErrorHandler implements MouseMotionListener {
 		int line = Math.round(me.getY() / (float) codepane.getTextComponent().getFontMetrics(codepane.getTextComponent().getFont()).getHeight());
 		if (errors.get(line) != null) {
 			codepane.getTextComponent().setToolTipText(errors.get(line));
-		}
-		else {
+		} else {
 			codepane.getTextComponent().setToolTipText(null);
 		}
 

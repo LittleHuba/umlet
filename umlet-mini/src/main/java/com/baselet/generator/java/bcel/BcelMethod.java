@@ -15,8 +15,7 @@ public class BcelMethod extends BcelAccessible implements com.baselet.generator.
 		this.className = className;
 		if (method.getName().equals("<init>") || method.getName().equals("<clinit>")) {
 			isConstructor = true;
-		}
-		else {
+		} else {
 			isConstructor = false;
 		}
 	}
@@ -46,8 +45,7 @@ public class BcelMethod extends BcelAccessible implements com.baselet.generator.
 			if (first) {
 				first = false;
 				sb.append(argument);
-			}
-			else {
+			} else {
 				sb.append(", ").append(argument);
 			}
 		}

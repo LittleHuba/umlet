@@ -1,10 +1,10 @@
 package com.baselet.element.old.activity;
 
-import java.awt.Graphics2D;
-import java.awt.Point;
-
 import com.baselet.control.enums.Direction;
 import com.baselet.diagram.DiagramHandler;
+
+import java.awt.Graphics2D;
+import java.awt.Point;
 
 public class Fork extends StartElement {
 
@@ -43,15 +43,13 @@ public class Fork extends StartElement {
 
 		if (dir.equals(Direction.LEFT)) {
 			c.x -= (int) (10 * getZoom());
-		}
-		else if (dir.equals(Direction.RIGHT)) {
+		} else if (dir.equals(Direction.RIGHT)) {
 			c.x += (int) (10 * getZoom());
 		}
 
 		if (arrowIn()) {
 			Connector.drawArrow(getGraphics(), getZoom(), c.x, c.y - (int) (10 * getZoom()), c.x, c.y);
-		}
-		else {
+		} else {
 			getGraphics().drawLine(c.x, c.y - (int) (10 * getZoom()), c.x, c.y);
 		}
 		c.y -= (int) (10 * getZoom());
@@ -65,8 +63,7 @@ public class Fork extends StartElement {
 			getGraphics().drawLine(c.x - (int) (10 * getZoom()), c.y + (int) (3 * getZoom()), c.x, c.y);
 			c.x -= (int) (10 * getZoom());
 			c.y += (int) (3 * getZoom());
-		}
-		else if (dir.equals(Direction.RIGHT)) {
+		} else if (dir.equals(Direction.RIGHT)) {
 			getGraphics().drawLine(c.x + (int) (10 * getZoom()), c.y + (int) (3 * getZoom()), c.x, c.y);
 			c.x += (int) (10 * getZoom());
 			c.y += (int) (3 * getZoom());
@@ -86,18 +83,15 @@ public class Fork extends StartElement {
 
 		if (dir == Direction.UP) {
 			c.y -= (pad + h) / 2;
-		}
-		else if (dir == Direction.DOWN) {
+		} else if (dir == Direction.DOWN) {
 			c.y += (h - pad) / 2;
-		}
-		else if (dir == Direction.LEFT) {
+		} else if (dir == Direction.LEFT) {
 			if (c.x - current_left_x < w / 2 - con_pad) {
 				current_left_x -= con_pad;
 			}
 			c.x = current_left_x;
 			c.y += (h - pad) / 2;
-		}
-		else if (dir == Direction.RIGHT) {
+		} else if (dir == Direction.RIGHT) {
 			if (current_right_x - c.x < w / 2 - con_pad) {
 				current_right_x += con_pad;
 			}
@@ -115,11 +109,9 @@ public class Fork extends StartElement {
 				Point to = e.getConnect(Direction.UP);
 				if (from.x == to.x) {
 					from = getConnect(Direction.DOWN);
-				}
-				else if (from.x < to.x) {
+				} else if (from.x < to.x) {
 					from = getConnect(Direction.RIGHT);
-				}
-				else if (from.x > to.x) {
+				} else if (from.x > to.x) {
 					from = getConnect(Direction.LEFT);
 				}
 
@@ -131,8 +123,7 @@ public class Fork extends StartElement {
 
 				if (arrowOut() && e.arrowIn()) {
 					Connector.drawArrow(getGraphics(), getZoom(), from.x, from.y, to.x, to.y);
-				}
-				else {
+				} else {
 					getGraphics().drawLine(from.x, from.y, to.x, to.y);
 				}
 			}

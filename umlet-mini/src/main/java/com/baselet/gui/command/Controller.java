@@ -1,10 +1,10 @@
 package com.baselet.gui.command;
 
-import java.util.Vector;
-
 import com.baselet.diagram.CurrentDiagram;
 import com.baselet.diagram.DiagramHandler;
 import com.baselet.gui.CurrentGui;
+
+import java.util.Vector;
 
 public class Controller {
 	private Vector<Command> commands;

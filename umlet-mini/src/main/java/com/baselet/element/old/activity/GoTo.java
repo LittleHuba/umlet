@@ -1,9 +1,9 @@
 package com.baselet.element.old.activity;
 
+import com.baselet.control.enums.Direction;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
-
-import com.baselet.control.enums.Direction;
 
 public class GoTo {
 
@@ -56,8 +56,7 @@ public class GoTo {
 			if (to.x == to_origin.x && to.y == to_origin.y) {
 				float zoom = zoomFactor;
 				Connector.drawArrow(graphics, zoom, x, to.y, to.x, to.y);
-			}
-			else {
+			} else {
 				graphics.drawLine(x, to.y, to.x, to.y);
 			}
 		}

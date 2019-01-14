@@ -1,11 +1,11 @@
 package com.baselet.element.old.custom;
 
+import com.baselet.control.util.Path;
+
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-
-import com.baselet.control.util.Path;
 
 public class FileClassLoader extends ClassLoader {
 

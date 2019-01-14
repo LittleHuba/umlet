@@ -1,8 +1,7 @@
 package com.baselet.generator.java.bcel;
 
-import org.apache.bcel.classfile.FieldOrMethod;
-
 import com.baselet.generator.java.Accessible;
+import org.apache.bcel.classfile.FieldOrMethod;
 
 public abstract class BcelAccessible implements Accessible {
 
@@ -11,14 +10,11 @@ public abstract class BcelAccessible implements Accessible {
 	public BcelAccessible(FieldOrMethod accessible) {
 		if (accessible.isPrivate()) {
 			flag = AccessFlag.PRIVATE;
-		}
-		else if (accessible.isProtected()) {
+		} else if (accessible.isProtected()) {
 			flag = AccessFlag.PROTECTED;
-		}
-		else if (accessible.isPublic()) {
+		} else if (accessible.isPublic()) {
 			flag = AccessFlag.PUBLIC;
-		}
-		else {
+		} else {
 			flag = AccessFlag.PACKAGE;
 		}
 	}

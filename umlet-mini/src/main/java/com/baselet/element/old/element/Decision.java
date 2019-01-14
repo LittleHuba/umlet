@@ -1,16 +1,16 @@
 package com.baselet.element.old.element;
 
+import com.baselet.control.HandlerElementMap;
+import com.baselet.control.enums.Direction;
+import com.baselet.element.old.OldGridElement;
+import com.baselet.element.sticking.StickingPolygon;
+
 import java.awt.Composite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.baselet.control.HandlerElementMap;
-import com.baselet.control.enums.Direction;
-import com.baselet.element.old.OldGridElement;
-import com.baselet.element.sticking.StickingPolygon;
 
 @SuppressWarnings("serial")
 public class Decision extends OldGridElement {
@@ -33,8 +33,7 @@ public class Decision extends OldGridElement {
 		g2.setComposite(composites[0]);
 		if (HandlerElementMap.getHandlerForElement(this).getDrawPanel().getSelector().isSelected(this)) {
 			g2.setColor(fgColor);
-		}
-		else {
+		} else {
 			g2.setColor(fgColorBase);
 		}
 

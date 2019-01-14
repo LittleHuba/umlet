@@ -1,15 +1,15 @@
 package com.baselet.diagram;
 
+import com.baselet.control.StringStyle;
+import com.baselet.control.basics.geom.DimensionDouble;
+import com.baselet.control.enums.FormatLabels;
+
 import java.awt.Font;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextAttribute;
 import java.awt.font.TextLayout;
 import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
-
-import com.baselet.control.StringStyle;
-import com.baselet.control.basics.geom.DimensionDouble;
-import com.baselet.control.enums.FormatLabels;
 
 public class FormattedFont {
 
@@ -59,22 +59,19 @@ public class FormattedFont {
 	private static void setFormat(StringStyle style) {
 		if (style.getFormat().contains(FormatLabels.UNDERLINE)) {
 			underline = TextAttribute.UNDERLINE_ON;
-		}
-		else {
+		} else {
 			underline = -1; // UNDERLINE_OFF
 		}
 
 		if (style.getFormat().contains(FormatLabels.BOLD)) {
 			bold = TextAttribute.WEIGHT_BOLD;
-		}
-		else {
+		} else {
 			bold = TextAttribute.WEIGHT_REGULAR;
 		}
 
 		if (style.getFormat().contains(FormatLabels.ITALIC)) {
 			italic = TextAttribute.POSTURE_OBLIQUE;
-		}
-		else {
+		} else {
 			italic = TextAttribute.POSTURE_REGULAR;
 		}
 	}

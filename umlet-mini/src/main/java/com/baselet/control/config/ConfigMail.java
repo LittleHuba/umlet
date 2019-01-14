@@ -20,7 +20,8 @@ public class ConfigMail {
 	private boolean mail_gif = true;
 	private boolean mail_pdf = false;
 
-	private ConfigMail() {}
+	private ConfigMail() {
+	}
 
 	public String getMail_smtp() {
 		return mail_smtp;

@@ -10,8 +10,7 @@ public enum Metakey {
 	public String toString() {
 		if (this == CTRL) {
 			return "Ctrl";
-		}
-		else {
+		} else {
 			return "Cmd";
 		}
 	}
@@ -20,8 +19,7 @@ public enum Metakey {
 	public int getMask() {
 		if (this == CTRL) {
 			return ActionEvent.CTRL_MASK;
-		}
-		else {
+		} else {
 			return ActionEvent.META_MASK;
 		}
 	}
@@ -29,8 +27,7 @@ public enum Metakey {
 	public int getMaskDown() {
 		if (this == CTRL) {
 			return InputEvent.CTRL_DOWN_MASK;
-		}
-		else {
+		} else {
 			return InputEvent.META_DOWN_MASK;
 		}
 	}

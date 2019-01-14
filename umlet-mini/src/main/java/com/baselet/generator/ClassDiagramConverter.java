@@ -1,9 +1,5 @@
 package com.baselet.generator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.control.config.ConfigClassGen;
 import com.baselet.control.enums.ElementId;
@@ -31,12 +27,15 @@ import com.baselet.generator.sorting.RelationLayout;
 import com.baselet.generator.sorting.SortableElement;
 import com.baselet.gui.command.AddElement;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Creates a class element from a filename pointing to a .class or .java file according to UML standards,
  * adds the class to the current diagram and resizes this class element to minimum size where all text is visible.
  *
  * @author Lisi Bluemelhuber
- *
  */
 public class ClassDiagramConverter {
 
@@ -111,8 +110,8 @@ public class ClassDiagramConverter {
 
 		for (SortableElement e : elements) {
 			new AddElement(e.getElement(),
-					handler.realignToGrid(e.getElement().getRectangle().x),
-					handler.realignToGrid(e.getElement().getRectangle().y), false).execute(handler);
+				handler.realignToGrid(e.getElement().getRectangle().x),
+				handler.realignToGrid(e.getElement().getRectangle().y), false).execute(handler);
 		}
 		handler.setChanged(true);
 	}
@@ -133,8 +132,7 @@ public class ClassDiagramConverter {
 		for (String string : strings) {
 			if (string.isEmpty()) {
 				heightTweaker += 1;
-			}
-			else if (string.equals("--")) {
+			} else if (string.equals("--")) {
 				heightTweaker += 0.5;
 			}
 			if (fontHandler.getTextWidth(string) > width) {
@@ -169,8 +167,7 @@ public class ClassDiagramConverter {
 		for (Method method : parsedClass.getMethods()) {
 			if (ConfigClassGen.getInstance().getGenerateClassMethods() == MethodOptions.PUBLIC && method.getAccess() == AccessFlag.PUBLIC) {
 				sb.append(getMethodString(method));
-			}
-			else if (ConfigClassGen.getInstance().getGenerateClassMethods() == MethodOptions.ALL) {
+			} else if (ConfigClassGen.getInstance().getGenerateClassMethods() == MethodOptions.ALL) {
 				sb.append(getMethodString(method));
 			}
 		}
@@ -179,11 +176,9 @@ public class ClassDiagramConverter {
 	private String getMethodString(Method method) {
 		if (ConfigClassGen.getInstance().getGenerateClassSignatures() == SignatureOptions.PARAMS_ONLY) {
 			return method.getAccess() + method.getName() + "(" + method.getSignature() + ")\n";
-		}
-		else if (ConfigClassGen.getInstance().getGenerateClassSignatures() == SignatureOptions.RETURN_ONLY) {
+		} else if (ConfigClassGen.getInstance().getGenerateClassSignatures() == SignatureOptions.RETURN_ONLY) {
 			return method.getAccess() + method.getName() + ": " + method.getReturnType() + "\n";
-		}
-		else {
+		} else {
 			return method.getAccess() + method.getName() + "(" + method.getSignature() + "): " + method.getReturnType() + "\n";
 		}
 	}
@@ -192,8 +187,7 @@ public class ClassDiagramConverter {
 		for (Field field : parsedClass.getFields()) {
 			if (ConfigClassGen.getInstance().getGenerateClassFields() == FieldOptions.PUBLIC && field.getAccess() == AccessFlag.PUBLIC) {
 				sb.append(field.getAccess()).append(field.getName()).append(": ").append(field.getType()).append("\n");
-			}
-			else if (ConfigClassGen.getInstance().getGenerateClassFields() == FieldOptions.ALL) {
+			} else if (ConfigClassGen.getInstance().getGenerateClassFields() == FieldOptions.ALL) {
 				sb.append(field.getAccess()).append(field.getName()).append(": ").append(field.getType()).append("\n");
 			}
 		}
@@ -203,11 +197,9 @@ public class ClassDiagramConverter {
 		ClassRole role = parsedClass.getRole();
 		if (role == ClassRole.INTERFACE) {
 			sb.append("<<").append(role).append(">>\n").append(AlphabetLayout.getClassName(parsedClass));
-		}
-		else if (role == ClassRole.ABSTRACT) {
+		} else if (role == ClassRole.ABSTRACT) {
 			sb.append("/").append(AlphabetLayout.getClassName(parsedClass)).append("/");
-		}
-		else {
+		} else {
 			sb.append(AlphabetLayout.getClassName(parsedClass));
 		}
 		sb.append("\n");
@@ -217,11 +209,9 @@ public class ClassDiagramConverter {
 		String extension = getExtension(filename);
 		if (extension.equals("java")) {
 			return new JpJavaClass(filename);
-		}
-		else if (extension.equals("class")) {
+		} else if (extension.equals("class")) {
 			return new BcelJavaClass(filename);
-		}
-		else {
+		} else {
 			throw new ClassParserException("Unknown extension " + extension + " of file " + filename);
 		}
 	}

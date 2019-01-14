@@ -1,16 +1,16 @@
 package com.baselet.diagram;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Vector;
-
 import com.baselet.control.Main;
 import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.element.Selector;
 import com.baselet.element.interfaces.GridElement;
 import com.baselet.element.old.custom.CustomElement;
 import com.baselet.gui.CurrentGui;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Vector;
 
 public class SelectorOld extends Selector {
 
@@ -117,7 +117,7 @@ public class SelectorOld extends Selector {
 	@Override
 	public List<GridElement> getAllElements() {
 		if (CurrentDiagram.getInstance().getDiagramHandler() == null) {
-			return Collections.<GridElement> emptyList();
+			return Collections.<GridElement>emptyList();
 		}
 		return CurrentDiagram.getInstance().getDiagramHandler().getDrawPanel().getGridElements();
 	}

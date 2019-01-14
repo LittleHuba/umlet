@@ -1,13 +1,13 @@
 package com.baselet.gui.command;
 
+import com.baselet.control.HandlerElementMap;
+import com.baselet.diagram.DiagramHandler;
+import com.baselet.element.interfaces.GridElement;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import com.baselet.control.HandlerElementMap;
-import com.baselet.diagram.DiagramHandler;
-import com.baselet.element.interfaces.GridElement;
 
 public class ChangeElementSetting extends Command {
 

@@ -1,14 +1,5 @@
 package com.baselet.control.config.handler;
 
-import java.awt.Frame;
-import java.awt.Point;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Properties;
-
 import com.baselet.control.basics.geom.Dimension;
 import com.baselet.control.config.Config;
 import com.baselet.control.config.ConfigClassGen;
@@ -22,6 +13,15 @@ import com.baselet.control.enums.generator.SortOptions;
 import com.baselet.control.util.Path;
 import com.baselet.control.util.RecentlyUsedFilesList;
 import com.baselet.gui.BaseGUI;
+
+import java.awt.Frame;
+import java.awt.Point;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Properties;
 
 import static com.baselet.control.constants.Constants.exportFormatList;
 
@@ -256,8 +256,7 @@ public class ConfigHandler {
 
 		if (Path.hasOsConformConfig()) {
 			result = loadPropertiesFromFile(Path.osConformConfig());
-		}
-		else if (Path.hasLegacyConfig()) {
+		} else if (Path.hasLegacyConfig()) {
 			result = loadPropertiesFromFile(Path.legacyConfig());
 		}
 

@@ -1,10 +1,5 @@
 package com.baselet.element;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.control.enums.ElementId;
@@ -16,6 +11,11 @@ import com.baselet.element.old.OldGridElement;
 import com.baselet.element.relation.Relation;
 import com.baselet.element.sticking.StickableMap;
 import com.baselet.element.sticking.Stickables;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class ElementFactorySwing extends ElementFactory {
 
@@ -46,7 +46,7 @@ public class ElementFactorySwing extends ElementFactory {
 			@Override
 			public StickableMap getStickableMap() {
 				DiagramHandler h = HandlerElementMap.getHandlerForElement(returnObj);
-				List<Relation> stickables = h.getDrawPanel().getStickables(Collections.<GridElement> emptyList());
+				List<Relation> stickables = h.getDrawPanel().getStickables(Collections.<GridElement>emptyList());
 				return Stickables.getStickingPointsWhichAreConnectedToStickingPolygon(returnObj.generateStickingBorder(), stickables);
 			}
 		};
@@ -59,8 +59,7 @@ public class ElementFactorySwing extends ElementFactory {
 	public static GridElement createCopy(GridElement src) {
 		if (src instanceof OldGridElement) {
 			return ((OldGridElement) src).cloneFromMe();
-		}
-		else {
+		} else {
 			return create(src.getId(), src.getRectangle().copy(), src.getPanelAttributes(), src.getAdditionalAttributes(), HandlerElementMap.getHandlerForElement(src));
 		}
 	}

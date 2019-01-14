@@ -1,25 +1,5 @@
 package com.baselet.element.old;
 
-import java.awt.AlphaComposite;
-import java.awt.Color;
-import java.awt.Composite;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Stroke;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Vector;
-
-import javax.swing.JComponent;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.Main;
 import com.baselet.control.SharedUtils;
@@ -55,6 +35,24 @@ import com.baselet.element.sticking.StickableMap;
 import com.baselet.element.sticking.Stickables;
 import com.baselet.element.sticking.StickingPolygon;
 import com.baselet.gui.AutocompletionText;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.swing.JComponent;
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Composite;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Stroke;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Vector;
 
 public abstract class OldGridElement extends JComponent implements GridElement, com.baselet.element.interfaces.Component {
 
@@ -100,8 +98,7 @@ public abstract class OldGridElement extends JComponent implements GridElement, 
 			removeMouseListener(getDiagramHandler().getEntityListener(this));
 			removeMouseMotionListener(getDiagramHandler().getEntityListener(this));
 			enabled = false;
-		}
-		else if (en && !enabled) {
+		} else if (en && !enabled) {
 			addMouseListener(getDiagramHandler().getEntityListener(this));
 			addMouseMotionListener(getDiagramHandler().getEntityListener(this));
 			enabled = true;
@@ -145,7 +142,8 @@ public abstract class OldGridElement extends JComponent implements GridElement, 
 	}
 
 	@Override
-	public void setAdditionalAttributes(String s) {}
+	public void setAdditionalAttributes(String s) {
+	}
 
 	@Override
 	public String getPanelAttributes() {
@@ -208,8 +206,7 @@ public abstract class OldGridElement extends JComponent implements GridElement, 
 				if (bgColor == null) {
 					bgColor = getDefaultBackgroundColor();
 				}
-			}
-			else if (line.indexOf("fg=") >= 0) {
+			} else if (line.indexOf("fg=") >= 0) {
 				fgColorString = line.substring("fg=".length());
 				fgColorBase = Converter.convert(ColorOwn.forStringOrNull(fgColorString, Transparency.FOREGROUND));
 				if (fgColorBase == null) {
@@ -228,7 +225,7 @@ public abstract class OldGridElement extends JComponent implements GridElement, 
 
 		Composite old = g2.getComposite();
 		AlphaComposite alpha = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaFactor);
-		Composite[] composites = { old, alpha };
+		Composite[] composites = {old, alpha};
 		return composites;
 	}
 
@@ -246,15 +243,13 @@ public abstract class OldGridElement extends JComponent implements GridElement, 
 		Set<Direction> returnSet = new HashSet<Direction>();
 		if (x <= 5 && x >= 0) {
 			returnSet.add(Direction.LEFT);
-		}
-		else if (x <= getRectangle().width && x >= getRectangle().width - 5) {
+		} else if (x <= getRectangle().width && x >= getRectangle().width - 5) {
 			returnSet.add(Direction.RIGHT);
 		}
 
 		if (y <= 5 && y >= 0) {
 			returnSet.add(Direction.UP);
-		}
-		else if (y <= getRectangle().height && y >= getRectangle().height - 5) {
+		} else if (y <= getRectangle().height && y >= getRectangle().height - 5) {
 			returnSet.add(Direction.DOWN);
 		}
 		return returnSet;
@@ -294,8 +289,7 @@ public abstract class OldGridElement extends JComponent implements GridElement, 
 			g2.setFont(getDiagramHandler().getFontHandler().getFont());
 			g2.setColor(Color.red);
 			getDiagramHandler().getFontHandler().writeText(g2, "in progress...", getRectangle().width / 2 - 40, getRectangle().height / 2 + (int) getDiagramHandler().getFontHandler().getFontSize() / 2, AlignHorizontal.LEFT);
-		}
-		else {
+		} else {
 			repaint();
 		}
 	}
@@ -386,8 +380,7 @@ public abstract class OldGridElement extends JComponent implements GridElement, 
 			if (SharedConfig.getInstance().isShow_stickingpolygon()) {
 				drawStickingPolygon(g2);
 			}
-		}
-		else {
+		} else {
 			fgColor = fgColorBase;
 		}
 		updateModelFromText();
@@ -492,8 +485,7 @@ public abstract class OldGridElement extends JComponent implements GridElement, 
 		String oldAddAttr = getAdditionalAttributes();
 		if (resizeDirection.isEmpty()) { // Move GridElement
 			setLocationDifference(diffX, diffY);
-		}
-		else { // Resize GridElement
+		} else { // Resize GridElement
 			Rectangle rect = getRectangle();
 			if (isShiftKeyDown && diagonalResize(resizeDirection)) { // Proportional Resize
 				boolean mouseToRight = diffX > 0 && diffX > diffY;
@@ -510,15 +502,13 @@ public abstract class OldGridElement extends JComponent implements GridElement, 
 			if (resizeDirection.contains(Direction.LEFT) && resizeDirection.contains(Direction.RIGHT)) {
 				rect.setX(rect.getX() - diffX / 2);
 				rect.setWidth(Math.max(rect.getWidth() + diffX, minSize()));
-			}
-			else if (resizeDirection.contains(Direction.LEFT)) {
+			} else if (resizeDirection.contains(Direction.LEFT)) {
 				int newWidth = rect.getWidth() - diffX;
 				if (newWidth >= minSize()) {
 					rect.setX(rect.getX() + diffX);
 					rect.setWidth(newWidth);
 				}
-			}
-			else if (resizeDirection.contains(Direction.RIGHT)) {
+			} else if (resizeDirection.contains(Direction.RIGHT)) {
 				rect.setWidth(Math.max(rect.getWidth() + diffX, minSize()));
 			}
 
@@ -552,7 +542,8 @@ public abstract class OldGridElement extends JComponent implements GridElement, 
 	}
 
 	@Override
-	public void afterModelUpdate() {}
+	public void afterModelUpdate() {
+	}
 
 	@Override
 	public boolean isSelectableOn(Point point) {
@@ -561,9 +552,9 @@ public abstract class OldGridElement extends JComponent implements GridElement, 
 
 	private boolean diagonalResize(Collection<Direction> resizeDirection) {
 		return resizeDirection.contains(Direction.UP) && resizeDirection.contains(Direction.RIGHT) ||
-				resizeDirection.contains(Direction.UP) && resizeDirection.contains(Direction.LEFT) ||
-				resizeDirection.contains(Direction.DOWN) && resizeDirection.contains(Direction.LEFT) ||
-				resizeDirection.contains(Direction.DOWN) && resizeDirection.contains(Direction.RIGHT);
+			resizeDirection.contains(Direction.UP) && resizeDirection.contains(Direction.LEFT) ||
+			resizeDirection.contains(Direction.DOWN) && resizeDirection.contains(Direction.LEFT) ||
+			resizeDirection.contains(Direction.DOWN) && resizeDirection.contains(Direction.RIGHT);
 	}
 
 	@Override

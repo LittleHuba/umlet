@@ -1,10 +1,5 @@
 package com.baselet.gui.command;
 
-import java.util.Collection;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.basics.geom.Point;
 import com.baselet.control.enums.Direction;
@@ -12,6 +7,10 @@ import com.baselet.diagram.CurrentDiagram;
 import com.baselet.diagram.DiagramHandler;
 import com.baselet.element.interfaces.GridElement;
 import com.baselet.element.sticking.StickableMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Collection;
 
 public class Move extends Command {
 
@@ -90,11 +89,12 @@ public class Move extends Command {
 
 	/**
 	 * Calculates the mouse position
-	 * @param absoluteMousePos 	if true then the element location must be subtracted to get a relative position instead of an absolute, otherwise it's already relative
-	 * @param mousePos			the absolute mouse position
-	 * @param entityLocation	the location of the entity
-	 * @param gridSize 			the result is divided by the gridsize because it can be (re)executed on different gridSizes (eg do on 100% zoom, change to 50% zoom and undo/redo)
-	 * @return					the mouse position relative to the element, independend from gridSize
+	 *
+	 * @param absoluteMousePos if true then the element location must be subtracted to get a relative position instead of an absolute, otherwise it's already relative
+	 * @param mousePos         the absolute mouse position
+	 * @param entityLocation   the location of the entity
+	 * @param gridSize         the result is divided by the gridsize because it can be (re)executed on different gridSizes (eg do on 100% zoom, change to 50% zoom and undo/redo)
+	 * @return the mouse position relative to the element, independend from gridSize
 	 */
 	private double calcRelativePos(boolean absoluteMousePos, int mousePos, int entityLocation, double gridSize) {
 		double xCalcBase = mousePos * 1.0;
@@ -109,8 +109,7 @@ public class Move extends Command {
 		super.execute(handler);
 		if (useSetLocation) {
 			entity.setRectangleDifference(getX(), getY(), 0, 0, firstDrag, stickables, true);
-		}
-		else {
+		} else {
 			entity.drag(resizeDirection, getX(), getY(), getMousePosBeforeDrag(), isShiftKeyDown, firstDrag, stickables, true);
 		}
 	}

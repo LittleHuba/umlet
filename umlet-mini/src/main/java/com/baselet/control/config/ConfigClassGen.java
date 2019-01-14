@@ -12,7 +12,8 @@ public class ConfigClassGen {
 		return instance;
 	}
 
-	private ConfigClassGen() {}
+	private ConfigClassGen() {
+	}
 
 	private boolean generateClassPackage = true;
 	private FieldOptions generateClassFields = FieldOptions.ALL;

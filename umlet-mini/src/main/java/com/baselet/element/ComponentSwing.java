@@ -1,9 +1,5 @@
 package com.baselet.element;
 
-import java.awt.Graphics;
-
-import javax.swing.JComponent;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.basics.Converter;
 import com.baselet.control.basics.geom.Point;
@@ -12,6 +8,9 @@ import com.baselet.diagram.DiagramHandler;
 import com.baselet.diagram.draw.DrawHandler;
 import com.baselet.diagram.draw.swing.DrawHandlerSwing;
 import com.baselet.element.interfaces.Component;
+
+import javax.swing.JComponent;
+import java.awt.Graphics;
 
 public class ComponentSwing extends JComponent implements Component {
 	private static final long serialVersionUID = 1L;
@@ -72,8 +71,7 @@ public class ComponentSwing extends JComponent implements Component {
 		// only check if element selectable on the position, because some elements are not everywhere selectable (eg: Relation)
 		if (gridElement.isSelectableOn(new Point(r.getX() + x, r.getY() + y))) {
 			return ElementUtils.checkForOverlap(gridElement, new Point(x, y));
-		}
-		else {
+		} else {
 			return false;
 		}
 	}

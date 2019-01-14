@@ -1,10 +1,10 @@
 package com.baselet.element.old.activity;
 
-import java.awt.Graphics2D;
-import java.awt.Point;
-
 import com.baselet.control.enums.Direction;
 import com.baselet.diagram.DiagramHandler;
+
+import java.awt.Graphics2D;
+import java.awt.Point;
 
 public class EventRecieve extends Activity {
 
@@ -29,8 +29,7 @@ public class EventRecieve extends Activity {
 			getGraphics().drawLine(c.x, c.y, c.x, c.y + (int) (3 * getZoom()));
 			c.y += (int) (3 * getZoom());
 			return c;
-		}
-		else {
+		} else {
 			return getConnect(dir);
 		}
 	}
@@ -42,10 +41,10 @@ public class EventRecieve extends Activity {
 		int uh = cord.y - (getHeight() - bh);
 		bh += cord.y;
 		label.paint();
-		int[] xPoints = { cord.x - getLeftWidth(), cord.x + getRightWidth(),
-				cord.x + getRightWidth(), cord.x - getLeftWidth(),
-				cord.x - getLeftWidth() + width };
-		int[] yPoints = { uh, uh, bh, bh, cord.y };
+		int[] xPoints = {cord.x - getLeftWidth(), cord.x + getRightWidth(),
+			cord.x + getRightWidth(), cord.x - getLeftWidth(),
+			cord.x - getLeftWidth() + width};
+		int[] yPoints = {uh, uh, bh, bh, cord.y};
 		getGraphics().drawPolygon(xPoints, yPoints, xPoints.length);
 	}
 }

@@ -1,13 +1,13 @@
 package com.baselet.control.basics;
 
-import java.awt.Color;
-import java.awt.Cursor;
-
 import com.baselet.control.basics.geom.Dimension;
 import com.baselet.control.basics.geom.Point;
 import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.diagram.draw.helper.ColorOwn;
 import com.baselet.element.interfaces.CursorOwn;
+
+import java.awt.Color;
+import java.awt.Cursor;
 
 public class Converter {
 

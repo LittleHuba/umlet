@@ -1,17 +1,16 @@
 package com.baselet.control.util;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.baselet.control.constants.SystemInfo;
 import com.baselet.control.enums.Os;
 import com.baselet.control.enums.Program;
 import com.baselet.element.interfaces.GridElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class Path {
 
@@ -37,13 +36,15 @@ public class Path {
 		return combine(programConfigDir, Program.getInstance().getConfigName());
 	}
 
-	@Deprecated // #273: legacy cfg is read for some versions; should be removed in v15 or sooner (only use osConformConfig() instead)
+	@Deprecated
+	// #273: legacy cfg is read for some versions; should be removed in v15 or sooner (only use osConformConfig() instead)
 	public static boolean hasLegacyConfig() {
 		File file = new File(legacyConfig());
 		return file.exists();
 	}
 
-	@Deprecated // #273: legacy cfg is read for some versions; should be removed in v15 or sooner (only use osConformConfig() instead)
+	@Deprecated
+	// #273: legacy cfg is read for some versions; should be removed in v15 or sooner (only use osConformConfig() instead)
 	public static String legacyConfig() {
 		String programConfigDirectory = combine(userHomeDirectory(), Program.getInstance().getProgramName());
 
@@ -62,11 +63,9 @@ public class Path {
 
 		if (SystemInfo.OS == Os.WINDOWS) {
 			configDir = windowsConfigDirectory();
-		}
-		else if (SystemInfo.OS == Os.MAC) {
+		} else if (SystemInfo.OS == Os.MAC) {
 			configDir = macOSXConfigDirectory();
-		}
-		else if (SystemInfo.OS == Os.LINUX || SystemInfo.OS == Os.UNIX) {
+		} else if (SystemInfo.OS == Os.LINUX || SystemInfo.OS == Os.UNIX) {
 			configDir = xgdConfigDirectory();
 		}
 

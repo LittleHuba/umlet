@@ -1,14 +1,14 @@
 package com.baselet.element.old.element;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.util.HashSet;
-import java.util.Set;
-
 import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.control.enums.Direction;
 import com.baselet.element.old.OldGridElement;
 import com.baselet.element.sticking.StickingPolygon;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.HashSet;
+import java.util.Set;
 
 @SuppressWarnings("serial")
 public class SeqDestroyMark extends OldGridElement {

@@ -1,9 +1,5 @@
 package com.baselet.gui.listener;
 
-import java.awt.event.MouseEvent;
-import java.util.Collections;
-import java.util.Vector;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.basics.Converter;
 import com.baselet.control.basics.geom.Point;
@@ -18,6 +14,10 @@ import com.baselet.gui.command.Command;
 import com.baselet.gui.command.Move;
 import com.baselet.gui.command.OldMoveLinePoint;
 import com.baselet.gui.command.RemoveElement;
+
+import java.awt.event.MouseEvent;
+import java.util.Collections;
+import java.util.Vector;
 
 /**
  * new relation doesnt need its own listener
@@ -126,12 +126,10 @@ public class OldRelationListener extends GridElementListener {
 			if (where >= 0) {
 				IS_DRAGGING_LINEPOINT = true;
 				LINEPOINT = where;
-			}
-			else if (rel.isWholeLine(me.getX(), me.getY())) {
+			} else if (rel.isWholeLine(me.getX(), me.getY())) {
 				IS_DRAGGING_LINE = true;
 				IS_DRAGGING = true;
-			}
-			else if (me.getButton() == MouseEvent.BUTTON2) {
+			} else if (me.getButton() == MouseEvent.BUTTON2) {
 				IS_DRAGGING_DIAGRAM = true;
 				IS_DRAGGING_LINE = false;
 				IS_DRAGGING_LINEPOINT = false;
@@ -150,10 +148,9 @@ public class OldRelationListener extends GridElementListener {
 				// the command which moved all points to the same position gets undone and the relation gets removed instead
 				controller.undo();
 				controller.executeCommand(new RemoveElement(rel));
-			}
-			else if (rel.isOnLine(LINEPOINT)) {
+			} else if (rel.isOnLine(LINEPOINT)) {
 				controller.executeCommand(
-						new OldRemoveLinePoint(rel, LINEPOINT));
+					new OldRemoveLinePoint(rel, LINEPOINT));
 			}
 		}
 		IS_DRAGGING_LINEPOINT = false;
@@ -169,11 +166,9 @@ public class OldRelationListener extends GridElementListener {
 		CursorOwn cursor;
 		if (where >= 0) {
 			cursor = CursorOwn.HAND;
-		}
-		else if (rel.isWholeLine(me.getX(), me.getY())) {
+		} else if (rel.isWholeLine(me.getX(), me.getY())) {
 			cursor = CursorOwn.MOVE;
-		}
-		else {
+		} else {
 			cursor = CursorOwn.CROSS;
 		}
 		CurrentGui.getInstance().getGui().setCursor(Converter.convert(cursor));
@@ -214,11 +209,10 @@ public class OldRelationListener extends GridElementListener {
 
 		if (IS_DRAGGING_LINEPOINT & LINEPOINT >= 0) {
 			controller.executeCommand(
-					new OldMoveLinePoint(r, LINEPOINT, diffx, diffy));
+				new OldMoveLinePoint(r, LINEPOINT, diffx, diffy));
 			return;
-		}
-		else if (IS_DRAGGING_LINE) {
-			controller.executeCommand(new Move(Collections.<Direction> emptySet(), r, diffx, diffy, oldp, me.isShiftDown(), false, true, StickableMap.EMPTY_MAP));
+		} else if (IS_DRAGGING_LINE) {
+			controller.executeCommand(new Move(Collections.<Direction>emptySet(), r, diffx, diffy, oldp, me.isShiftDown(), false, true, StickableMap.EMPTY_MAP));
 			return;
 		}
 
@@ -227,17 +221,16 @@ public class OldRelationListener extends GridElementListener {
 			IS_DRAGGING_LINEPOINT = true;
 			LINEPOINT = where;
 			controller.executeCommand(
-					new OldMoveLinePoint(r, where, diffx, diffy));
+				new OldMoveLinePoint(r, where, diffx, diffy));
 			return;
-		}
-		else {
+		} else {
 			Point p = new Point(me.getX(), me.getY());
 			int ins = r.getWhereToInsert(p);
 			if (ins > 0) {
 				IS_DRAGGING_LINEPOINT = true;
 				LINEPOINT = ins;
 				controller.executeCommand(
-						new OldAddLinePoint(r, ins, me.getX(), me.getY()));
+					new OldAddLinePoint(r, ins, me.getX(), me.getY()));
 				return;
 			}
 		}

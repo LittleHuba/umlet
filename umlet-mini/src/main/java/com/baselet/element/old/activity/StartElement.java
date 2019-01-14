@@ -1,10 +1,10 @@
 package com.baselet.element.old.activity;
 
-import java.awt.Graphics2D;
-import java.awt.Point;
-
 import com.baselet.control.enums.Direction;
 import com.baselet.diagram.DiagramHandler;
+
+import java.awt.Graphics2D;
+import java.awt.Point;
 
 public class StartElement extends Element {
 	public StartElement(DiagramHandler handler, Graphics2D g, int padding, String id) {
@@ -28,11 +28,9 @@ public class StartElement extends Element {
 				Point to = e.getConnect(Direction.UP);
 				if (from.x == to.x) {
 					from = getConnect(Direction.DOWN);
-				}
-				else if (from.x < to.x) {
+				} else if (from.x < to.x) {
 					from = getConnect(Direction.RIGHT);
-				}
-				else if (from.x > to.x) {
+				} else if (from.x > to.x) {
 					from = getConnect(Direction.LEFT);
 				}
 
@@ -41,8 +39,7 @@ public class StartElement extends Element {
 				}
 				if (arrowOut() && e.arrowIn()) {
 					Connector.drawArrow(getGraphics(), getZoom(), to.x, from.y, to.x, to.y);
-				}
-				else {
+				} else {
 					getGraphics().drawLine(to.x, from.y, to.x, to.y);
 				}
 			}

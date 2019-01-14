@@ -1,15 +1,15 @@
 package com.baselet.element.old.element;
 
+import com.baselet.control.HandlerElementMap;
+import com.baselet.control.enums.AlignHorizontal;
+import com.baselet.control.util.Utils;
+import com.baselet.element.old.OldGridElement;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.Vector;
-
-import com.baselet.control.HandlerElementMap;
-import com.baselet.control.enums.AlignHorizontal;
-import com.baselet.control.util.Utils;
-import com.baselet.element.old.OldGridElement;
 
 @SuppressWarnings("serial")
 public class Signal extends OldGridElement {
@@ -29,14 +29,11 @@ public class Signal extends OldGridElement {
 			String s = tmp.elementAt(i);
 			if (s.equals(">")) {
 				signalType = 1; // send signal
-			}
-			else if (s.equals("<")) {
+			} else if (s.equals("<")) {
 				signalType = 2; // accept signal
-			}
-			else if (s.equals("x")) {
+			} else if (s.equals("x")) {
 				signalType = 3; // time signal
-			}
-			else { // draw string
+			} else { // draw string
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize();
 				HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, getRectangle().width / 2.0, yPos, AlignHorizontal.CENTER);
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
@@ -49,21 +46,18 @@ public class Signal extends OldGridElement {
 			g2.drawLine(getRectangle().width - (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize(), 0, getRectangle().width - 1, getRectangle().height / 2);
 			g2.drawLine(getRectangle().width, getRectangle().height / 2, getRectangle().width - (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize(), getRectangle().height);
 			g2.drawLine(0, getRectangle().height - 1, 0, 0);
-		}
-		else if (signalType == 2) { // accept signal
+		} else if (signalType == 2) { // accept signal
 			g2.drawLine(0, 0, getRectangle().width, 0);
 			g2.drawLine(getRectangle().width - 1, getRectangle().height - 1, 0, getRectangle().height - 1);
 			g2.drawLine(0, 0, (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() - 2, getRectangle().height / 2);
 			g2.drawLine((int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() - 2, getRectangle().height / 2, 0, getRectangle().height);
 			g2.drawLine(getRectangle().width - 1, getRectangle().height - 1, getRectangle().width - 1, 0);
-		}
-		else if (signalType == 3) { // time signal
+		} else if (signalType == 3) { // time signal
 			g2.drawLine(0, 0, getRectangle().width, 0);
 			g2.drawLine(getRectangle().width - 1, getRectangle().height - 1, 0, getRectangle().height - 1);
 			g2.drawLine(0, 0, getRectangle().width - 1, getRectangle().height - 1);
 			g2.drawLine(getRectangle().width - 1, 0, 0, getRectangle().height - 1);
-		}
-		else { // NO signal specified
+		} else { // NO signal specified
 			g2.drawLine(0, 0, getRectangle().width, 0);
 			g2.drawLine(getRectangle().width - 1, getRectangle().height - 1, 0, getRectangle().height - 1);
 			g2.drawLine(getRectangle().width - 1, 0, getRectangle().width - 1, getRectangle().height - 1);

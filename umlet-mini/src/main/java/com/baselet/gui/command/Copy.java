@@ -1,10 +1,10 @@
 package com.baselet.gui.command;
 
-import java.util.List;
-
 import com.baselet.diagram.DiagramHandler;
 import com.baselet.element.ElementFactorySwing;
 import com.baselet.element.interfaces.GridElement;
+
+import java.util.List;
 
 public class Copy extends Command {
 

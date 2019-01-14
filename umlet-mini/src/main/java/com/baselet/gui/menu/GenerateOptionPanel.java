@@ -1,16 +1,10 @@
 package com.baselet.gui.menu;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Enumeration;
+import com.baselet.control.config.ConfigClassGen;
+import com.baselet.control.enums.generator.FieldOptions;
+import com.baselet.control.enums.generator.MethodOptions;
+import com.baselet.control.enums.generator.SignatureOptions;
+import com.baselet.control.enums.generator.SortOptions;
 
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
@@ -22,12 +16,17 @@ import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-
-import com.baselet.control.config.ConfigClassGen;
-import com.baselet.control.enums.generator.FieldOptions;
-import com.baselet.control.enums.generator.MethodOptions;
-import com.baselet.control.enums.generator.SignatureOptions;
-import com.baselet.control.enums.generator.SortOptions;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Enumeration;
 
 @SuppressWarnings("serial")
 public class GenerateOptionPanel extends JDialog {

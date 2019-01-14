@@ -1,12 +1,5 @@
 package com.baselet.gui.listener;
 
-import java.awt.event.ComponentAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.util.Collections;
-import java.util.Vector;
-
 import com.baselet.control.basics.Converter;
 import com.baselet.control.basics.geom.Point;
 import com.baselet.control.enums.Direction;
@@ -22,6 +15,13 @@ import com.baselet.gui.command.Command;
 import com.baselet.gui.command.Controller;
 import com.baselet.gui.command.Macro;
 import com.baselet.gui.command.Move;
+
+import java.awt.event.ComponentAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.util.Collections;
+import java.util.Vector;
 
 public abstract class UniversalListener extends ComponentAdapter implements MouseListener, MouseMotionListener {
 
@@ -43,10 +43,12 @@ public abstract class UniversalListener extends ComponentAdapter implements Mous
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {}
+	public void mouseClicked(MouseEvent arg0) {
+	}
 
 	@Override
-	public void mouseEntered(MouseEvent me) {}
+	public void mouseEntered(MouseEvent me) {
+	}
 
 	@Override
 	public void mousePressed(MouseEvent me) {
@@ -92,8 +94,7 @@ public abstract class UniversalListener extends ComponentAdapter implements Mous
 			selector.getSelectorFrame().resizeTo(getOffset(me).getX(), getOffset(me).getY());
 			disableElementMovement = true;
 			return;
-		}
-		else if (disableElementMovement()) {
+		} else if (disableElementMovement()) {
 			return;
 		}
 
@@ -142,7 +143,7 @@ public abstract class UniversalListener extends ComponentAdapter implements Mous
 		if (diffx != 0 || diffy != 0) {
 			Vector<Command> moveCommands = new Vector<Command>();
 			for (GridElement e : diagram.getGridElements()) {
-				moveCommands.add(new Move(Collections.<Direction> emptySet(), e, diffx, diffy, oldp, false, false, true, StickableMap.EMPTY_MAP));
+				moveCommands.add(new Move(Collections.<Direction>emptySet(), e, diffx, diffy, oldp, false, false, true, StickableMap.EMPTY_MAP));
 			}
 
 			controller.executeCommand(new Macro(moveCommands));

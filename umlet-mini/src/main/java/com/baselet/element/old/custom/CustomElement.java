@@ -1,5 +1,19 @@
 package com.baselet.element.old.custom;
 
+import com.baselet.control.HandlerElementMap;
+import com.baselet.control.basics.Converter;
+import com.baselet.control.constants.FacetConstants;
+import com.baselet.control.enums.AlignHorizontal;
+import com.baselet.control.enums.Direction;
+import com.baselet.control.enums.LineType;
+import com.baselet.control.util.Utils;
+import com.baselet.custom.CustomFunction;
+import com.baselet.diagram.DiagramHandler;
+import com.baselet.diagram.draw.helper.ColorOwn;
+import com.baselet.diagram.draw.helper.ColorOwn.Transparency;
+import com.baselet.element.interfaces.GridElement;
+import com.baselet.element.old.OldGridElement;
+
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Composite;
@@ -19,20 +33,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.Vector;
-
-import com.baselet.control.HandlerElementMap;
-import com.baselet.control.basics.Converter;
-import com.baselet.control.constants.FacetConstants;
-import com.baselet.control.enums.AlignHorizontal;
-import com.baselet.control.enums.Direction;
-import com.baselet.control.enums.LineType;
-import com.baselet.control.util.Utils;
-import com.baselet.custom.CustomFunction;
-import com.baselet.diagram.DiagramHandler;
-import com.baselet.diagram.draw.helper.ColorOwn;
-import com.baselet.diagram.draw.helper.ColorOwn.Transparency;
-import com.baselet.element.interfaces.GridElement;
-import com.baselet.element.old.OldGridElement;
 
 @SuppressWarnings("serial")
 public abstract class CustomElement extends OldGridElement {
@@ -125,8 +125,7 @@ public abstract class CustomElement extends OldGridElement {
 			if (specialFgColor) {
 				if (HandlerElementMap.getHandlerForElement(this).getDrawPanel().getSelector().isSelected(this)) {
 					g2.setColor(Converter.convert(ColorOwn.SELECTION_FG));
-				}
-				else {
+				} else {
 					g2.setColor(s.getFgColor());
 				}
 			}
@@ -167,8 +166,7 @@ public abstract class CustomElement extends OldGridElement {
 		zoom = HandlerElementMap.getHandlerForElement(this).getZoomFactor();
 		if (zoom < 0.25) {
 			bugfix = true;
-		}
-		else {
+		} else {
 			bugfix = false;
 		}
 
@@ -222,7 +220,7 @@ public abstract class CustomElement extends OldGridElement {
 	@CustomFunction(param_defaults = "text,x,y")
 	protected final int print(String text, int x, int inY) {
 		int y = inY;
-		List<String> list = wordWrap ? splitString(text, width, HandlerElementMap.getHandlerForElement(this)) : Arrays.asList(new String[] { text });
+		List<String> list = wordWrap ? splitString(text, width, HandlerElementMap.getHandlerForElement(this)) : Arrays.asList(new String[]{text});
 		for (String s : list) {
 			texts.add(new Text(s, (int) (x * zoom), (int) (y * zoom), AlignHorizontal.LEFT));
 			y += textHeight();
@@ -233,7 +231,7 @@ public abstract class CustomElement extends OldGridElement {
 	@CustomFunction(param_defaults = "text,y")
 	protected final int printLeft(String text, int inY) {
 		int y = inY;
-		List<String> list = wordWrap ? splitString(text, width, HandlerElementMap.getHandlerForElement(this)) : Arrays.asList(new String[] { text });
+		List<String> list = wordWrap ? splitString(text, width, HandlerElementMap.getHandlerForElement(this)) : Arrays.asList(new String[]{text});
 		for (String s : list) {
 			texts.add(new Text(s, (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts(), (int) (y * zoom), AlignHorizontal.LEFT));
 			y += textHeight();
@@ -244,7 +242,7 @@ public abstract class CustomElement extends OldGridElement {
 	@CustomFunction(param_defaults = "text,y")
 	protected final int printRight(String text, int inY) {
 		int y = inY;
-		List<String> list = wordWrap ? splitString(text, width, HandlerElementMap.getHandlerForElement(this)) : Arrays.asList(new String[] { text });
+		List<String> list = wordWrap ? splitString(text, width, HandlerElementMap.getHandlerForElement(this)) : Arrays.asList(new String[]{text});
 		for (String s : list) {
 			texts.add(new Text(s, (int) (width * zoom - textWidth(s, true)), (int) (y * zoom), AlignHorizontal.LEFT));
 			y += textHeight();
@@ -255,7 +253,7 @@ public abstract class CustomElement extends OldGridElement {
 	@CustomFunction(param_defaults = "text,y")
 	protected final int printCenter(String text, int inY) {
 		int y = inY;
-		List<String> list = wordWrap ? splitString(text, width, HandlerElementMap.getHandlerForElement(this)) : Arrays.asList(new String[] { text });
+		List<String> list = wordWrap ? splitString(text, width, HandlerElementMap.getHandlerForElement(this)) : Arrays.asList(new String[]{text});
 		for (String s : list) {
 			texts.add(new Text(s, (int) ((onGrid(width) * zoom - textWidth(s, true)) / 2), (int) (y * zoom), AlignHorizontal.LEFT));
 			y += textHeight();
@@ -266,7 +264,7 @@ public abstract class CustomElement extends OldGridElement {
 	@CustomFunction(param_defaults = "text,x,y,fixedFontSize")
 	protected final int printFixedSize(String text, int x, int inY, int fixedFontSize) {
 		int y = inY;
-		List<String> list = wordWrap ? splitString(text, width, HandlerElementMap.getHandlerForElement(this)) : Arrays.asList(new String[] { text });
+		List<String> list = wordWrap ? splitString(text, width, HandlerElementMap.getHandlerForElement(this)) : Arrays.asList(new String[]{text});
 		for (String s : list) {
 			texts.add(new Text(s, x, y, AlignHorizontal.LEFT, fixedFontSize));
 			y += textHeight();
@@ -423,23 +421,17 @@ public abstract class CustomElement extends OldGridElement {
 	protected final void setLineType(int lineType) {
 		if (lineType == 0) {
 			tmpLineType = LineType.SOLID;
-		}
-		else if (lineType == 1) {
+		} else if (lineType == 1) {
 			tmpLineType = LineType.DASHED;
-		}
-		else if (lineType == 2) {
+		} else if (lineType == 2) {
 			tmpLineType = LineType.DOTTED;
-		}
-		else if (lineType == 3) {
+		} else if (lineType == 3) {
 			tmpLineType = LineType.DOUBLE;
-		}
-		else if (lineType == 4) {
+		} else if (lineType == 4) {
 			tmpLineType = LineType.DOUBLE_DASHED;
-		}
-		else if (lineType == 5) {
+		} else if (lineType == 5) {
 			tmpLineType = LineType.DOUBLE_DOTTED;
-		}
-		else {
+		} else {
 			tmpLineType = LineType.SOLID;
 		}
 	}
@@ -467,8 +459,7 @@ public abstract class CustomElement extends OldGridElement {
 		// Transparency is 0% if none or 50% if anything else
 		if (bgColorString.equals("none")) {
 			tmpAlpha = OldGridElement.ALPHA_FULL_TRANSPARENCY;
-		}
-		else {
+		} else {
 			tmpAlpha = OldGridElement.ALPHA_MIDDLE_TRANSPARENCY;
 		}
 	}
@@ -502,8 +493,7 @@ public abstract class CustomElement extends OldGridElement {
 	public Set<Direction> getResizeArea(int x, int y) {
 		if (allowResize) {
 			return super.getResizeArea(x, y);
-		}
-		else {
+		} else {
 			return new HashSet<Direction>();
 		}
 	}
@@ -516,8 +506,7 @@ public abstract class CustomElement extends OldGridElement {
 		for (int i = 0; i < text.length(); i++) {
 			if (stringBuilder.charAt(i) == ' ') {
 				lastEmptyChar = i;
-			}
-			else if (stringBuilder.charAt(i) == '\n') {
+			} else if (stringBuilder.charAt(i) == '\n') {
 				lastEmptyChar = -1;
 				firstCharInLine = i + 1;
 			}
@@ -526,8 +515,7 @@ public abstract class CustomElement extends OldGridElement {
 					stringBuilder.setCharAt(lastEmptyChar, '\n');
 					firstCharInLine = lastEmptyChar + 1;
 					lastEmptyChar = -1;
-				}
-				else {
+				} else {
 					stringBuilder.insert(i, '\n');
 					firstCharInLine = i + 1;
 				}

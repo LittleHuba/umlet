@@ -1,13 +1,13 @@
 package com.baselet.gui.command;
 
-import java.awt.Point;
-import java.util.Vector;
-
 import com.baselet.control.constants.Constants;
 import com.baselet.diagram.DiagramHandler;
 import com.baselet.element.ElementFactorySwing;
 import com.baselet.element.Selector;
 import com.baselet.element.interfaces.GridElement;
+
+import java.awt.Point;
+import java.util.Vector;
 
 public class Paste extends Command {
 
@@ -56,8 +56,8 @@ public class Paste extends Command {
 
 		for (GridElement e : entities) {
 			e.setLocationDifference(
-					viewpX * handler.getGridSize() - minX + handler.getGridSize() * Constants.PASTE_DISPLACEMENT_GRIDS,
-					viewpY * handler.getGridSize() - minY + handler.getGridSize() * Constants.PASTE_DISPLACEMENT_GRIDS);
+				viewpX * handler.getGridSize() - minX + handler.getGridSize() * Constants.PASTE_DISPLACEMENT_GRIDS,
+				viewpY * handler.getGridSize() - minY + handler.getGridSize() * Constants.PASTE_DISPLACEMENT_GRIDS);
 		}
 
 		int offsetX = origin.x - handler.getDrawPanel().getOriginAtDefaultZoom().x;
@@ -68,8 +68,8 @@ public class Paste extends Command {
 
 		for (GridElement e : entities) {
 			new AddElement(e,
-					handler.realignToGrid(e.getRectangle().x + offsetX),
-					handler.realignToGrid(e.getRectangle().y + offsetY), false).execute(handler);
+				handler.realignToGrid(e.getRectangle().x + offsetX),
+				handler.realignToGrid(e.getRectangle().y + offsetY), false).execute(handler);
 		}
 
 		handler.getDrawPanel().getSelector().deselectAll();

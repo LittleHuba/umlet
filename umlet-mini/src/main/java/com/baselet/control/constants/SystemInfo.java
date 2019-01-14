@@ -1,9 +1,9 @@
 package com.baselet.control.constants;
 
-import java.util.Locale;
-
 import com.baselet.control.enums.Metakey;
 import com.baselet.control.enums.Os;
+
+import java.util.Locale;
 
 public class SystemInfo {
 
@@ -15,24 +15,19 @@ public class SystemInfo {
 		String os = java.lang.System.getProperty("os.name").toUpperCase(Locale.ENGLISH);
 		if (os.startsWith("WINDOWS")) {
 			OS = Os.WINDOWS;
-		}
-		else if (os.startsWith("MAC")) {
+		} else if (os.startsWith("MAC")) {
 			OS = Os.MAC;
-		}
-		else if (os.startsWith("LINUX")) {
+		} else if (os.startsWith("LINUX")) {
 			OS = Os.LINUX;
-		}
-		else if (os.contains("UNIX") || os.contains("BSD")) {
+		} else if (os.contains("UNIX") || os.contains("BSD")) {
 			OS = Os.UNIX;
-		}
-		else {
+		} else {
 			OS = Os.UNKNOWN;
 		}
 
 		if (SystemInfo.OS == Os.MAC) {
 			META_KEY = Metakey.CMD;
-		}
-		else {
+		} else {
 			META_KEY = Metakey.CTRL;
 		}
 	}

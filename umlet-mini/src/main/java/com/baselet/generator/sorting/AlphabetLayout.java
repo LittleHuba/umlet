@@ -1,11 +1,11 @@
 package com.baselet.generator.sorting;
 
+import com.baselet.control.config.ConfigClassGen;
+import com.baselet.generator.java.JavaClass;
+
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.List;
-
-import com.baselet.control.config.ConfigClassGen;
-import com.baselet.generator.java.JavaClass;
 
 public class AlphabetLayout extends Layout {
 

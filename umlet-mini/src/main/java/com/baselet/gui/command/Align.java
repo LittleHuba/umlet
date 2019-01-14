@@ -1,17 +1,17 @@
 package com.baselet.gui.command;
 
+import com.baselet.control.basics.geom.Rectangle;
+import com.baselet.control.constants.Constants;
+import com.baselet.diagram.DiagramHandler;
+import com.baselet.diagram.DrawPanel;
+import com.baselet.element.interfaces.GridElement;
+
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import com.baselet.control.basics.geom.Rectangle;
-import com.baselet.control.constants.Constants;
-import com.baselet.diagram.DiagramHandler;
-import com.baselet.diagram.DrawPanel;
-import com.baselet.element.interfaces.GridElement;
 
 public class Align extends Command {
 

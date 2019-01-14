@@ -1,8 +1,8 @@
 package com.baselet.gui.listener;
 
-import java.awt.event.WindowEvent;
-
 import com.baselet.control.config.SharedConfig;
+
+import java.awt.event.WindowEvent;
 
 public class UmletWindowFocusListener implements java.awt.event.WindowFocusListener {
 
@@ -12,6 +12,7 @@ public class UmletWindowFocusListener implements java.awt.event.WindowFocusListe
 	}
 
 	@Override
-	public void windowLostFocus(WindowEvent e) {}
+	public void windowLostFocus(WindowEvent e) {
+	}
 
 }

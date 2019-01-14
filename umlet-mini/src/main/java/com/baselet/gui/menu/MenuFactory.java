@@ -1,9 +1,5 @@
 package com.baselet.gui.menu;
 
-import com.baselet.diagram.DiagramHandler;
-import com.baselet.diagram.DrawPanel;
-import com.baselet.gui.CurrentGui;
-
 import javax.swing.JComponent;
 import java.util.ArrayList;
 import java.util.List;

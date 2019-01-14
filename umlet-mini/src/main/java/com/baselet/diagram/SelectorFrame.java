@@ -1,21 +1,19 @@
 package com.baselet.diagram;
 
+import com.baselet.control.enums.LineType;
+import com.baselet.control.util.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.swing.JComponent;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import javax.swing.JComponent;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.baselet.control.enums.LineType;
-import com.baselet.control.util.Utils;
-
 /**
  * @author unknown
- *         To change the template for this generated type comment go to
- *         Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
+ * To change the template for this generated type comment go to
+ * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 @SuppressWarnings("serial")
 public class SelectorFrame extends JComponent {
@@ -69,8 +67,7 @@ public class SelectorFrame extends JComponent {
 			sizx = sizx * -1 + offset_left;
 			offset_left = sizx;
 			log.trace("LEFT (offset: " + offset_left + "px)");
-		}
-		else {
+		} else {
 			sizx -= offset_left;
 			locx += offset_left;
 			offset_left = 0;
@@ -82,8 +79,7 @@ public class SelectorFrame extends JComponent {
 			sizy = sizy * -1 + offset_top;
 			offset_top = sizy;
 			log.trace("UP (offset: " + offset_top + "px)");
-		}
-		else {
+		} else {
 			sizy -= offset_top;
 			locy += offset_top;
 			offset_top = 0;

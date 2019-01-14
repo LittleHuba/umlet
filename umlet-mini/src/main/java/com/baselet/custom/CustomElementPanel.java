@@ -1,7 +1,10 @@
 package com.baselet.custom;
 
-import java.awt.Color;
-import java.awt.Component;
+import com.baselet.control.config.DerivedConfig;
+import com.baselet.diagram.DiagramHandler;
+import com.baselet.diagram.DrawPanel;
+import com.baselet.element.old.custom.CustomElementHandler;
+import com.baselet.gui.listener.DividerListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -9,12 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.text.JTextComponent;
-
-import com.baselet.control.config.DerivedConfig;
-import com.baselet.diagram.DiagramHandler;
-import com.baselet.diagram.DrawPanel;
-import com.baselet.element.old.custom.CustomElementHandler;
-import com.baselet.gui.listener.DividerListener;
+import java.awt.Color;
+import java.awt.Component;
 
 @SuppressWarnings("serial")
 public class CustomElementPanel extends JPanel {
@@ -63,8 +62,7 @@ public class CustomElementPanel extends JPanel {
 				if (!enabled && en) {
 					enabled = en;
 					addMouseListener(saveListener);
-				}
-				else if (enabled && !en) {
+				} else if (enabled && !en) {
 					enabled = en;
 					removeMouseListener(saveListener);
 				}
@@ -104,8 +102,7 @@ public class CustomElementPanel extends JPanel {
 		savelabel.setEnabled(enable);
 		if (enable) {
 			savelabel.setForeground(Color.black);
-		}
-		else {
+		} else {
 			savelabel.setForeground(Color.gray);
 		}
 	}
@@ -114,8 +111,7 @@ public class CustomElementPanel extends JPanel {
 	public void setCustomElementIsNew(boolean isnew) {
 		if (isnew) {
 			savelabel.setText("Add to diagram and close editor");
-		}
-		else {
+		} else {
 			savelabel.setText("Update in diagram and close editor");
 		}
 	}

@@ -1,5 +1,9 @@
 package com.baselet.control.constants;
 
+import com.baselet.control.enums.Program;
+
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
@@ -7,14 +11,10 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
-
-import com.baselet.control.enums.Program;
-
 public abstract class Constants extends SharedConstants {
 
-	private Constants() {} // private constructor to avoid instantiation
+	private Constants() {
+	} // private constructor to avoid instantiation
 
 	/**** NEWLINE CHARACTER AND DEFAULT HELP- AND MAILTEXT ****/
 	public static final String NEWLINE = "\n";
@@ -23,7 +23,7 @@ public abstract class Constants extends SharedConstants {
 	//@formatter:off
 	public static String getDefaultHelptext() {
 		String returnString =
-				"// Uncomment the following line to change the fontsize and font:" + NEWLINE +
+			"// Uncomment the following line to change the fontsize and font:" + NEWLINE +
 				"// fontsize=14" + NEWLINE +
 				"// fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced" + NEWLINE +
 				"" + NEWLINE +
@@ -43,7 +43,7 @@ public abstract class Constants extends SharedConstants {
 				"// Edit the files in the \"palettes\" directory to create your own element palettes" + NEWLINE +
 				"//" + NEWLINE + "// Select \"Custom Elements > New...\" to create new element types" + NEWLINE;
 		returnString +=
-				"//////////////////////////////////////////////////////////////////////////////////////////////" + NEWLINE +
+			"//////////////////////////////////////////////////////////////////////////////////////////////" + NEWLINE +
 				"" + NEWLINE +
 				"" + NEWLINE +
 				"// This text will be stored with each diagram;  use it for notes.";
@@ -52,14 +52,14 @@ public abstract class Constants extends SharedConstants {
 
 	public static String getDefaultMailtext() {
 		return "Type your message here.." + NEWLINE +
-				"" + NEWLINE +
-				"__" + NEWLINE +
-				"To edit the diagram, open the attached " + Program.getInstance().getExtension() + "-file with the free editing tool " + Program.getInstance().getProgramName() + " (" + Program.getInstance().getWebsite() + ")";
+			"" + NEWLINE +
+			"__" + NEWLINE +
+			"To edit the diagram, open the attached " + Program.getInstance().getExtension() + "-file with the free editing tool " + Program.getInstance().getProgramName() + " (" + Program.getInstance().getWebsite() + ")";
 	}
 	//@formatter:on
 
 	/**** EXPORT FORMATS ****/
-	public static final List<String> exportFormatList = Arrays.asList(new String[] { "bmp", "eps", "gif", "jpg", "pdf", "png", "svg" });
+	public static final List<String> exportFormatList = Arrays.asList(new String[]{"bmp", "eps", "gif", "jpg", "pdf", "png", "svg"});
 
 	/**** ZOOM VALUES ****/
 	public static final ArrayList<String> zoomValueList = new ArrayList<String>();
@@ -94,7 +94,7 @@ public abstract class Constants extends SharedConstants {
 	public static final int PASTE_DISPLACEMENT_GRIDS = 2;
 	public static final Color GRID_COLOR = new Color(235, 235, 235);
 
-	public static final List<String> fontFamilyList = Arrays.asList(new String[] { Font.SANS_SERIF, Font.SERIF, Font.MONOSPACED });
+	public static final List<String> fontFamilyList = Arrays.asList(new String[]{Font.SANS_SERIF, Font.SERIF, Font.MONOSPACED});
 
 	public static final List<LookAndFeelInfo> lookAndFeels = Arrays.asList(UIManager.getInstalledLookAndFeels());
 

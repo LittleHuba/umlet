@@ -1,9 +1,5 @@
 package com.baselet.element.old.element;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.basics.Converter;
 import com.baselet.control.enums.AlignHorizontal;
@@ -11,6 +7,10 @@ import com.baselet.diagram.DiagramHandler;
 import com.baselet.diagram.draw.helper.ColorOwn;
 import com.baselet.element.interfaces.GridElement;
 import com.baselet.element.old.OldGridElement;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 @SuppressWarnings("serial")
 public class ErrorOccurred extends OldGridElement {
@@ -34,8 +34,7 @@ public class ErrorOccurred extends OldGridElement {
 		g2.drawRect(0, 0, getRectangle().width - 1, getRectangle().height - 1);
 		if (handlerForElement.getDrawPanel().getSelector().isSelected(this)) {
 			g2.setColor(Converter.convert(ColorOwn.SELECTION_FG));
-		}
-		else {
+		} else {
 			g2.setColor(Color.red);
 		}
 		g2.setFont(handlerForElement.getFontHandler().getFont());

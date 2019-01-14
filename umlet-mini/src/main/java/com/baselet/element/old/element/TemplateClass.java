@@ -1,14 +1,14 @@
 package com.baselet.element.old.element;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.util.Vector;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.util.Utils;
 import com.baselet.element.old.OldGridElement;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.Vector;
 
 @SuppressWarnings("serial")
 public class TemplateClass extends OldGridElement {
@@ -41,13 +41,11 @@ public class TemplateClass extends OldGridElement {
 				CENTER = false;
 				g2.drawLine(0, yPos, getRectangle().width, yPos);
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
-			}
-			else {
+			} else {
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize();
 				if (CENTER) {
 					HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, getRectangle().width / 2.0, yPos, AlignHorizontal.CENTER);
-				}
-				else {
+				} else {
 					HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2), yPos, AlignHorizontal.LEFT);
 				}
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();

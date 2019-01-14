@@ -1,14 +1,14 @@
 package com.baselet.diagram;
 
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.font.FontRenderContext;
-
 import com.baselet.control.StringStyle;
 import com.baselet.control.basics.geom.DimensionDouble;
 import com.baselet.control.config.Config;
 import com.baselet.control.constants.Constants;
 import com.baselet.control.enums.AlignHorizontal;
+
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.font.FontRenderContext;
 
 public class FontHandler {
 
@@ -41,8 +41,7 @@ public class FontHandler {
 		String returnFontFamily;
 		if (diagramDefaultFontFamily != null) {
 			returnFontFamily = diagramDefaultFontFamily;
-		}
-		else {
+		} else {
 			returnFontFamily = Config.getInstance().getDefaultFontFamily();
 		}
 
@@ -69,18 +68,15 @@ public class FontHandler {
 		Double returnFontSize;
 		if (fontSize != null) {
 			returnFontSize = fontSize;
-		}
-		else if (diagramDefaultSize != null) {
+		} else if (diagramDefaultSize != null) {
 			returnFontSize = diagramDefaultSize;
-		}
-		else {
+		} else {
 			returnFontSize = Double.valueOf(Config.getInstance().getDefaultFontsize());
 		}
 
 		if (applyZoom) {
 			return returnFontSize * handler.getGridSize() / Constants.DEFAULTGRIDSIZE;
-		}
-		else {
+		} else {
 			return returnFontSize;
 		}
 	}
@@ -162,8 +158,7 @@ public class FontHandler {
 
 		if (align == AlignHorizontal.CENTER) {
 			x = (int) (x - formattedFont.getWidth() / 2);
-		}
-		else if (align == AlignHorizontal.RIGHT) {
+		} else if (align == AlignHorizontal.RIGHT) {
 			x = (int) (x - formattedFont.getWidth());
 		}
 

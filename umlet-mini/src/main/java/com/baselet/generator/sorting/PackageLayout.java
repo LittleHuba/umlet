@@ -1,18 +1,18 @@
 package com.baselet.generator.sorting;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.TreeMap;
-
 import com.baselet.control.basics.geom.Dimension;
 import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.control.enums.ElementId;
 import com.baselet.diagram.CurrentDiagram;
 import com.baselet.element.ElementFactorySwing;
 import com.baselet.element.NewGridElement;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 public class PackageLayout extends Layout {
 

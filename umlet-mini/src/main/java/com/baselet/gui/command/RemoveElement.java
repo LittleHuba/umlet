@@ -1,13 +1,13 @@
 package com.baselet.gui.command;
 
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.baselet.control.constants.Constants;
 import com.baselet.diagram.DiagramHandler;
 import com.baselet.diagram.DrawPanel;
 import com.baselet.element.interfaces.GridElement;
+
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RemoveElement extends Command {
 
@@ -73,8 +73,8 @@ public class RemoveElement extends Command {
 
 		for (GridElement e : _entities) {
 			new AddElement(e,
-					handler.realignToGrid(e.getRectangle().x + offsetX),
-					handler.realignToGrid(e.getRectangle().y + offsetY), _zoom).execute(handler);
+				handler.realignToGrid(e.getRectangle().x + offsetX),
+				handler.realignToGrid(e.getRectangle().y + offsetY), _zoom).execute(handler);
 		}
 
 		handler.getDrawPanel().updatePanelAndScrollbars();

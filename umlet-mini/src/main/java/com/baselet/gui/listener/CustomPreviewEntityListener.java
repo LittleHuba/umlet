@@ -1,9 +1,9 @@
 package com.baselet.gui.listener;
 
-import java.util.HashMap;
-
 import com.baselet.diagram.DiagramHandler;
 import com.baselet.element.interfaces.GridElement;
+
+import java.util.HashMap;
 
 public class CustomPreviewEntityListener extends GridElementListener {
 

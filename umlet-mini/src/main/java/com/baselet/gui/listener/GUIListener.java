@@ -1,11 +1,5 @@
 package com.baselet.gui.listener;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Vector;
-
 import com.baselet.control.basics.geom.Point;
 import com.baselet.control.config.SharedConfig;
 import com.baselet.control.enums.Direction;
@@ -15,6 +9,12 @@ import com.baselet.element.interfaces.GridElement;
 import com.baselet.gui.CurrentGui;
 import com.baselet.gui.command.Command;
 import com.baselet.gui.command.Macro;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Vector;
 
 public class GUIListener implements KeyListener {
 
@@ -76,7 +76,7 @@ public class GUIListener implements KeyListener {
 					}
 
 					Point opos = getOriginalPos(diffx, diffy, entitiesToBeMoved.iterator().next());
-					Vector<Command> ALL_MOVE_COMMANDS = GridElementListener.calculateFirstMoveCommands(diffx, diffy, opos, entitiesToBeMoved, e.isShiftDown(), true, handler, Collections.<Direction> emptySet());
+					Vector<Command> ALL_MOVE_COMMANDS = GridElementListener.calculateFirstMoveCommands(diffx, diffy, opos, entitiesToBeMoved, e.isShiftDown(), true, handler, Collections.<Direction>emptySet());
 					handler.getController().executeCommand(new Macro(ALL_MOVE_COMMANDS));
 					CurrentDiagram.getInstance().getDiagramHandler().getDrawPanel().updatePanelAndScrollbars();
 				}
@@ -97,6 +97,7 @@ public class GUIListener implements KeyListener {
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {}
+	public void keyTyped(KeyEvent e) {
+	}
 
 }

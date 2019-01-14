@@ -1,12 +1,5 @@
 package com.baselet.gui.listener;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-import javax.swing.SwingUtilities;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.Main;
 import com.baselet.diagram.CurrentDiagram;
@@ -18,9 +11,16 @@ import com.baselet.gui.command.ChangePanelAttributes;
 import com.baselet.gui.command.CustomCodePropertyChanged;
 import com.baselet.gui.command.HelpPanelChanged;
 
+import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 public class PropertyPanelListener implements KeyListener, DocumentListener {
 
-	public PropertyPanelListener() {}
+	public PropertyPanelListener() {
+	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -52,13 +52,11 @@ public class PropertyPanelListener implements KeyListener, DocumentListener {
 
 				if (HandlerElementMap.getHandlerForElement(gridElement) instanceof CustomPreviewHandler) {
 					HandlerElementMap.getHandlerForElement(gridElement).getController().executeCommand(new CustomCodePropertyChanged(gridElement.getPanelAttributes(), s, oldCaretPos, newCaretPos));
-				}
-				else {
+				} else {
 					HandlerElementMap.getHandlerForElement(gridElement).getController().executeCommand(new ChangePanelAttributes(gridElement, gridElement.getPanelAttributes(), s, oldCaretPos, newCaretPos));
 				}
 			}
-		}
-		else if (handler != null && !s.equals(handler.getHelpText())) { // help panel has been edited
+		} else if (handler != null && !s.equals(handler.getHelpText())) { // help panel has been edited
 			handler.getController().executeCommand(new HelpPanelChanged(s));
 		}
 
@@ -69,14 +67,18 @@ public class PropertyPanelListener implements KeyListener, DocumentListener {
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) {}
+	public void keyReleased(KeyEvent e) {
+	}
 
 	@Override
-	public void keyPressed(KeyEvent e) {}
+	public void keyPressed(KeyEvent e) {
+	}
 
 	@Override
-	public void insertUpdate(DocumentEvent e) {}
+	public void insertUpdate(DocumentEvent e) {
+	}
 
 	@Override
-	public void removeUpdate(DocumentEvent e) {}
+	public void removeUpdate(DocumentEvent e) {
+	}
 }

@@ -1,17 +1,17 @@
 package com.baselet.gui.command;
 
-import java.awt.Color;
-import java.awt.Point;
-import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.baselet.control.basics.Converter;
 import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.diagram.DiagramHandler;
 import com.baselet.diagram.DrawPanel;
 import com.baselet.diagram.SelectorOld;
 import com.baselet.element.interfaces.GridElement;
+
+import java.awt.Color;
+import java.awt.Point;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Search extends Command {
 
@@ -49,8 +49,7 @@ public class Search extends Command {
 			if (panelview.contains(e.getRectangle())) {
 				p = new Point(0, 0);
 				break;
-			}
-			else if (p == null) {
+			} else if (p == null) {
 				p = new Point(e.getRectangle().x - panelview.x - 10, e.getRectangle().y - panelview.y - 10);
 			}
 		}

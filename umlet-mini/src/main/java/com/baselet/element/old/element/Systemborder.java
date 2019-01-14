@@ -1,14 +1,14 @@
 package com.baselet.element.old.element;
 
-import java.awt.Composite;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.util.Vector;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.util.Utils;
 import com.baselet.element.old.OldGridElement;
+
+import java.awt.Composite;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.Vector;
 
 @SuppressWarnings("serial")
 public class Systemborder extends OldGridElement {
@@ -29,8 +29,7 @@ public class Systemborder extends OldGridElement {
 		g2.setComposite(composites[0]);
 		if (HandlerElementMap.getHandlerForElement(this).getDrawPanel().getSelector().isSelected(this)) {
 			g2.setColor(fgColor);
-		}
-		else {
+		} else {
 			g2.setColor(fgColorBase);
 		}
 		g2.drawRect(0, 0, getRectangle().width - 1, getRectangle().height - 1);
@@ -45,19 +44,16 @@ public class Systemborder extends OldGridElement {
 			if (s.startsWith("center:") && !s.equals("center:")) {
 				if (tmp.size() == 1) {
 					yPos = (getRectangle().height - 1) / 2 - (int) (10 * zoom);
-				}
-				else {
+				} else {
 					yPos = (getRectangle().height - 1) / 2 - (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() * (tmp.size() / 2) - (int) (10 * zoom);
 				}
 				center = true;
 				s = s.replace("center:", "");
-			}
-			else if (s.startsWith("bottomleft:") && !s.equals("bottomleft:")) {
+			} else if (s.startsWith("bottomleft:") && !s.equals("bottomleft:")) {
 				downleft = true;
 				s = s.replace("bottomleft:", "");
 				yPos = getRectangle().height - 1 - (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize();
-			}
-			else if (s.startsWith("topcenter:") && !s.equals("topcenter:")) {
+			} else if (s.startsWith("topcenter:") && !s.equals("topcenter:")) {
 				upcenter = true;
 				s = s.replace("topcenter:", "");
 				// yPos+=this.getHandler().getFontHandler().getFontsize();
@@ -66,16 +62,13 @@ public class Systemborder extends OldGridElement {
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize();
 				HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, (getRectangle().width - 1) / 2.0, yPos, AlignHorizontal.CENTER);
 				yPos += 2 * HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
-			}
-			else if (downleft) {
+			} else if (downleft) {
 				HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2), yPos, AlignHorizontal.LEFT);
-			}
-			else if (upcenter) {
+			} else if (upcenter) {
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize();
 				HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, (getRectangle().width - 1) / 2.0, yPos, AlignHorizontal.CENTER);
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
-			}
-			else {
+			} else {
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize();
 				HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2), yPos, AlignHorizontal.LEFT);
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();

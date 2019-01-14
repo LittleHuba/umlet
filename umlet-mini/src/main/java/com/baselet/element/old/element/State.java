@@ -1,15 +1,15 @@
 package com.baselet.element.old.element;
 
-import java.awt.Composite;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.util.Vector;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.enums.LineType;
 import com.baselet.control.util.Utils;
 import com.baselet.element.old.OldGridElement;
+
+import java.awt.Composite;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.Vector;
 
 @SuppressWarnings("serial")
 public class State extends OldGridElement {
@@ -29,8 +29,7 @@ public class State extends OldGridElement {
 		g2.setComposite(composites[0]);
 		if (HandlerElementMap.getHandlerForElement(this).getDrawPanel().getSelector().isSelected(this)) {
 			g2.setColor(fgColor);
-		}
-		else {
+		} else {
 			g2.setColor(fgColorBase);
 		}
 
@@ -41,8 +40,7 @@ public class State extends OldGridElement {
 		// A.Mueller start
 		if (tmp.contains("--") || tmp.contains("-.")) {
 			yPos = 2 * (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
-		}
-		else {
+		} else {
 			// A.Mueller end
 			yPos = getRectangle().height / 2 - tmp.size() * (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() + HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts()) / 2;
 		}
@@ -57,21 +55,18 @@ public class State extends OldGridElement {
 				g2.drawLine(0, yPos, getRectangle().width, yPos);
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
 				CENTER = false;
-			}
-			else if (s.equals("-.")) {
+			} else if (s.equals("-.")) {
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
 				g2.setStroke(Utils.getStroke(LineType.DASHED, 1));
 				g2.drawLine(0, yPos, getRectangle().width, yPos);
 				g2.setStroke(Utils.getStroke(LineType.SOLID, 1));
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
 				CENTER = false;
-			}
-			else {
+			} else {
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize();
 				if (CENTER) {
 					HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, getRectangle().width / 2.0, yPos, AlignHorizontal.CENTER);
-				}
-				else {
+				} else {
 					HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2), yPos, AlignHorizontal.LEFT);
 				}
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();

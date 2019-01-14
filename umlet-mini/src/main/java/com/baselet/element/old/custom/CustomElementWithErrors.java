@@ -1,13 +1,13 @@
 package com.baselet.element.old.custom;
 
-import java.util.List;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.custom.CompileError;
 import com.baselet.diagram.draw.helper.ColorOwn;
 import com.baselet.diagram.draw.swing.DrawHandlerSwing;
 import com.baselet.element.interfaces.GridElement;
+
+import java.util.List;
 
 public class CustomElementWithErrors extends CustomElement {
 

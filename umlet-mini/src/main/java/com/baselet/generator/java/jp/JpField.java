@@ -21,14 +21,11 @@ public class JpField implements Field {
 		int modifiers = field.getModifiers();
 		if ((modifiers & ModifierSet.PUBLIC) != 0) {
 			return AccessFlag.PUBLIC;
-		}
-		else if ((modifiers & ModifierSet.PROTECTED) != 0) {
+		} else if ((modifiers & ModifierSet.PROTECTED) != 0) {
 			return AccessFlag.PROTECTED;
-		}
-		else if ((modifiers & ModifierSet.PRIVATE) != 0) {
+		} else if ((modifiers & ModifierSet.PRIVATE) != 0) {
 			return AccessFlag.PRIVATE;
-		}
-		else {
+		} else {
 			return AccessFlag.PACKAGE;
 		}
 	}

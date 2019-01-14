@@ -1,14 +1,14 @@
 package com.baselet.element.old.element;
 
-import java.awt.Composite;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.util.Vector;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.util.Utils;
 import com.baselet.element.old.OldGridElement;
+
+import java.awt.Composite;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.Vector;
 
 @SuppressWarnings("serial")
 public class Artefact extends OldGridElement {
@@ -29,8 +29,7 @@ public class Artefact extends OldGridElement {
 		g2.setComposite(composites[0]);
 		if (HandlerElementMap.getHandlerForElement(this).getDrawPanel().getSelector().isSelected(this)) {
 			g2.setColor(fgColor);
-		}
-		else {
+		} else {
 			g2.setColor(fgColorBase);
 		}
 		g2.drawRect(0, 0, getRectangle().width - 1, getRectangle().height - 1);

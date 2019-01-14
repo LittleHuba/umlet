@@ -1,9 +1,9 @@
 package com.baselet.element.old.activity;
 
+import com.baselet.diagram.DiagramHandler;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
-
-import com.baselet.diagram.DiagramHandler;
 
 public class PartActivity extends Activity {
 

@@ -1,5 +1,13 @@
 package com.baselet.element.old.element;
 
+import com.baselet.control.HandlerElementMap;
+import com.baselet.control.enums.AlignHorizontal;
+import com.baselet.control.enums.Direction;
+import com.baselet.control.util.Utils;
+import com.baselet.element.old.OldGridElement;
+import com.baselet.element.sticking.StickingPolygon;
+import com.baselet.gui.command.OldResize;
+
 import java.awt.Composite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -8,14 +16,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
-
-import com.baselet.control.HandlerElementMap;
-import com.baselet.control.enums.AlignHorizontal;
-import com.baselet.control.enums.Direction;
-import com.baselet.control.util.Utils;
-import com.baselet.element.old.OldGridElement;
-import com.baselet.element.sticking.StickingPolygon;
-import com.baselet.gui.command.OldResize;
 
 @SuppressWarnings("serial")
 public class Actor extends OldGridElement {
@@ -43,8 +43,7 @@ public class Actor extends OldGridElement {
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
 				g2.drawLine(getRectangle().width / 2 - (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() * 4, yPos, getRectangle().width / 2 + (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() * 4, yPos);
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
-			}
-			else {
+			} else {
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize();
 				TextLayout l = new TextLayout(s, HandlerElementMap.getHandlerForElement(this).getFontHandler().getFont(), g2.getFontRenderContext());
 				Rectangle2D r2d = l.getBounds();
@@ -77,8 +76,7 @@ public class Actor extends OldGridElement {
 		g2.setComposite(composites[0]);
 		if (HandlerElementMap.getHandlerForElement(this).getDrawPanel().getSelector().isSelected(this)) {
 			g2.setColor(fgColor);
-		}
-		else {
+		} else {
 			g2.setColor(fgColorBase);
 		}
 

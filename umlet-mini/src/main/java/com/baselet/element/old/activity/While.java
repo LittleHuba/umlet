@@ -1,10 +1,10 @@
 package com.baselet.element.old.activity;
 
+import com.baselet.diagram.DiagramHandler;
+
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import com.baselet.diagram.DiagramHandler;
 
 public class While extends Container {
 
@@ -14,8 +14,7 @@ public class While extends Container {
 		super(autoInsertIF, handler, g, parent, rows, row);
 		if (condition != null && !condition.equals("")) {
 			while_element = new Condition(handler, condition, g);
-		}
-		else {
+		} else {
 			while_element = new LineSpacer(handler, g);
 		}
 		super.setStartElement(new If(handler, g, null));

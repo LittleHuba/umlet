@@ -1,11 +1,11 @@
 package com.baselet.diagram.io;
 
-import java.awt.Font;
-
 import com.baselet.control.config.Config;
 import com.baselet.diagram.Notifier;
 import com.itextpdf.awt.DefaultFontMapper;
 import com.itextpdf.text.pdf.BaseFont;
+
+import java.awt.Font;
 
 class PdfFontMapper extends DefaultFontMapper {
 
@@ -16,17 +16,13 @@ class PdfFontMapper extends DefaultFontMapper {
 		// Choose the appropriate PDF export font
 		if (font == null) {
 			fontName = config.getPdfExportFont();
-		}
-		else if (font.isBold() && !font.isItalic()) {
+		} else if (font.isBold() && !font.isItalic()) {
 			fontName = config.getPdfExportFontBold();
-		}
-		else if (font.isItalic() && !font.isBold()) {
+		} else if (font.isItalic() && !font.isBold()) {
 			fontName = config.getPdfExportFontItalic();
-		}
-		else if (font.isBold() && font.isItalic()) {
+		} else if (font.isBold() && font.isItalic()) {
 			fontName = config.getPdfExportFontBoldItalic();
-		}
-		else {
+		} else {
 			fontName = config.getPdfExportFont();
 		}
 		if (fontName == null || fontName.isEmpty()) {

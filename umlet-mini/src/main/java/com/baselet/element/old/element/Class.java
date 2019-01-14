@@ -1,11 +1,5 @@
 package com.baselet.element.old.element;
 
-import java.awt.Composite;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Polygon;
-import java.util.Vector;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.control.enums.AlignHorizontal;
@@ -13,6 +7,12 @@ import com.baselet.control.enums.LineType;
 import com.baselet.control.util.Utils;
 import com.baselet.element.old.OldGridElement;
 import com.baselet.element.sticking.StickingPolygon;
+
+import java.awt.Composite;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Polygon;
+import java.util.Vector;
 
 @SuppressWarnings("serial")
 public class Class extends OldGridElement {
@@ -84,13 +84,11 @@ public class Class extends OldGridElement {
 			}
 			if (s.equals("bt=*")) {
 				thickness = 2;
-			}
-			else if (s.startsWith("template") && i == 0) {
+			} else if (s.startsWith("template") && i == 0) {
 				String[] template = s.split("=");
 				if (template.length != 2) {
 					_isTemplate = false;
-				}
-				else {
+				} else {
 					_isTemplate = true;
 				}
 			}
@@ -103,8 +101,7 @@ public class Class extends OldGridElement {
 			g2.setComposite(composites[0]); // reset composite settings
 			if (HandlerElementMap.getHandlerForElement(this).getDrawPanel().getSelector().isSelected(this)) {
 				g2.setColor(fgColor);
-			}
-			else {
+			} else {
 				g2.setColor(fgColorBase);
 			}
 			g2.setStroke(Utils.getStroke(lineType, thickness));
@@ -117,15 +114,13 @@ public class Class extends OldGridElement {
 			String s = tmp.elementAt(i);
 			if (s.equals("bt=.") || s.equals("bt=*")) {
 				/* don't draw these lines because they are only for markup */
-			}
-			else if (s.equals("--")) {
+			} else if (s.equals("--")) {
 				CENTER = false;
 
 				// A.Mueller start
 				if (_isTemplate) {
 					g2.drawLine(0, yPos, getRectangle().width - 1 - getRectangle().width / 10, yPos);
-				}
-				else {
+				} else {
 					g2.drawLine(0, yPos, getRectangle().width - 1, yPos);
 					// A.Mueller end
 				}
@@ -133,13 +128,11 @@ public class Class extends OldGridElement {
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
 
 				// A.Mueller start
-			}
-			else if (s.equals("{active}") && i == 0) {
+			} else if (s.equals("{active}") && i == 0) {
 				g2.drawLine((int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2, 0, (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2, getRectangle().height - 1);
 				g2.drawLine(getRectangle().width - (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2, 0, getRectangle().width - (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2, getRectangle().height - 1);
 				yPos = getRectangle().height / 2 - (tmp.size() - 1) * (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() + HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts()) / 2;
-			}
-			else if (s.startsWith("template") && i == 0) {
+			} else if (s.startsWith("template") && i == 0) {
 				String[] template = s.split("=");
 				if (template.length == 2) {
 
@@ -166,8 +159,7 @@ public class Class extends OldGridElement {
 					g2.setComposite(composites[0]); // reset composite
 					if (HandlerElementMap.getHandlerForElement(this).getDrawPanel().getSelector().isSelected(this)) {
 						g2.setColor(fgColor);
-					}
-					else {
+					} else {
 						g2.setColor(fgColorBase);
 					}
 
@@ -183,12 +175,10 @@ public class Class extends OldGridElement {
 					g2.drawLine(getRectangle().width - getRectangle().width / 10, getRectangle().height - 1, getRectangle().width - getRectangle().width / 10, _templateHeight);
 
 					yPos = yPos + _templateHeight + (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
-				}
-				else {
+				} else {
 					_isTemplate = false;
 				}
-			}
-			else if (s.equals("{innerclass")) {
+			} else if (s.equals("{innerclass")) {
 				StringBuilder sb = new StringBuilder("");
 				// Counting the inner lines helps to determine the Height of the
 				// resulting innerClass (lines times the fontsize gives us the height of
@@ -200,16 +190,13 @@ public class Class extends OldGridElement {
 					if (tmp.elementAt(i).equals("{innerclass")) {
 						innerCount++;
 						innerLines++;
-					}
-					else if (tmp.elementAt(i).equals("innerclass}")) {
+					} else if (tmp.elementAt(i).equals("innerclass}")) {
 						if (innerCount > 0) {
 							innerCount--;
-						}
-						else {
+						} else {
 							break;
 						}
-					}
-					else {
+					} else {
 						innerLines++;
 					}
 					sb.append("\n").append(tmp.elementAt(i));
@@ -235,8 +222,7 @@ public class Class extends OldGridElement {
 
 				if (_isTemplate) {
 					temp.setSize((int) (getRectangle().width - getRectangle().width / 10 - 10 * zoom), height);
-				}
-				else {
+				} else {
 					temp.setSize((int) (getRectangle().width - 10 * zoom), height);
 				}
 
@@ -245,12 +231,10 @@ public class Class extends OldGridElement {
 
 				// A.Mueller end
 
-			}
-			else {
+			} else {
 				if (HandlerElementMap.getHandlerForElement(this).getDrawPanel().getSelector().isSelected(this)) {
 					g2.setColor(fgColor);
-				}
-				else {
+				} else {
 					g2.setColor(fgColorBase);
 				}
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize();
@@ -258,12 +242,10 @@ public class Class extends OldGridElement {
 					// A.Mueller
 					if (_isTemplate) {
 						HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, (getRectangle().width - getRectangle().width / 10.0) / 2.0, yPos, AlignHorizontal.CENTER);
-					}
-					else {
+					} else {
 						HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, getRectangle().width / 2.0, yPos, AlignHorizontal.CENTER);
 					}
-				}
-				else {
+				} else {
 					HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2.0, yPos, AlignHorizontal.LEFT);
 				}
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();

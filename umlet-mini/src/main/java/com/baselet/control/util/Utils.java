@@ -1,5 +1,11 @@
 package com.baselet.control.util;
 
+import com.baselet.control.basics.geom.Point;
+import com.baselet.control.constants.Constants;
+import com.baselet.control.constants.FacetConstants;
+import com.baselet.control.enums.LineType;
+import com.baselet.diagram.draw.DoubleStroke;
+
 import java.awt.BasicStroke;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
@@ -10,15 +16,10 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Vector;
 
-import com.baselet.control.basics.geom.Point;
-import com.baselet.control.constants.Constants;
-import com.baselet.control.constants.FacetConstants;
-import com.baselet.control.enums.LineType;
-import com.baselet.diagram.draw.DoubleStroke;
-
 public abstract class Utils {
 
-	private Utils() {} // private constructor to avoid instantiation
+	private Utils() {
+	} // private constructor to avoid instantiation
 
 	public static Point normalize(Point p, int pixels) {
 		Point ret = new Point();
@@ -56,11 +57,9 @@ public abstract class Utils {
 		for (String line : compatibleFullString.split("\\" + delimiter)) {
 			if (filterComments && line.matches("((//)|(fg=)|(bg=)|(autoresize=)|(layer=)|(group=)).*")) {
 				continue;
-			}
-			else if (filterNewLines && line.isEmpty()) {
+			} else if (filterNewLines && line.isEmpty()) {
 				continue;
-			}
-			else {
+			} else {
 				returnVector.add(line);
 			}
 		}
@@ -74,8 +73,7 @@ public abstract class Utils {
 			for (int i = 0; i < v.size(); i++) {
 				if (ret == null) {
 					ret = v.elementAt(i);
-				}
-				else {
+				} else {
 					ret = ret + delimiter + v.elementAt(i);
 				}
 			}
@@ -95,21 +93,16 @@ public abstract class Utils {
 		Stroke stroke = null;
 		if (lineType == LineType.SOLID) {
 			stroke = new BasicStroke(lineThickness);
-		}
-		else if (lineType == LineType.DASHED) {
-			stroke = new BasicStroke(lineThickness, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 5.0f, new float[] { 8.0f, 5.0f }, 0.0f);
-		}
-		else if (lineType == LineType.DOTTED) {
-			stroke = new BasicStroke(lineThickness, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 5.0f, new float[] { 1.0f, 2.0f }, 0.0f);
-		}
-		else if (lineType == LineType.DOUBLE) {
+		} else if (lineType == LineType.DASHED) {
+			stroke = new BasicStroke(lineThickness, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 5.0f, new float[]{8.0f, 5.0f}, 0.0f);
+		} else if (lineType == LineType.DOTTED) {
+			stroke = new BasicStroke(lineThickness, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 5.0f, new float[]{1.0f, 2.0f}, 0.0f);
+		} else if (lineType == LineType.DOUBLE) {
 			stroke = new DoubleStroke(lineThickness, 4, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 5.0f, null, 0.0f);
-		}
-		else if (lineType == LineType.DOUBLE_DASHED) {
-			stroke = new DoubleStroke(lineThickness, 4, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 5.0f, new float[] { 8.0f, 5.0f }, 0.0f);
-		}
-		else if (lineType == LineType.DOUBLE_DOTTED) {
-			stroke = new DoubleStroke(lineThickness, 3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 5.0f, new float[] { 1.0f, 2.0f }, 0.0f);
+		} else if (lineType == LineType.DOUBLE_DASHED) {
+			stroke = new DoubleStroke(lineThickness, 4, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 5.0f, new float[]{8.0f, 5.0f}, 0.0f);
+		} else if (lineType == LineType.DOUBLE_DOTTED) {
+			stroke = new DoubleStroke(lineThickness, 3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 5.0f, new float[]{1.0f, 2.0f}, 0.0f);
 		}
 		return stroke;
 	}
@@ -122,8 +115,7 @@ public abstract class Utils {
 		renderingHints.put(RenderingHints.KEY_DITHERING, RenderingHints.VALUE_DITHER_ENABLE);
 		if (subpixelRendering) {
 			renderingHints.put(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
-		}
-		else {
+		} else {
 			renderingHints.put(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_OFF);
 		}
 		renderingHints.put(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
@@ -142,14 +134,11 @@ public abstract class Utils {
 		res = Math.atan(y / x);
 		if (x >= 0.0 && y >= 0.0) {
 			res += 0.0;
-		}
-		else if (x < 0.0 && y >= 0.0) {
+		} else if (x < 0.0 && y >= 0.0) {
 			res += Math.PI;
-		}
-		else if (x < 0.0 && y < 0.0) {
+		} else if (x < 0.0 && y < 0.0) {
 			res += Math.PI;
-		}
-		else if (x >= 0.0 && y < 0.0) {
+		} else if (x >= 0.0 && y < 0.0) {
 			res += 2.0 * Math.PI;
 		}
 		return res;
@@ -159,9 +148,9 @@ public abstract class Utils {
 	 * eg: createDoubleArrayFromTo(5, 6, 0.1) = [5, 5.1, 5.2, ..., 5.9, 6] <br/>
 	 * eg: createDoubleArrayFromTo(10, 20, 3) = [10, 13, 16, 19, 22] <br/>
 	 *
-	 * @param min	first value of the result array
-	 * @param max	if this value is reached (or passed if it's not dividable through "step") the array is finished
-	 * @param step	the stepsize of the array
+	 * @param min  first value of the result array
+	 * @param max  if this value is reached (or passed if it's not dividable through "step") the array is finished
+	 * @param step the stepsize of the array
 	 */
 	public static Double[] createDoubleArrayFromTo(Double min, Double max, Double step) {
 		if (min > max) {
@@ -191,8 +180,7 @@ public abstract class Utils {
 		InputStream stream = Utils.class.getResourceAsStream("/BuildInfo.properties");
 		if (stream == null) {
 			throw new RuntimeException("Cannot load BuildInfo.properties");
-		}
-		else {
+		} else {
 			Properties prop = new Properties();
 			try {
 				prop.load(stream);

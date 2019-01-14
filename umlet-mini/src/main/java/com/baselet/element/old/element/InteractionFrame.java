@@ -1,15 +1,15 @@
 package com.baselet.element.old.element;
 
-import java.awt.Composite;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.util.Vector;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.enums.LineType;
 import com.baselet.control.util.Utils;
 import com.baselet.element.old.OldGridElement;
+
+import java.awt.Composite;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.Vector;
 
 @SuppressWarnings("serial")
 public class InteractionFrame extends OldGridElement {
@@ -32,8 +32,7 @@ public class InteractionFrame extends OldGridElement {
 		g2.setComposite(composites[0]);
 		if (HandlerElementMap.getHandlerForElement(this).getDrawPanel().getSelector().isSelected(this)) {
 			g2.setColor(fgColor);
-		}
-		else {
+		} else {
 			g2.setColor(fgColorBase);
 		}
 		g2.drawRect(0, 0, getRectangle().width - 1, getRectangle().height - 1);
@@ -54,20 +53,17 @@ public class InteractionFrame extends OldGridElement {
 				topHeight = i;
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts() + HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
 				center = true;
-			}
-			else if (s.equals("-.")) {
+			} else if (s.equals("-.")) {
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
 				g2.setStroke(Utils.getStroke(LineType.DASHED, 1));
 				g2.drawLine(0, (int) yPos, getRectangle().width, (int) yPos);
 				g2.setStroke(Utils.getStroke(LineType.SOLID, 1));
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
-			}
-			else {
+			} else {
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize();
 				if (center) {
 					HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, getRectangle().width / 2.0, (int) yPos, AlignHorizontal.CENTER);
-				}
-				else {
+				} else {
 					HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2), (int) yPos, AlignHorizontal.LEFT);
 				}
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();

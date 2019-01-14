@@ -1,15 +1,15 @@
 package com.baselet.element.old.element;
 
+import com.baselet.control.HandlerElementMap;
+import com.baselet.control.enums.AlignHorizontal;
+import com.baselet.control.util.Utils;
+import com.baselet.element.old.OldGridElement;
+
 import java.awt.Composite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.util.Vector;
-
-import com.baselet.control.HandlerElementMap;
-import com.baselet.control.enums.AlignHorizontal;
-import com.baselet.control.util.Utils;
-import com.baselet.element.old.OldGridElement;
 
 @SuppressWarnings("serial")
 public class EER_Entity extends OldGridElement {
@@ -44,8 +44,7 @@ public class EER_Entity extends OldGridElement {
 				CENTER = false;
 				ySave = yPos + (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts() * 2;
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts() * 3;
-			}
-			else {
+			} else {
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize();
 				if (CENTER && s.startsWith("##")) {
 					drawInnerRect = true;
@@ -63,8 +62,7 @@ public class EER_Entity extends OldGridElement {
 			ySave = getRectangle().height;
 			poly.addPoint(getRectangle().width - 1, getRectangle().height - 1);
 			poly.addPoint(0, getRectangle().height - 1);
-		}
-		else {
+		} else {
 			hasAttributes = true; // see getStickingBorder()
 			g.drawLine((int) (10 * zoom), ySave, (int) (10 * zoom), yPos + (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts() - (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts());
 			poly.addPoint(getRectangle().width - 1, ySave);
@@ -77,8 +75,7 @@ public class EER_Entity extends OldGridElement {
 		g2.setComposite(composites[0]);
 		if (HandlerElementMap.getHandlerForElement(this).getDrawPanel().getSelector().isSelected(this)) {
 			g2.setColor(fgColor);
-		}
-		else {
+		} else {
 			g2.setColor(fgColorBase);
 		}
 		g2.drawPolygon(poly);
@@ -86,8 +83,7 @@ public class EER_Entity extends OldGridElement {
 		if (drawInnerRect) {
 			if (CENTER) {
 				g.drawRect((int) (3 * zoom), (int) (3 * zoom), getRectangle().width - (int) (7 * zoom), getRectangle().height - (int) (7 * zoom));
-			}
-			else {
+			} else {
 				g.drawRect((int) (3 * zoom), (int) (3 * zoom), getRectangle().width - (int) (7 * zoom), ySave - (int) (6 * zoom));
 			}
 		}
@@ -102,8 +98,7 @@ public class EER_Entity extends OldGridElement {
 				CENTER = false;
 				ySave = yPos + (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts() * 2;
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts() * 3;
-			}
-			else {
+			} else {
 				yPos += (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize();
 				if (CENTER) {
 					String s1 = s;
@@ -112,8 +107,7 @@ public class EER_Entity extends OldGridElement {
 						s1 = s1.substring(2);
 					}
 					HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s1, getRectangle().width / 2.0, yPos, AlignHorizontal.CENTER);
-				}
-				else {
+				} else {
 					HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, (int) HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize(), yPos, AlignHorizontal.LEFT);
 				}
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();

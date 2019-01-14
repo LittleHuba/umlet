@@ -1,9 +1,9 @@
 package com.baselet.gui.command;
 
+import com.baselet.diagram.DiagramHandler;
+
 import java.util.List;
 import java.util.Vector;
-
-import com.baselet.diagram.DiagramHandler;
 
 public class Macro extends Command {
 	private final List<Command> _commands;

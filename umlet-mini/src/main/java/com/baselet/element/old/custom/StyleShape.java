@@ -1,9 +1,9 @@
 package com.baselet.element.old.custom;
 
+import com.baselet.control.enums.LineType;
+
 import java.awt.Color;
 import java.awt.Shape;
-
-import com.baselet.control.enums.LineType;
 
 /**
  * Extended shape which supports the stroketype and the line thickness
@@ -106,16 +106,14 @@ public class StyleShape {
 			if (other.bgColor != null) {
 				return false;
 			}
-		}
-		else if (!bgColor.equals(other.bgColor)) {
+		} else if (!bgColor.equals(other.bgColor)) {
 			return false;
 		}
 		if (fgColor == null) {
 			if (other.fgColor != null) {
 				return false;
 			}
-		}
-		else if (!fgColor.equals(other.fgColor)) {
+		} else if (!fgColor.equals(other.fgColor)) {
 			return false;
 		}
 		if (lineThickness != other.lineThickness) {
@@ -128,8 +126,7 @@ public class StyleShape {
 			if (other.shape != null) {
 				return false;
 			}
-		}
-		else if (!shape.equals(other.shape)) {
+		} else if (!shape.equals(other.shape)) {
 			return false;
 		}
 		return true;

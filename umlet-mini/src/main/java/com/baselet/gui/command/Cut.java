@@ -1,11 +1,11 @@
 package com.baselet.gui.command;
 
-import java.awt.Point;
-import java.util.Vector;
-
 import com.baselet.control.constants.Constants;
 import com.baselet.diagram.DiagramHandler;
 import com.baselet.element.interfaces.GridElement;
+
+import java.awt.Point;
+import java.util.Vector;
 
 public class Cut extends Command {
 
@@ -52,8 +52,8 @@ public class Cut extends Command {
 
 		for (GridElement e : entities) {
 			new AddElement(e,
-					handler.realignToGrid(true, e.getRectangle().x + offsetX),
-					handler.realignToGrid(true, e.getRectangle().y + offsetY), false).execute(handler);
+				handler.realignToGrid(true, e.getRectangle().x + offsetX),
+				handler.realignToGrid(true, e.getRectangle().y + offsetY), false).execute(handler);
 		}
 		handler.getDrawPanel().repaint();
 

@@ -1,5 +1,11 @@
 package com.baselet.element.old.element;
 
+import com.baselet.control.HandlerElementMap;
+import com.baselet.control.enums.AlignHorizontal;
+import com.baselet.control.util.Utils;
+import com.baselet.element.old.OldGridElement;
+import com.baselet.element.sticking.StickingPolygon;
+
 import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Graphics;
@@ -7,12 +13,6 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.util.Vector;
-
-import com.baselet.control.HandlerElementMap;
-import com.baselet.control.enums.AlignHorizontal;
-import com.baselet.control.util.Utils;
-import com.baselet.element.old.OldGridElement;
-import com.baselet.element.sticking.StickingPolygon;
 
 @SuppressWarnings("serial")
 public class Taxonomy_of_Workprocesses extends OldGridElement {
@@ -33,8 +33,7 @@ public class Taxonomy_of_Workprocesses extends OldGridElement {
 		g2.setComposite(composites[0]);
 		if (HandlerElementMap.getHandlerForElement(this).getDrawPanel().getSelector().isSelected(this)) {
 			g2.setColor(fgColor);
-		}
-		else {
+		} else {
 			g2.setColor(fgColorBase);
 		}
 		g2.drawRect(0, 0, getRectangle().width - 1, getRectangle().height - 1);
@@ -119,8 +118,8 @@ public class Taxonomy_of_Workprocesses extends OldGridElement {
 	private void drawDockAnchor(Graphics2D g2, Point nextDock) {
 		float zoom = HandlerElementMap.getHandlerForElement(this).getZoomFactor();
 
-		int[] xkanten = { nextDock.x, nextDock.x + (int) (6 * zoom), nextDock.x - (int) (6 * zoom) };
-		int[] ykanten = { nextDock.y, nextDock.y + (int) (9 * zoom), nextDock.y + (int) (9 * zoom) };
+		int[] xkanten = {nextDock.x, nextDock.x + (int) (6 * zoom), nextDock.x - (int) (6 * zoom)};
+		int[] ykanten = {nextDock.y, nextDock.y + (int) (9 * zoom), nextDock.y + (int) (9 * zoom)};
 		int kanten_zahl = 3;
 		g2.drawPolygon(new Polygon(xkanten, ykanten, kanten_zahl));
 	}

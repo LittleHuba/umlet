@@ -1,15 +1,16 @@
 package com.baselet.element.old.element;
 
 // Some import to have access to more Java features
-import java.awt.Composite;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.util.Vector;
 
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.util.Utils;
 import com.baselet.element.old.OldGridElement;
+
+import java.awt.Composite;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.Vector;
 
 @SuppressWarnings("serial")
 public class AlternativeUseCase extends OldGridElement {
@@ -32,8 +33,7 @@ public class AlternativeUseCase extends OldGridElement {
 		g2.setComposite(composites[0]);
 		if (HandlerElementMap.getHandlerForElement(this).getDrawPanel().getSelector().isSelected(this)) {
 			g2.setColor(fgColor);
-		}
-		else {
+		} else {
 			g2.setColor(fgColorBase);
 		}
 
@@ -49,12 +49,10 @@ public class AlternativeUseCase extends OldGridElement {
 			if (s.equals("--")) {
 				yPos = (int) (35 * zoom);
 				center = true;
-			}
-			else if (center) {
+			} else if (center) {
 				HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, (getRectangle().width - 1) / 2.0, yPos, AlignHorizontal.CENTER);
 				center = false;
-			}
-			else {
+			} else {
 				HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2), yPos, AlignHorizontal.LEFT);
 				yPos += HandlerElementMap.getHandlerForElement(this).getFontHandler().getDistanceBetweenTexts();
 			}

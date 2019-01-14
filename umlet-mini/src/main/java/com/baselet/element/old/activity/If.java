@@ -1,8 +1,8 @@
 package com.baselet.element.old.activity;
 
-import java.awt.Graphics2D;
-
 import com.baselet.diagram.DiagramHandler;
+
+import java.awt.Graphics2D;
 
 public class If extends StartElement {
 

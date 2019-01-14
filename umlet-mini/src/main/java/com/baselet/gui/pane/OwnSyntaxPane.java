@@ -1,17 +1,11 @@
 package com.baselet.gui.pane;
 
-import java.awt.Component;
-import java.awt.FlowLayout;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.text.JTextComponent;
-import javax.swing.text.PlainDocument;
-
+import com.baselet.control.basics.Converter;
+import com.baselet.control.config.DerivedConfig;
+import com.baselet.diagram.CurrentDiagram;
+import com.baselet.diagram.draw.helper.ColorOwn;
+import com.baselet.element.interfaces.GridElement;
+import com.baselet.gui.AutocompletionText;
 import org.fife.ui.autocomplete.AutoCompletion;
 import org.fife.ui.autocomplete.BasicCompletion;
 import org.fife.ui.autocomplete.DefaultCompletionProvider;
@@ -22,12 +16,16 @@ import org.fife.ui.rsyntaxtextarea.TokenMap;
 import org.fife.ui.rsyntaxtextarea.TokenTypes;
 import org.fife.ui.rtextarea.RTextScrollPane;
 
-import com.baselet.control.basics.Converter;
-import com.baselet.control.config.DerivedConfig;
-import com.baselet.diagram.CurrentDiagram;
-import com.baselet.diagram.draw.helper.ColorOwn;
-import com.baselet.element.interfaces.GridElement;
-import com.baselet.gui.AutocompletionText;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.text.JTextComponent;
+import javax.swing.text.PlainDocument;
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OwnSyntaxPane {
 
@@ -96,6 +94,7 @@ public class OwnSyntaxPane {
 
 	/**
 	 * create one per class
+	 *
 	 * @param strings
 	 */
 	private void createAutocompletionCompletionProvider() {

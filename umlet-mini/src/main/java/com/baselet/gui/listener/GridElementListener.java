@@ -1,19 +1,5 @@
 package com.baselet.gui.listener;
 
-import java.awt.Component;
-import java.awt.event.MouseEvent;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-import java.util.Vector;
-
-import javax.swing.JComponent;
-import javax.swing.JPopupMenu;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.baselet.control.Main;
 import com.baselet.control.basics.Converter;
 import com.baselet.control.basics.geom.Point;
@@ -42,6 +28,18 @@ import com.baselet.gui.command.MoveEnd;
 import com.baselet.gui.command.OldMoveLinePoint;
 import com.baselet.gui.command.OldRelationLinePoint;
 import com.baselet.gui.command.OldResize;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.swing.JComponent;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseEvent;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.Vector;
 
 public class GridElementListener extends UniversalListener {
 
@@ -146,11 +144,9 @@ public class GridElementListener extends UniversalListener {
 
 		if (me.getButton() == MouseEvent.BUTTON3) {
 			showContextMenu(e, me.getX(), me.getY());
-		}
-		else if (me.getButton() == MouseEvent.BUTTON2) {
+		} else if (me.getButton() == MouseEvent.BUTTON2) {
 			IS_DRAGGING_DIAGRAM = true;
-		}
-		else if (me.getButton() == MouseEvent.BUTTON1) {
+		} else if (me.getButton() == MouseEvent.BUTTON1) {
 			if (me.getClickCount() == 1) {
 				pressedLeftButton(me);
 			}
@@ -172,16 +168,14 @@ public class GridElementListener extends UniversalListener {
 		if ((me.getModifiers() & SystemInfo.META_KEY.getMask()) != 0) {
 			if (selector.isSelected(e)) {
 				DESELECT_MULTISEL = true;
-			}
-			else {
+			} else {
 				selector.select(e);
 			}
 		}
 
 		if (!selector.getSelectedElements().contains(e)) {
 			selector.selectOnly(e);
-		}
-		else {
+		} else {
 			selector.updateSelectorInformation(e);
 		}
 	}
@@ -252,6 +246,7 @@ public class GridElementListener extends UniversalListener {
 	/**
 	 * Dragging entities must be a Macro, because undo should undo the full move (and not only a small part which would
 	 * happen with many short Move actions) and it must consider sticking relations at the dragging-start and later
+	 *
 	 * @param mainElement
 	 * @param directions
 	 * @param b
@@ -272,8 +267,7 @@ public class GridElementListener extends UniversalListener {
 		if (FIRST_MOVE_COMMANDS == null) {
 			POINT_BEFORE_MOVE = mousePressedPoint; // issue #358: use position of mouse click BEFORE starting to drag; must be exact coordinates eg for Relation which calculates distances from lines (to possibly drag new points out of it)
 			FIRST_MOVE_COMMANDS = calculateFirstMoveCommands(diffx, diffy, POINT_BEFORE_MOVE, elementsToMove, isShiftKeyDown, false, handler, resizeDirections);
-		}
-		else if (diffx != 0 || diffy != 0) {
+		} else if (diffx != 0 || diffy != 0) {
 			Vector<Command> commands = continueDragging(diffx, diffy, POINT_BEFORE_MOVE, elementsToMove);
 			POINT_BEFORE_MOVE = new Point(POINT_BEFORE_MOVE.getX() + diffx, POINT_BEFORE_MOVE.getY() + diffy);
 			controller.executeCommand(new Macro(commands));
@@ -319,6 +313,7 @@ public class GridElementListener extends UniversalListener {
 
 	/**
 	 * After the firstDragging is over, the vector of entities which should be dragged doesn't change (nothing starts sticking during dragging)
+	 *
 	 * @param oldp
 	 * @param elementsToMove
 	 * @param directions
@@ -331,8 +326,7 @@ public class GridElementListener extends UniversalListener {
 			if (command instanceof Move) {
 				Move m = (Move) command;
 				tmpVector.add(new Move(resizeDirections, m.getEntity(), diffx, diffy, oldp, m.isShiftKeyDown(), FIRST_DRAG, useSetLocation, m.getStickables()));
-			}
-			else if (command instanceof OldMoveLinePoint) {
+			} else if (command instanceof OldMoveLinePoint) {
 				OldMoveLinePoint m = (OldMoveLinePoint) command;
 				tmpVector.add(new OldMoveLinePoint(m.getRelation(), m.getLinePointId(), diffx, diffy));
 			}

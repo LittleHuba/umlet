@@ -1,8 +1,8 @@
 package com.baselet.element.old.activity;
 
-import java.awt.Graphics2D;
-
 import com.baselet.diagram.DiagramHandler;
+
+import java.awt.Graphics2D;
 
 public class Activity extends Element {
 
@@ -45,6 +45,6 @@ public class Activity extends Element {
 		int h = getHeight();
 		label.paint();
 		getGraphics().drawRoundRect(getPosition().x - label.getLeftWidth() - label.getPadding(),
-				getPosition().y - h / 2, label.getWidth() + label.getPadding() * 2, h, (int) (20 * getZoom()), (int) (20 * getZoom()));
+			getPosition().y - h / 2, label.getWidth() + label.getPadding() * 2, h, (int) (20 * getZoom()), (int) (20 * getZoom()));
 	}
 }

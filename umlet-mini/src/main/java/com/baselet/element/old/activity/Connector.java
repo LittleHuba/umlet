@@ -1,9 +1,9 @@
 package com.baselet.element.old.activity;
 
+import com.baselet.control.enums.Direction;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
-
-import com.baselet.control.enums.Direction;
 
 public class Connector {
 
@@ -46,8 +46,7 @@ public class Connector {
 					if (e1.arrowOut() && e2.arrowIn()) {
 						float zoom = e1.getHandler().getZoomFactor();
 						Connector.drawArrow(graphics, zoom, c1.x, c1.y, c2.x, c2.y);
-					}
-					else {
+					} else {
 						graphics.drawLine(c1.x, c1.y, c2.x, c2.y);
 					}
 				}

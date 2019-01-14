@@ -1,9 +1,9 @@
 package com.baselet.element.old.activity;
 
+import com.baselet.diagram.DiagramHandler;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
-
-import com.baselet.diagram.DiagramHandler;
 
 public class EventRaise extends Activity {
 
@@ -26,10 +26,10 @@ public class EventRaise extends Activity {
 		int uh = cord.y - (getHeight() - bh);
 		bh += cord.y;
 		label.paint();
-		int[] xPoints = { cord.x - getLeftWidth(), cord.x + getRightWidth() - width,
-				cord.x + getRightWidth(), cord.x + getRightWidth() - width,
-				cord.x - getLeftWidth() };
-		int[] yPoints = { uh, uh, cord.y, bh, bh };
+		int[] xPoints = {cord.x - getLeftWidth(), cord.x + getRightWidth() - width,
+			cord.x + getRightWidth(), cord.x + getRightWidth() - width,
+			cord.x - getLeftWidth()};
+		int[] yPoints = {uh, uh, cord.y, bh, bh};
 		getGraphics().drawPolygon(xPoints, yPoints, xPoints.length);
 	}
 

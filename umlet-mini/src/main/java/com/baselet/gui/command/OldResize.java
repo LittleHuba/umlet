@@ -1,8 +1,5 @@
 package com.baselet.gui.command;
 
-import java.util.Collection;
-import java.util.Vector;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.basics.geom.Point;
 import com.baselet.control.basics.geom.PointDouble;
@@ -13,6 +10,9 @@ import com.baselet.diagram.DiagramHandler;
 import com.baselet.element.interfaces.GridElement;
 import com.baselet.element.old.element.Relation;
 import com.baselet.element.sticking.StickingPolygon;
+
+import java.util.Collection;
+import java.util.Vector;
 
 /**
  * resizing has been merged with Move command and only remains for old grid elements which will not be migrated but removed from the code after some time
@@ -49,7 +49,7 @@ public class OldResize extends Command {
 
 	// resize for merge
 	private OldResize(GridElement entity, int id, int diffx, int diffy, int diffw, int diffh,
-			Vector<OldMoveLinePoint> move_commands, Vector<OldMoveLinePoint> move_commands2) {
+					  Vector<OldMoveLinePoint> move_commands, Vector<OldMoveLinePoint> move_commands2) {
 		this.entity = entity;
 		this.id = id;
 		this.move_commands = move_commands;
@@ -78,8 +78,7 @@ public class OldResize extends Command {
 		if (first != null) {
 			id = first.id;
 			linepoints = first.linepoints;
-		}
-		else {
+		} else {
 			id = current_id;
 			current_id++;
 			linepoints = getStickingRelationLinePoints(HandlerElementMap.getHandlerForElement(this.entity), from);
@@ -140,7 +139,7 @@ public class OldResize extends Command {
 	public Command mergeTo(Command c) {
 		OldResize tmp = (OldResize) c;
 		return new OldResize(entity, Math.max(id, tmp.id), getDiffx() + tmp.getDiffx(), getDiffy() + tmp.getDiffy(),
-				getDiffw() + tmp.getDiffw(), getDiffh() + tmp.getDiffh(), move_commands, tmp.move_commands);
+			getDiffw() + tmp.getDiffw(), getDiffh() + tmp.getDiffh(), move_commands, tmp.move_commands);
 	}
 
 	public static Vector<OldRelationLinePoint> getStickingRelationLinePoints(DiagramHandler handler, StickingPolygon stickingPolygon) {

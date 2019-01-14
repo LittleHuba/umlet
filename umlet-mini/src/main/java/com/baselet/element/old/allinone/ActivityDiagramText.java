@@ -1,19 +1,5 @@
 package com.baselet.element.old.allinone;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Vector;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.sourceforge.jlibeps.epsgraphics.EpsGraphics2D;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.enums.Direction;
@@ -40,6 +26,19 @@ import com.baselet.element.old.activity.Start;
 import com.baselet.element.old.activity.StartElement;
 import com.baselet.element.old.activity.StopElement;
 import com.baselet.element.old.activity.Sync;
+import org.sourceforge.jlibeps.epsgraphics.EpsGraphics2D;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.Vector;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @SuppressWarnings("serial")
 public class ActivityDiagramText extends OldGridElement {
@@ -63,24 +62,24 @@ public class ActivityDiagramText extends OldGridElement {
 	private static final String conditionChars = "[^\\]]";
 	private static final String title_pattern = "title\\:(" + normalchars + "+)";
 	private static final String line_pattern = "(\\t*)" + // tabs 1
-												"(\\[([ " + conditionChars + "]+)\\])?" + // conditions 2..3
-												"(" + // 4
-												"(" + // 5
-												"(Start)" + // start 6
-												"|(End|AEnd)" + // end7
-												"|(\\|)" + // linespacer 8
-												"|(If|Fork)|(EndIf|Sync)" + // if blocks 9/10
-												"|(While(\\[(" + normalchars + "*)\\])?)" + // while 11..13
-												"|(\\>(" + normalchars + "+))" + // recieve event 14..15
-												"|((" + normalchars + "+)\\>)" + // raise event 16..17
-												"|((" + normalchars + "+)\\.\\.)" + // partactivity 18..19
-												"|(" + normalchars + "+)" + // activity 20
-												")" +
-												"(\\~(" + normalchars + "+)?)?" + // ids 21..22
-												")?" +
-												"\\s*" +
-												"(\\-\\>(" + normalchars + "+))?" + // goto 23..24
-												"\\s*";
+		"(\\[([ " + conditionChars + "]+)\\])?" + // conditions 2..3
+		"(" + // 4
+		"(" + // 5
+		"(Start)" + // start 6
+		"|(End|AEnd)" + // end7
+		"|(\\|)" + // linespacer 8
+		"|(If|Fork)|(EndIf|Sync)" + // if blocks 9/10
+		"|(While(\\[(" + normalchars + "*)\\])?)" + // while 11..13
+		"|(\\>(" + normalchars + "+))" + // recieve event 14..15
+		"|((" + normalchars + "+)\\>)" + // raise event 16..17
+		"|((" + normalchars + "+)\\.\\.)" + // partactivity 18..19
+		"|(" + normalchars + "+)" + // activity 20
+		")" +
+		"(\\~(" + normalchars + "+)?)?" + // ids 21..22
+		")?" +
+		"\\s*" +
+		"(\\-\\>(" + normalchars + "+))?" + // goto 23..24
+		"\\s*";
 
 	private void init(Graphics2D graphics) {
 
@@ -115,11 +114,9 @@ public class ActivityDiagramText extends OldGridElement {
 			if (m_title.matches()) {
 				parsed_line = null;
 				title = m_title.group(1);
-			}
-			else if (p.matcher(line).matches()) {
+			} else if (p.matcher(line).matches()) {
 				parsed_line = line;
-			}
-			else {
+			} else {
 				parsed_line = null;
 			}
 		}
@@ -132,8 +129,7 @@ public class ActivityDiagramText extends OldGridElement {
 				goto_seperation_left += Const.GOTO_SEP * zoom;
 			}
 			return (int) (Const.DIAGRAM_PAD * zoom - goto_seperation_left);
-		}
-		else {
+		} else {
 			if (goto_seperation_right + Const.GOTO_SEP * zoom < Const.DIAGRAM_PAD * zoom) {
 				goto_seperation_right += Const.GOTO_SEP * zoom;
 			}
@@ -173,8 +169,7 @@ public class ActivityDiagramText extends OldGridElement {
 
 					previous_line = current_line;
 					last_depth = current_depth;
-				}
-				else if (!previous_line.equals("")) {
+				} else if (!previous_line.equals("")) {
 					parsed_lines.add(previous_line);
 					previous_line = current_line;
 				}
@@ -254,8 +249,7 @@ public class ActivityDiagramText extends OldGridElement {
 								start_element = null;
 							}
 						}
-					}
-					else {
+					} else {
 						/* start element was no start element (example: IF element without following container) */
 						if (start_element != null) {
 							addElement(start_element);
@@ -304,8 +298,7 @@ public class ActivityDiagramText extends OldGridElement {
 					else if (m.group(7) != null) {
 						if (m.group(7).equals("AEnd")) {
 							e = new AEnd(HandlerElementMap.getHandlerForElement(this), graphics, id);
-						}
-						else {
+						} else {
 							e = new End(HandlerElementMap.getHandlerForElement(this), graphics, id);
 						}
 					}
@@ -320,8 +313,7 @@ public class ActivityDiagramText extends OldGridElement {
 						// if none is openend
 						if (m.group(9).equals("Fork")) {
 							start_element = new Fork(HandlerElementMap.getHandlerForElement(this), graphics, id);
-						}
-						else {
+						} else {
 							start_element = new If(HandlerElementMap.getHandlerForElement(this), graphics, id);
 						}
 						current_element = start_element;
@@ -332,16 +324,14 @@ public class ActivityDiagramText extends OldGridElement {
 						StopElement se;
 						if (m.group(10).equals("Sync")) {
 							se = new Sync(HandlerElementMap.getHandlerForElement(this), graphics, id);
-						}
-						else {
+						} else {
 							se = new EndIf(HandlerElementMap.getHandlerForElement(this), graphics, id);
 						}
 
 						if (closed_container != null) {
 							closed_container.setStopElement(se);
 							elements.put(se.getId(), se);
-						}
-						else {
+						} else {
 							e = se;
 						}
 						current_element = se;
@@ -354,14 +344,11 @@ public class ActivityDiagramText extends OldGridElement {
 					/* GET EVENT */
 					else if (m.group(15) != null) {
 						e = new EventRecieve(HandlerElementMap.getHandlerForElement(this), graphics, m.group(15), id);
-					}
-					else if (m.group(17) != null) {
+					} else if (m.group(17) != null) {
 						e = new EventRaise(HandlerElementMap.getHandlerForElement(this), graphics, m.group(17), id);
-					}
-					else if (m.group(19) != null) {
+					} else if (m.group(19) != null) {
 						e = new PartActivity(HandlerElementMap.getHandlerForElement(this), m.group(19), graphics, id);
-					}
-					else if (m.group(20) != null) {
+					} else if (m.group(20) != null) {
 						e = new Activity(HandlerElementMap.getHandlerForElement(this), m.group(20), graphics, id);
 					}
 				}
@@ -413,22 +400,18 @@ public class ActivityDiagramText extends OldGridElement {
 					if (!toleft) {
 						rows = to.getRow().makeExclusiveLeft(to, rows);
 					}
-				}
-				else if (toleft) {
+				} else if (toleft) {
 					go.setDirection(Direction.LEFT);
 					rows = from.getRow().makeExclusiveLeft(from, rows);
-				}
-				else if (fromright) {
+				} else if (fromright) {
 					go.setDirection(Direction.RIGHT);
 					if (!toright) {
 						rows = to.getRow().makeExclusiveRight(to, rows);
 					}
-				}
-				else if (toright) {
+				} else if (toright) {
 					go.setDirection(Direction.RIGHT);
 					rows = from.getRow().makeExclusiveRight(from, rows);
-				}
-				else {
+				} else {
 					go.setDirection(Direction.LEFT);
 					rows = from.getRow().makeExclusiveLeft(from, rows);
 					rows = to.getRow().makeExclusiveLeft(to, rows);

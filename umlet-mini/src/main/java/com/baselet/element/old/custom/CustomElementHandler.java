@@ -1,9 +1,5 @@
 package com.baselet.element.old.custom;
 
-import java.util.Iterator;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.Main;
 import com.baselet.control.basics.geom.Rectangle;
@@ -18,6 +14,10 @@ import com.baselet.diagram.DrawPanel;
 import com.baselet.element.ElementFactorySwing;
 import com.baselet.element.interfaces.GridElement;
 import com.baselet.gui.CurrentGui;
+
+import java.util.Iterator;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class CustomElementHandler {
 
@@ -60,17 +60,16 @@ public class CustomElementHandler {
 		editedEntity = CustomElementCompiler.getInstance().genEntityFromTemplate(template, errorhandler);
 		if (editedEntity instanceof CustomElement) {
 			codepane.setCode(((CustomElement) editedEntity).getCode());
-		}
-		else {
+		} else {
 			codepane.setCode("");
 		}
 		editedEntity.setPanelAttributes("// Modify the text below and" +
-										Constants.NEWLINE +
-										"// observe the element preview." +
-										Constants.NEWLINE + Constants.NEWLINE +
-										"Hello, World! " +
-										Constants.NEWLINE +
-										"Enjoy " + Program.getInstance().getProgramName() + "!");
+			Constants.NEWLINE +
+			"// observe the element preview." +
+			Constants.NEWLINE + Constants.NEWLINE +
+			"Hello, World! " +
+			Constants.NEWLINE +
+			"Enjoy " + Program.getInstance().getProgramName() + "!");
 		editedEntity.setRectangle(new Rectangle(20, 20, 200, 200));
 		updatePreview(editedEntity);
 		getPreviewHandler().getDrawPanel().getSelector().select(editedEntity);
@@ -113,8 +112,7 @@ public class CustomElementHandler {
 		DrawPanel dia = CurrentGui.getInstance().getGui().getCurrentDiagram();
 		if (dia != null) {
 			dia.getSelector().updateSelectorInformation();
-		}
-		else {
+		} else {
 			Main.getInstance().setPropertyPanelToGridElement(null);
 		}
 		return true;
@@ -148,7 +146,7 @@ public class CustomElementHandler {
 	private void start() {
 		compiletask = new CustomElementCompileTask(this);
 		timer.schedule(compiletask, Constants.CUSTOM_ELEMENT_COMPILE_INTERVAL,
-				Constants.CUSTOM_ELEMENT_COMPILE_INTERVAL);
+			Constants.CUSTOM_ELEMENT_COMPILE_INTERVAL);
 	}
 
 	// stops the task
@@ -192,8 +190,7 @@ public class CustomElementHandler {
 			if (c == null) {
 				Main.getInstance().doNew();
 				current = CurrentGui.getInstance().getGui().getCurrentDiagram().getHandler();
-			}
-			else {
+			} else {
 				current = c.getHandler();
 			}
 
@@ -207,11 +204,10 @@ public class CustomElementHandler {
 
 			Rectangle bounds = new Rectangle(x, y, element.getRectangle().width, element.getRectangle().height);
 			addElementToDiagram(element, current, true, bounds, element.getPanelAttributes());
-		}
-		else { // replace edited element (and ONLY edited element)
+		} else { // replace edited element (and ONLY edited element)
 			HandlerElementMap.getHandlerForElement(originalElement).getDrawPanel().removeElement(originalElement);
 			addElementToDiagram(element, HandlerElementMap.getHandlerForElement(originalElement), true,
-					originalElement.getRectangle(), originalElement.getPanelAttributes());
+				originalElement.getRectangle(), originalElement.getPanelAttributes());
 		}
 	}
 

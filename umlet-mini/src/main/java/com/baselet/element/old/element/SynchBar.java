@@ -1,15 +1,15 @@
 package com.baselet.element.old.element;
 
+import com.baselet.control.HandlerElementMap;
+import com.baselet.control.enums.AlignHorizontal;
+import com.baselet.control.util.Utils;
+import com.baselet.element.old.OldGridElement;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.Vector;
-
-import com.baselet.control.HandlerElementMap;
-import com.baselet.control.enums.AlignHorizontal;
-import com.baselet.control.util.Utils;
-import com.baselet.element.old.OldGridElement;
 
 @SuppressWarnings("serial")
 public class SynchBar extends OldGridElement {

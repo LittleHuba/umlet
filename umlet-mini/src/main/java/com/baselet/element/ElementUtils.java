@@ -1,9 +1,5 @@
 package com.baselet.element;
 
-import java.util.List;
-
-import javax.swing.JComponent;
-
 import com.baselet.control.HandlerElementMap;
 import com.baselet.control.basics.Converter;
 import com.baselet.control.basics.geom.Point;
@@ -11,13 +7,16 @@ import com.baselet.diagram.DrawPanel;
 import com.baselet.element.interfaces.GridElement;
 import com.baselet.element.relation.Relation;
 
+import javax.swing.JComponent;
+import java.util.List;
+
 public class ElementUtils {
 
 	/**
 	 * Must be overwritten because Swing uses this method to tell if 2 elements are overlapping
 	 * It's also used to determine which element gets selected if there are overlapping elements (the smallest one)
 	 * IMPORTANT: on overlapping elements, contains is called for all elements until the first one returns true, then the others contain methods are not called
-	 *
+	 * <p>
 	 * In future this logic should be the same as in BaseletGWT.DrawPanel.getGridElementOnPosition() which is much simpler because its externally calculated
 	 * (this migration is only possible if there are not GridElement Listeners, but instead only one Diagram Listener which delegates the event to the specific GridElement like in GWT)
 	 */

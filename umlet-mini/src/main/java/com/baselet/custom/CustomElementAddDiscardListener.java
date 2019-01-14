@@ -1,14 +1,13 @@
 package com.baselet.custom;
 
-import java.awt.Color;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
-import javax.swing.JLabel;
-
 import com.baselet.control.basics.Converter;
 import com.baselet.element.interfaces.CursorOwn;
 import com.baselet.gui.CurrentGui;
+
+import javax.swing.JLabel;
+import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class CustomElementAddDiscardListener implements MouseListener {
 

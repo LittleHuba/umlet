@@ -1,14 +1,13 @@
 package com.baselet.gui.helper;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
-
-import javax.swing.Icon;
-
 import com.baselet.control.basics.Converter;
 import com.baselet.diagram.draw.helper.ColorOwn;
 import com.baselet.diagram.draw.helper.ColorOwn.Transparency;
+
+import javax.swing.Icon;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
 
 public class PlainColorIcon implements Icon {
 

@@ -1,13 +1,5 @@
 package com.baselet.diagram.io;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.xml.sax.Attributes;
-import org.xml.sax.helpers.DefaultHandler;
-
 import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.control.enums.ElementId;
 import com.baselet.diagram.DiagramHandler;
@@ -21,6 +13,13 @@ import com.baselet.element.old.element.ErrorOccurred;
 import com.baselet.gui.BaseGUI;
 import com.baselet.gui.CurrentGui;
 import com.baselet.gui.command.HelpPanelChanged;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.xml.sax.Attributes;
+import org.xml.sax.helpers.DefaultHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Describes what should happen with parsed elements from the input file
@@ -28,7 +27,7 @@ import com.baselet.gui.command.HelpPanelChanged;
  */
 public class InputHandler extends DefaultHandler {
 
-	private static final String[] oldGridElementPackages = new String[] { "com.baselet.element.old.element", "com.baselet.element.old.allinone", "com.baselet.element.old.custom" };
+	private static final String[] oldGridElementPackages = new String[]{"com.baselet.element.old.element", "com.baselet.element.old.allinone", "com.baselet.element.old.custom"};
 
 	private static final Logger log = LoggerFactory.getLogger(InputHandler.class);
 
@@ -86,16 +85,13 @@ public class InputHandler extends DefaultHandler {
 			if (gui != null && gui.getPropertyPane() != null) { // issue 244: in batchmode, a file can have a help_text but gui will be null
 				gui.getPropertyPane().switchToNonElement(elementtext);
 			}
-		}
-		else if (elementname.equals("zoom_level")) {
+		} else if (elementname.equals("zoom_level")) {
 			if (handler != null) {
 				handler.setGridSize(Integer.parseInt(elementtext));
 			}
-		}
-		else if (elementname.equals("group")) {
+		} else if (elementname.equals("group")) {
 			currentGroup = null;
-		}
-		else if (elementname.equals("element")) {
+		} else if (elementname.equals("element")) {
 			if (id != null) {
 				try {
 					NewGridElement e = ElementFactorySwing.create(ElementId.valueOf(id), new Rectangle(x, y, w, h), panel_attributes, additional_attributes, handler);
@@ -107,13 +103,11 @@ public class InputHandler extends DefaultHandler {
 					log.error("Cannot instantiate element with id: " + id, e);
 				}
 				id = null;
-			}
-			else if (!ignoreElements.contains(entityname)) { // OldGridElement handling which can be removed as soon as all OldGridElements have been replaced
+			} else if (!ignoreElements.contains(entityname)) { // OldGridElement handling which can be removed as soon as all OldGridElements have been replaced
 				try {
 					if (code == null) {
 						e = InputHandler.getOldGridElementFromPath(entityname);
-					}
-					else {
+					} else {
 						e = CustomElementCompiler.getInstance().genEntity(code);
 					}
 				} catch (InstantiationException e1) {
@@ -133,36 +127,27 @@ public class InputHandler extends DefaultHandler {
 				}
 				_p.addElement(e);
 			}
-		}
-		else if (elementname.equals("type")) {
+		} else if (elementname.equals("type")) {
 			entityname = elementtext;
-		}
-		else if (elementname.equals("id")) { // new elements have an id
+		} else if (elementname.equals("id")) { // new elements have an id
 			id = elementtext;
-		}
-		else if (elementname.equals("x")) {
+		} else if (elementname.equals("x")) {
 			Integer i = Integer.valueOf(elementtext);
 			x = i.intValue();
-		}
-		else if (elementname.equals("y")) {
+		} else if (elementname.equals("y")) {
 			Integer i = Integer.valueOf(elementtext);
 			y = i.intValue();
-		}
-		else if (elementname.equals("w")) {
+		} else if (elementname.equals("w")) {
 			Integer i = Integer.valueOf(elementtext);
 			w = i.intValue();
-		}
-		else if (elementname.equals("h")) {
+		} else if (elementname.equals("h")) {
 			Integer i = Integer.valueOf(elementtext);
 			h = i.intValue();
-		}
-		else if (elementname.equals("panel_attributes")) {
+		} else if (elementname.equals("panel_attributes")) {
 			panel_attributes = elementtext;
-		}
-		else if (elementname.equals("additional_attributes")) {
+		} else if (elementname.equals("additional_attributes")) {
 			additional_attributes = elementtext;
-		}
-		else if (elementname.equals("custom_code")) {
+		} else if (elementname.equals("custom_code")) {
 			code = elementtext;
 		}
 	}
@@ -185,8 +170,7 @@ public class InputHandler extends DefaultHandler {
 			ClassNotFoundException ex = new ClassNotFoundException("class " + path + " not found");
 			log.error(null, ex);
 			throw ex;
-		}
-		else {
+		} else {
 			return (GridElement) foundClass.newInstance();
 		}
 	}

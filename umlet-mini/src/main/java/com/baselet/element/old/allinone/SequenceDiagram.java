@@ -1,5 +1,16 @@
 package com.baselet.element.old.allinone;
 
+import com.baselet.control.HandlerElementMap;
+import com.baselet.control.enums.AlignHorizontal;
+import com.baselet.control.enums.Direction;
+import com.baselet.control.enums.FormatLabels;
+import com.baselet.control.enums.LineType;
+import com.baselet.control.util.Utils;
+import com.baselet.diagram.FontHandler;
+import com.baselet.element.interfaces.GridElementDeprecatedAddons;
+import com.baselet.element.old.OldGridElement;
+import org.sourceforge.jlibeps.epsgraphics.EpsGraphics2D;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -17,18 +28,6 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.sourceforge.jlibeps.epsgraphics.EpsGraphics2D;
-
-import com.baselet.control.HandlerElementMap;
-import com.baselet.control.enums.AlignHorizontal;
-import com.baselet.control.enums.Direction;
-import com.baselet.control.enums.FormatLabels;
-import com.baselet.control.enums.LineType;
-import com.baselet.control.util.Utils;
-import com.baselet.diagram.FontHandler;
-import com.baselet.element.interfaces.GridElementDeprecatedAddons;
-import com.baselet.element.old.OldGridElement;
-
 // An interaction represents a synchronous/asynchronous message
 // that is sent between two objects.
 class Interaction {
@@ -42,7 +41,7 @@ class Interaction {
 	private final String methodName;
 
 	public Interaction(int srcObj, boolean srcObjHasControl, int arrowKind, int lineKind,
-			int destObj, boolean destObjHasControl, String methodName) {
+					   int destObj, boolean destObjHasControl, String methodName) {
 		this.srcObj = srcObj;
 		this.srcObjHasControl = srcObjHasControl;
 		this.arrowKind = arrowKind;
@@ -54,7 +53,7 @@ class Interaction {
 
 	public boolean hasControl(int objNum) {
 		return srcObjHasControl && srcObj == objNum ||
-				destObjHasControl && destObj == objNum;
+			destObjHasControl && destObj == objNum;
 	}
 
 	@Override
@@ -64,16 +63,16 @@ class Interaction {
 		}
 		Interaction i = (Interaction) o;
 
-		return srcObj == i.srcObj &&srcObjHasControl == i.srcObjHasControl &&
-				arrowKind == i.arrowKind && destObj == i.destObj &&
-				destObjHasControl == i.destObjHasControl &&
-				methodName == null || methodName.equals(i.methodName);
+		return srcObj == i.srcObj && srcObjHasControl == i.srcObjHasControl &&
+			arrowKind == i.arrowKind && destObj == i.destObj &&
+			destObjHasControl == i.destObjHasControl &&
+			methodName == null || methodName.equals(i.methodName);
 	}
 
 	@Override
 	public int hashCode() {
-		return (methodName != null ? methodName.hashCode() : 1) +srcObj +
-				(srcObjHasControl ? 1 : 0) + arrowKind + destObj + (destObjHasControl ? 1 : 0);
+		return (methodName != null ? methodName.hashCode() : 1) + srcObj +
+			(srcObjHasControl ? 1 : 0) + arrowKind + destObj + (destObjHasControl ? 1 : 0);
 	}
 
 	public int getSrcObj() {
@@ -212,8 +211,7 @@ public class SequenceDiagram extends OldGridElement {
 				lines.remove(0);
 				yOffsetforTitle = (int) (25 * zoom);
 			}
-		}
-		else {
+		} else {
 			yOffsetforTitle = 0;
 		}
 
@@ -222,8 +220,7 @@ public class SequenceDiagram extends OldGridElement {
 			if (element.indexOf("iframe{") >= 0) {
 				element = "9999->0:" + element; // dummy: space for interactionframe
 				lines.set(i, element);
-			}
-			else if (element.indexOf("iframe}") >= 0) {
+			} else if (element.indexOf("iframe}") >= 0) {
 				element = "9999<-0:" + element; // dummy: space for interactionframe
 				lines.set(i, element);
 			}
@@ -253,8 +250,7 @@ public class SequenceDiagram extends OldGridElement {
 			if (m.matches() && m.group(2) != null) {
 				labeltonumber.put(m.group(3), i);
 				sb.append("|").append(m.group(1)).append(m.group(4) == null ? "" : m.group(4));
-			}
-			else {
+			} else {
 				sb.append("|").append(obj.get(i - 1));
 			}
 			if (!labeltonumber.containsKey(Integer.toString(i))) // only write number if no other label has this number
@@ -309,12 +305,10 @@ public class SequenceDiagram extends OldGridElement {
 				if (m.group(2).equals("->")) {
 					arrowKind = ASYNC;
 					lineKind = SOLID;
-				}
-				else if (m.group(2).equals("->>")) {
+				} else if (m.group(2).equals("->>")) {
 					arrowKind = SYNC;
 					lineKind = SOLID;
-				}
-				else if (m.group(2).equals("-/>")) {
+				} else if (m.group(2).equals("-/>")) {
 					arrowKind = EDGE;
 					lineKind = SOLID;
 				} // LME
@@ -342,13 +336,11 @@ public class SequenceDiagram extends OldGridElement {
 					arrowKind = ASYNC;
 					lineKind = SOLID;
 					reverse = true;
-				}
-				else if (m.group(2).equals("<<-")) {
+				} else if (m.group(2).equals("<<-")) {
 					arrowKind = SYNC;
 					lineKind = SOLID;
 					reverse = true;
-				}
-				else if (m.group(2).equals("</-")) {
+				} else if (m.group(2).equals("</-")) {
 					arrowKind = EDGE;
 					lineKind = SOLID;
 					reverse = true;
@@ -386,8 +378,7 @@ public class SequenceDiagram extends OldGridElement {
 					if (element.indexOf("iframe") >= 0) {
 						group += element.substring(element.indexOf("iframe")); // append info for interactionframe
 					}
-				}
-				else // LABLING ADD
+				} else // LABLING ADD
 				{
 					String[] grouparray = group.split(",");
 					group = "";
@@ -399,8 +390,7 @@ public class SequenceDiagram extends OldGridElement {
 					}
 					if (group.length() > 0) {
 						group = group.substring(1);
-					}
-					else {
+					} else {
 						if (grouparray.length == 1) {
 							group = "#";
 							methodName = grouparray[0];
@@ -425,8 +415,7 @@ public class SequenceDiagram extends OldGridElement {
 
 				if (!reverse) {
 					im.add(curLevel, new Interaction(srcObj, srcObjHasControl, arrowKind, lineKind, destObj, destObjHasControl, methodName)); // normal arrow direction 1->2
-				}
-				else {
+				} else {
 					im.add(curLevel, new Interaction(destObj, destObjHasControl, arrowKind, lineKind, srcObj, srcObjHasControl, methodName)); // reverse arrow direction 1<-2
 				}
 			} // #for
@@ -444,7 +433,7 @@ public class SequenceDiagram extends OldGridElement {
 				s = s.substring(1, s.length() - 1);
 			}
 			TextLayout layout = new TextLayout(s, fontHandler.getFont(),
-					g2.getFontRenderContext());
+				g2.getFontRenderContext());
 
 			g2.drawRect(xpos, ypos, rectWidth - 1, rectHeight - 1);
 
@@ -457,9 +446,9 @@ public class SequenceDiagram extends OldGridElement {
 
 			if (underline) {
 				g2.drawLine(tx,
-						ty + (int) fontHandler.getDistanceBetweenTexts() / 2,
-						tx + (int) layout.getBounds().getWidth(),
-						ty + (int) fontHandler.getDistanceBetweenTexts() / 2);
+					ty + (int) fontHandler.getDistanceBetweenTexts() / 2,
+					tx + (int) layout.getBounds().getWidth(),
+					ty + (int) fontHandler.getDistanceBetweenTexts() / 2);
 			}
 
 			xpos += rectWidth + rectDistance;
@@ -535,20 +524,17 @@ public class SequenceDiagram extends OldGridElement {
 					if (ia.getArrowKind() == ASYNC) { // Pfeil offen
 						g2.drawLine(p1.x, p1.y, d1.x, d1.y);
 						g2.drawLine(p1.x, p1.y, d2.x, d2.y);
-					}
-					else if (ia.getArrowKind() == SYNC) {
-						int[] xs = { p1.x, d1.x, d2.x };
-						int[] ys = { p1.y, d1.y, d2.y };
+					} else if (ia.getArrowKind() == SYNC) {
+						int[] xs = {p1.x, d1.x, d2.x};
+						int[] ys = {p1.y, d1.y, d2.y};
 						Color oldColor = g2.getColor();
 						g2.setColor(bgColor);
 						g2.fillPolygon(xs, ys, 3);
 						g2.setColor(oldColor);
 						g2.drawPolygon(xs, ys, 3);
-					}
-					else if (ia.getArrowKind() == EDGE) {
+					} else if (ia.getArrowKind() == EDGE) {
 						g2.drawLine(p1.x, p1.y, d2.x, d2.y);
-					}
-					else if (ia.getArrowKind() == FILLED) {
+					} else if (ia.getArrowKind() == FILLED) {
 						Polygon p = new Polygon();
 						p.addPoint(p1.x, p1.y);
 						p.addPoint(d1.x, d1.y);
@@ -563,12 +549,11 @@ public class SequenceDiagram extends OldGridElement {
 						int fx2 = hCenterForObj(ia.getSrcObj()) + rectWidth / 2;
 						int fy2 = ay + h;
 						int tx = printMethodName(g2, ia.getMethodName(), fx1 + xTextOffset, fx2 + xTextOffset,
-								fy1, fy2, true, false);
+							fy1, fy2, true, false);
 						maxTextXpos = maxTextXpos > tx ? maxTextXpos : tx;
 					}
 
-				}
-				else {
+				} else {
 					// draw an arrow from the source-object to the destination object
 					int begX = hCenterForObj(ia.getSrcObj());
 					int endX = ia.getSrcObj() < ia.getDestObj() ? hCenterForObj(ia.getDestObj()) - 1 : hCenterForObj(ia.getDestObj()) + 1;
@@ -588,8 +573,7 @@ public class SequenceDiagram extends OldGridElement {
 						if (ia.getSrcObj() < ia.getDestObj()) {
 							int tx = printMethodName(g2, ia.getMethodName(), begX + b, endX - arrowX - b, arrowY - 1 - levelHeight / 1, arrowY - 1, false, true);
 							maxTextXpos = maxTextXpos > tx ? maxTextXpos : tx;
-						}
-						else {
+						} else {
 							int tx = printMethodName(g2, ia.getMethodName(), endX + arrowX + b, begX - b, arrowY - 1 - levelHeight / 2, arrowY - 1, false, true);
 							maxTextXpos = maxTextXpos > tx ? maxTextXpos : tx;
 						}
@@ -607,8 +591,8 @@ public class SequenceDiagram extends OldGridElement {
 	// may be set by this method.)
 	// if the fontsize gets very big this method may cross the vertical borders.
 	private int printMethodName(Graphics2D g2, String methodName,
-			int begX, int endX, int begY, int endY,
-			boolean centerVertically, boolean centerHorizontically) {
+								int begX, int endX, int begY, int endY,
+								boolean centerVertically, boolean centerHorizontically) {
 
 		if (methodName == null || methodName.equals("")) {
 			log.error("SequenceDiagram->printMethodName was called with an invalid argument.");
@@ -654,8 +638,7 @@ public class SequenceDiagram extends OldGridElement {
 				if (main.indexOf("#iframe{") >= 0 || main.indexOf("#iframe}") >= 0) {
 					if (main.indexOf("#iframe{") >= 0) {
 						interactionframes.add(Integer.valueOf(level));
-					}
-					else {
+					} else {
 						interactionframes.add(Integer.valueOf(level * -1)); // distinguish betweeen start and end of the iframe
 					}
 					if (main.indexOf("iframe{:") >= 0) {
@@ -663,8 +646,7 @@ public class SequenceDiagram extends OldGridElement {
 					}
 				}
 				level++;
-			}
-			else {
+			} else {
 				StringTokenizer innerT = new StringTokenizer(main, ",");
 				for (int i = 0; i < numObjects; i++) {
 					tField[i][level - 1] = 0; // clear
@@ -710,7 +692,7 @@ public class SequenceDiagram extends OldGridElement {
 					boxSize = 0;
 				}
 			} // #for(int i
-				// LME: draw the tail
+			// LME: draw the tail
 			int lineY2 = borderDistance + yOffsetforTitle + rectHeight + levelNum * levelHeight + rectToFirstLevelDistance;
 			g2.setStroke(Utils.getStroke(LineType.DASHED, 1));
 			g2.drawLine(lineX, lineY1, lineX, lineY2);
@@ -784,8 +766,7 @@ public class SequenceDiagram extends OldGridElement {
 		if (srcObj.x < destObj.x) {
 			p1 = new Point(destObj.x - arrowX, destObj.y + arrowY);
 			p2 = new Point(destObj.x - arrowX, destObj.y - arrowY);
-		}
-		else {
+		} else {
 			p1 = new Point(destObj.x + arrowX, destObj.y + arrowY);
 			p2 = new Point(destObj.x + arrowX, destObj.y - arrowY);
 		}
@@ -799,8 +780,7 @@ public class SequenceDiagram extends OldGridElement {
 				g2.setStroke(Utils.getStroke(LineType.DASHED, 1));
 			}
 			g2.drawLine(srcObj.x, srcObj.y, p1.x, destObj.y);
-		}
-		else if (arrowKind == ASYNC) {
+		} else if (arrowKind == ASYNC) {
 			g2.drawLine(destObj.x, destObj.y, p1.x, p1.y);
 			g2.drawLine(destObj.x, destObj.y, p2.x, p2.y);
 
@@ -808,16 +788,14 @@ public class SequenceDiagram extends OldGridElement {
 				g2.setStroke(Utils.getStroke(LineType.DASHED, 1));
 			}
 			g2.drawLine(srcObj.x, srcObj.y, destObj.x, destObj.y);
-		}
-		else if (arrowKind == EDGE) {
+		} else if (arrowKind == EDGE) {
 			g2.drawLine(destObj.x, destObj.y, p2.x, p2.y);
 
 			if (lineKind == DOTTED) {
 				g2.setStroke(Utils.getStroke(LineType.DASHED, 1));
 			}
 			g2.drawLine(srcObj.x, srcObj.y, destObj.x, destObj.y);
-		}
-		else if (arrowKind == FILLED) {
+		} else if (arrowKind == FILLED) {
 			Polygon p = new Polygon();
 			p.addPoint(p1.x, p1.y);
 			p.addPoint(p2.x, p2.y);
@@ -837,8 +815,8 @@ public class SequenceDiagram extends OldGridElement {
 	}
 
 	protected int vCenterForLevel(int level) {
-		return level * levelHeight +rectToFirstLevelDistance +
-				rectHeight + borderDistance + yOffsetforTitle - levelHeight / 2;
+		return level * levelHeight + rectToFirstLevelDistance +
+			rectHeight + borderDistance + yOffsetforTitle - levelHeight / 2;
 	}
 
 	@Override

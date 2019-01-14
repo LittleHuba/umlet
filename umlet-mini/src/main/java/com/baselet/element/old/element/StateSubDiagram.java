@@ -1,10 +1,11 @@
 package com.baselet.element.old.element;
 
 // Some import to have access to more Java features
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 import com.baselet.control.HandlerElementMap;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 @SuppressWarnings("serial")
 public class StateSubDiagram extends State {

@@ -1,5 +1,11 @@
 package com.baselet.element.old.element;
 
+import com.baselet.control.HandlerElementMap;
+import com.baselet.control.enums.AlignHorizontal;
+import com.baselet.control.util.Utils;
+import com.baselet.element.old.OldGridElement;
+import com.baselet.element.sticking.StickingPolygon;
+
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Composite;
@@ -7,12 +13,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.util.Vector;
-
-import com.baselet.control.HandlerElementMap;
-import com.baselet.control.enums.AlignHorizontal;
-import com.baselet.control.util.Utils;
-import com.baselet.element.old.OldGridElement;
-import com.baselet.element.sticking.StickingPolygon;
 
 @SuppressWarnings("serial")
 public class SeqSelfMessage extends OldGridElement {
@@ -55,8 +55,7 @@ public class SeqSelfMessage extends OldGridElement {
 
 		if (HandlerElementMap.getHandlerForElement(this).getDrawPanel().getSelector().isSelected(this)) {
 			g2.setColor(fgColor);
-		}
-		else {
+		} else {
 			g2.setColor(fgColorBase);
 		}
 
@@ -77,8 +76,7 @@ public class SeqSelfMessage extends OldGridElement {
 			if (s.startsWith("center:")) {
 				s = s.substring(7);
 				HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, (getRectangle().width - size_3d - 1) / 2.0, yPos, AlignHorizontal.CENTER);
-			}
-			else {
+			} else {
 				HandlerElementMap.getHandlerForElement(this).getFontHandler().writeText(g2, s, (int) (HandlerElementMap.getHandlerForElement(this).getFontHandler().getFontSize() / 2), yPos, AlignHorizontal.LEFT);
 			}
 

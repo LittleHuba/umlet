@@ -38,8 +38,7 @@ public class Role extends Rectangle {
 			if (other._string != null) {
 				return false;
 			}
-		}
-		else if (!_string.equals(other._string)) {
+		} else if (!_string.equals(other._string)) {
 			return false;
 		}
 		return true;
