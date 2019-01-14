@@ -7,7 +7,6 @@ import com.baselet.control.SharedUtils;
 import com.baselet.control.basics.Converter;
 import com.baselet.control.basics.geom.Point;
 import com.baselet.control.constants.Constants;
-import com.baselet.control.enums.Program;
 import com.baselet.diagram.io.DiagramFileHandler;
 import com.baselet.element.ComponentSwing;
 import com.baselet.element.NewGridElement;
@@ -16,7 +15,6 @@ import com.baselet.element.old.custom.CustomElement;
 import com.baselet.element.old.element.Relation;
 import com.baselet.gui.BaseGUI;
 import com.baselet.gui.CurrentGui;
-import com.baselet.gui.ExportHandler;
 import com.baselet.gui.command.Controller;
 import com.baselet.gui.listener.DiagramListener;
 import com.baselet.gui.listener.GridElementListener;
@@ -24,10 +22,9 @@ import com.baselet.gui.listener.OldRelationListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
+import javax.swing.JOptionPane;
+import java.awt.Component;
+import java.awt.MouseInfo;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -91,23 +88,10 @@ public class DiagramHandler {
 		if (diagram != null) {
 			fileHandler.doOpen();
 		}
-
-		boolean extendedPopupMenu = false;
-		BaseGUI gui = CurrentGui.getInstance().getGui();
-		if (gui != null) {
-			gui.setValueOfZoomDisplay(getGridSize());
-			extendedPopupMenu = gui.hasExtendedContextMenu();
-		}
-
-		initDiagramPopupMenu(extendedPopupMenu);
 	}
 
 	protected DrawPanel createDrawPanel() {
 		return new DrawPanel(this, true);
-	}
-
-	protected void initDiagramPopupMenu(boolean extendedPopupMenu) {
-		drawpanel.setComponentPopupMenu(new DiagramPopupMenu(extendedPopupMenu));
 	}
 
 	public void setEnabled(boolean en) {
@@ -159,21 +143,6 @@ public class DiagramHandler {
 		return controller;
 	}
 
-	// returnvalue needed for eclipse plugin
-	// returns true if the file is saved, else returns false
-	public boolean doSave() {
-		try {
-			fileHandler.doSave();
-			reloadPalettes();
-			CurrentGui.getInstance().getGui().afterSaving();
-			return true;
-		} catch (IOException e) {
-			log.error(ErrorMessages.ERROR_SAVING_FILE, e);
-			displayError(ErrorMessages.ERROR_SAVING_FILE + e.getMessage());
-			return false;
-		}
-	}
-
 	public String doSaveAs(String filePath, String extension) {
 		if (drawpanel.getGridElements().isEmpty()) {
 			displayError(ErrorMessages.ERROR_SAVING_EMPTY_DIAGRAM);
@@ -188,23 +157,6 @@ public class DiagramHandler {
 				log.error(ErrorMessages.ERROR_SAVING_FILE, e);
 				displayError(ErrorMessages.ERROR_SAVING_FILE + e.getMessage());
 				return null;
-			}
-		}
-	}
-
-	public String doSaveAs(String extension) {
-		return doSaveAs(null, extension);
-	}
-
-	public void doPrint() {
-		PrinterJob printJob = PrinterJob.getPrinterJob();
-		printJob.setPrintable(getDrawPanel());
-		printJob.setJobName(getName());
-		if (printJob.printDialog()) {
-			try {
-				printJob.print();
-			} catch (PrinterException pe) {
-				displayError(ErrorMessages.ERROR_PRINTING);
 			}
 		}
 	}
@@ -226,43 +178,12 @@ public class DiagramHandler {
 		getDrawPanel().getSelector().updateSelectorInformation(); // Must be updated to remain in the current Property Panel
 	}
 
-	public void doClose() {
-		if (askSaveIfDirty()) {
-			ExportHandler.getInstance().diagramTabIsClosed();
-			Main.getInstance().getDiagrams().remove(this); // remove this DiagramHandler from the list of managed diagrams
-			drawpanel.getSelector().deselectAll(); // deselect all elements of the drawpanel (must be done BEFORE closing the tab, because otherwise it resets this DrawHandler again as the current DrawHandler
-			CurrentGui.getInstance().getGui().close(this); // close the GUI (tab, ...) and set the next active tab as the CurrentDiagram
-
-			// update property panel to now selected diagram (or to empty if no diagram exists)
-			DiagramHandler newhandler = CurrentDiagram.getInstance().getDiagramHandler();
-			if (newhandler != null) {
-				newhandler.getDrawPanel().getSelector().updateSelectorInformation();
-			} else {
-				Main.getInstance().setPropertyPanelToGridElement(null);
-			}
-		}
-	}
-
-	/**
-	 * closes this diagram handler and adds a new empty diagram if this was the last diagram of UMLet
-	 */
-	public void doCloseAndAddNewIfNoLeft() {
-		doClose();
-		if (Main.getInstance().getDiagrams().size() == 0) {
-			Main.getInstance().doNew();
-		}
-	}
-
 	public String getName() {
 		String name = fileHandler.getFileName();
 		if (name.contains(".")) {
 			name = name.substring(0, name.lastIndexOf("."));
 		}
 		return name;
-	}
-
-	public String getFullPathName() {
-		return fileHandler.getFullPathName();
 	}
 
 	public GridElementListener getEntityListener(GridElement e) {
@@ -277,20 +198,6 @@ public class DiagramHandler {
 			}
 			return gridElementListener;
 		}
-	}
-
-	public boolean askSaveIfDirty() {
-		if (isChanged) {
-			int ch = JOptionPane.showOptionDialog(CurrentGui.getInstance().getGui().getMainFrame(), "Save changes?", Program.getInstance().getProgramName() + " - " + getName(), JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null, null, null);
-			if (ch == JOptionPane.YES_OPTION) {
-				doSave();
-				return true;
-			} else if (ch == JOptionPane.NO_OPTION) {
-				return true;
-			}
-			return false; // JOptionPane.CANCEL_OPTION
-		}
-		return true;
 	}
 
 	public void setHelpText(String helptext) {

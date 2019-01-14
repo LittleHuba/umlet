@@ -18,11 +18,6 @@ public class PaletteHandler extends DiagramHandler {
 	}
 
 	@Override
-	protected void initDiagramPopupMenu(boolean extendedPopupMenu) {
-		/* no diagram popup menu */
-	}
-
-	@Override
 	protected DrawPanel createDrawPanel() {
 		return new DrawPanel(this, false); /* no startup and filedrop */
 	}

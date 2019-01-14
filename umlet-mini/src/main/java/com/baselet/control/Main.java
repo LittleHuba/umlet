@@ -33,8 +33,6 @@ import com.baselet.gui.pane.OwnSyntaxPane;
 
 public class Main implements CanCloseProgram, CanOpenDiagram {
 
-	private static final Logger log = LoggerFactory.getLogger(Main.class);
-
 	private static Main main = new Main();
 
 	private GridElement editedGridElement;
@@ -43,14 +41,6 @@ public class Main implements CanCloseProgram, CanOpenDiagram {
 
 	public static Main getInstance() {
 		return main;
-	}
-
-	public void init(BaseGUI gui) {
-		log.info("Initializing GUI ...");
-		CurrentGui.getInstance().setGui(gui);
-		ToolTipManager.sharedInstance().setDismissDelay(Integer.MAX_VALUE); // Tooltips should not hide after some time
-		gui.initGUI(); // show gui
-		log.info("GUI initialized");
 	}
 
 	public void setPropertyPanelToGridElement(final GridElement e) {
@@ -109,49 +99,6 @@ public class Main implements CanCloseProgram, CanOpenDiagram {
 
 	@Override
 	public void doOpen(final String filename) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				doOpenHelper(filename);
-			}
-		});
-	}
-
-	private void doOpenHelper(String filename) {
-		File file = new File(filename);
-		if (!file.exists()) {
-			Notifier.getInstance().showError(filename + " does not exist");
-			return;
-		}
-		Config.getInstance().setOpenFileHome(file.getAbsoluteFile().getParent());
-		DiagramHandler handler = getDiagramHandlerForFile(filename);
-		if (handler != null) { // File is already opened -> jump to the tab
-			CurrentGui.getInstance().getGui().jumpTo(handler);
-			Notifier.getInstance().showInfo("switched to " + filename);
-		}
-		else {
-			if (lastTabIsEmpty()) { // if only the new tab is visible, close it (because the newly opened diagram replaces the empty new one)
-				diagrams.get(diagrams.size() - 1).doClose();
-			}
-			editedGridElement = null; // must be set to null here, otherwise the change listener of the property panel will change element text to help_text of diagram (see google code Issue 174)
-			DiagramHandler diagram = new DiagramHandler(file);
-			diagrams.add(diagram);
-			CurrentGui.getInstance().getGui().open(diagram);
-			if (diagrams.size() == 1) {
-				setPropertyPanelToGridElement(null);
-			}
-			RecentlyUsedFilesList.getInstance().add(filename);
-			Notifier.getInstance().showInfo(filename + " opened");
-		}
-	}
-
-	private DiagramHandler getDiagramHandlerForFile(String file) {
-		for (DiagramHandler d : diagrams) {
-			if (d.getFullPathName().equalsIgnoreCase(file)) {
-				return d;
-			}
-		}
-		return null;
 	}
 
 	/**
