@@ -11,16 +11,10 @@ import com.baselet.element.NewGridElement;
 import com.baselet.element.interfaces.GridElement;
 import com.baselet.element.old.custom.CustomElement;
 import com.baselet.element.old.element.Relation;
-import com.baselet.gui.command.Controller;
-import com.baselet.gui.listener.DiagramListener;
-import com.baselet.gui.listener.GridElementListener;
-import com.baselet.gui.listener.OldRelationListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.awt.Component;
 import java.awt.MouseInfo;
-import java.io.File;
 import java.util.List;
 import java.util.Vector;
 
@@ -33,17 +27,12 @@ public class DiagramHandler {
 	private FontHandler fontHandler;
 
 	protected DrawPanel drawpanel;
-	private Controller controller;
-	protected DiagramListener listener;
 	private String helptext;
 	private boolean enabled;
 	private int gridSize;
 
-	private OldRelationListener relationListener;
-	private GridElementListener gridElementListener;
-
 	public static DiagramHandler forExport(FontHandler fontHandler) {
-		DiagramHandler returnHandler = new DiagramHandler(null, false);
+		DiagramHandler returnHandler = new DiagramHandler(null);
 		if (fontHandler != null) {
 			returnHandler.fontHandler = fontHandler;
 		}
@@ -61,27 +50,7 @@ public class DiagramHandler {
 		drawpanel = createDrawPanel();
 		fontHandler = new FontHandler(this);
 		fileHandler = DiagramFileHandler.createInstance(this, diagram);
-		fileHandler.doOpen();
-	}
-
-	public DiagramHandler(File diagram) {
-		this(diagram, false);
-	}
-
-	protected DiagramHandler(File diagram, boolean nolistener) {
-		gridSize = Constants.DEFAULTGRIDSIZE;
-		isChanged = false;
-		enabled = true;
-		drawpanel = createDrawPanel();
-		controller = new Controller(this);
-		fontHandler = new FontHandler(this);
-		fileHandler = DiagramFileHandler.createInstance(this, diagram);
-		if (!nolistener) {
-			setListener(new DiagramListener(this));
-		}
-		if (diagram != null) {
-			fileHandler.doOpen();
-		}
+		fileHandler.doParse();
 	}
 
 	protected DrawPanel createDrawPanel() {
@@ -90,25 +59,10 @@ public class DiagramHandler {
 
 	public void setEnabled(boolean en) {
 		if (!en && enabled) {
-			drawpanel.removeMouseListener(listener);
-			drawpanel.removeMouseMotionListener(listener);
 			enabled = false;
 		} else if (en && !enabled) {
-			drawpanel.addMouseListener(listener);
-			drawpanel.addMouseMotionListener(listener);
 			enabled = true;
 		}
-	}
-
-	protected void setListener(DiagramListener listener) {
-		this.listener = listener;
-		drawpanel.addMouseListener(this.listener);
-		drawpanel.addMouseMotionListener(this.listener);
-		drawpanel.addMouseWheelListener(this.listener);
-	}
-
-	public DiagramListener getListener() {
-		return listener;
 	}
 
 	public void setChanged(boolean changed) {
@@ -121,45 +75,8 @@ public class DiagramHandler {
 		return drawpanel;
 	}
 
-	public DiagramFileHandler getFileHandler() {
-		return fileHandler;
-	}
-
 	public FontHandler getFontHandler() {
 		return fontHandler;
-	}
-
-	public Controller getController() {
-		return controller;
-	}
-
-	// reloads the diagram from file + updates gui
-	public void reload() {
-		drawpanel.removeAll();
-		fileHandler.doOpen();
-		drawpanel.updatePanelAndScrollbars();
-	}
-
-	public String getName() {
-		String name = fileHandler.getFileName();
-		if (name.contains(".")) {
-			name = name.substring(0, name.lastIndexOf("."));
-		}
-		return name;
-	}
-
-	public GridElementListener getEntityListener(GridElement e) {
-		if (e instanceof Relation) {
-			if (relationListener == null) {
-				relationListener = new OldRelationListener(this);
-			}
-			return relationListener;
-		} else {
-			if (gridElementListener == null) {
-				gridElementListener = new GridElementListener(this);
-			}
-			return gridElementListener;
-		}
 	}
 
 	public void setHelpText(String helptext) {
@@ -244,10 +161,6 @@ public class DiagramHandler {
 	}
 
 	public void setGridAndZoom(int factor) {
-		setGridAndZoom(factor, true);
-	}
-
-	public void setGridAndZoom(int factor, boolean manualZoom) {
 
 		/**
 		 * Store the old gridsize and the new one. Furthermore check if the zoom process must be made
@@ -272,67 +185,10 @@ public class DiagramHandler {
 
 		// AB: Zoom origin
 		getDrawPanel().zoomOrigin(oldGridSize, gridSize);
-
-		/**
-		 * The zoomed diagram will shrink to the upper left corner and grow to the lower right
-		 * corner but we want to have the zoom center in the middle of the actual visible drawpanel
-		 * so we have to change the coordinates of the entities again
-		 */
-
-		if (manualZoom) {
-			// calculate mouse position relative to UMLet scrollpane
-			Point mouseLocation = Converter.convert(MouseInfo.getPointerInfo().getLocation());
-			Point viewportLocation = Converter.convert(getDrawPanel().getScrollPane().getViewport().getLocationOnScreen());
-			float x = mouseLocation.x - viewportLocation.x;
-			float y = mouseLocation.y - viewportLocation.y;
-
-			// And add any space on the upper left corner which is not visible but reachable by scrollbar
-			x += getDrawPanel().getScrollPane().getViewport().getViewPosition().getX();
-			y += getDrawPanel().getScrollPane().getViewport().getViewPosition().getY();
-
-			// The result is the point where we want to center the zoom of the diagram
-			float diffx, diffy;
-			diffx = x - x * gridSize / oldGridSize;
-			diffy = y - y * gridSize / oldGridSize;
-
-			// AB: Move origin in opposite direction
-			log.debug("diffX/diffY: " + diffx + "/" + diffy);
-			log.debug("Manual Zoom Delta: " + realignToGrid(false, diffx) + "/" + realignToGrid(false, diffy));
-			getDrawPanel().moveOrigin(realignToGrid(false, -diffx), realignToGrid(false, -diffy));
-
-			for (GridElement e : getDrawPanel().getGridElements()) {
-				e.setLocationDifference(realignToGrid(false, diffx), realignToGrid(false, diffy));
-			}
-
-			/*
-			 * Now we have to do some additional "clean up" stuff which is related to the zoom
-			 */
-
-			getDrawPanel().updatePanelAndScrollbars();
-
-			// Set changed only if diagram is not empty (otherwise no element has been changed)
-			if (!drawpanel.getGridElements().isEmpty()) {
-				setChanged(true);
-			}
-
-			float zoomFactor = CurrentDiagram.getInstance().getDiagramHandler().getZoomFactor() * 100;
-			String zoomtext;
-			if (CurrentDiagram.getInstance().getDiagramHandler() instanceof PaletteHandler) {
-				zoomtext = "Palette zoomed to " + Integer.toString((int) zoomFactor) + "%";
-			} else {
-				zoomtext = "Diagram zoomed to " + Integer.toString((int) zoomFactor) + "%";
-			}
-		}
 	}
 
 	public void setHandlerAndInitListeners(GridElement element) {
-		if (HandlerElementMap.getHandlerForElement(element) != null) {
-			((Component) element.getComponent()).removeMouseListener(HandlerElementMap.getHandlerForElement(element).getEntityListener(element));
-			((Component) element.getComponent()).removeMouseMotionListener(HandlerElementMap.getHandlerForElement(element).getEntityListener(element));
-		}
 		HandlerElementMap.setHandlerForElement(element, this);
-		((Component) element.getComponent()).addMouseListener(HandlerElementMap.getHandlerForElement(element).getEntityListener(element));
-		((Component) element.getComponent()).addMouseMotionListener(HandlerElementMap.getHandlerForElement(element).getEntityListener(element));
 		if (element instanceof NewGridElement) {
 			((ComponentSwing) element.getComponent()).setHandler(this);
 		}

@@ -92,12 +92,8 @@ public abstract class OldGridElement extends JComponent implements GridElement, 
 	public void setEnabled(boolean en) {
 		super.setEnabled(en);
 		if (!en && enabled) {
-			removeMouseListener(getDiagramHandler().getEntityListener(this));
-			removeMouseMotionListener(getDiagramHandler().getEntityListener(this));
 			enabled = false;
 		} else if (en && !enabled) {
-			addMouseListener(getDiagramHandler().getEntityListener(this));
-			addMouseMotionListener(getDiagramHandler().getEntityListener(this));
 			enabled = true;
 		}
 	}

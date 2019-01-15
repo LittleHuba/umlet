@@ -2,20 +2,12 @@ package com.baselet.control.config.handler;
 
 import com.baselet.control.basics.geom.Dimension;
 import com.baselet.control.config.Config;
-import com.baselet.control.config.ConfigClassGen;
-import com.baselet.control.config.ConfigMail;
 import com.baselet.control.config.SharedConfig;
 import com.baselet.control.enums.Program;
-import com.baselet.control.enums.generator.FieldOptions;
-import com.baselet.control.enums.generator.MethodOptions;
-import com.baselet.control.enums.generator.SignatureOptions;
-import com.baselet.control.enums.generator.SortOptions;
 import com.baselet.control.util.Path;
-import com.baselet.control.util.RecentlyUsedFilesList;
 
 import java.awt.Point;
 import java.io.FileInputStream;
-import java.util.Arrays;
 import java.util.Properties;
 
 import static com.baselet.control.constants.Constants.exportFormatList;
@@ -48,26 +40,6 @@ public class ConfigHandler {
 	private static final String MAIL_SPLIT_POSITION = "mail_split_position";
 	private static final String PROGRAM_SIZE = "program_size";
 	private static final String PROGRAM_LOCATION = "program_location";
-	private static final String RECENT_FILES = "recent_files";
-
-	private static final String MAIL_SMTP = "mail_smtp";
-	private static final String MAIL_SMTP_AUTH = "mail_smtp_auth";
-	private static final String MAIL_SMTP_USER = "mail_smtp_user";
-	private static final String MAIL_SMTP_PW_STORE = "mail_smtp_pw_store";
-	private static final String MAIL_SMTP_PW = "mail_smtp_pw";
-	private static final String MAIL_FROM = "mail_from";
-	private static final String MAIL_TO = "mail_to";
-	private static final String MAIL_CC = "mail_cc";
-	private static final String MAIL_BCC = "mail_bcc";
-	private static final String MAIL_XML = "mail_xml";
-	private static final String MAIL_GIF = "mail_gif";
-	private static final String MAIL_PDF = "mail_pdf";
-
-	private static final String GENERATE_CLASS_PACKAGE = "generate_class_package";
-	private static final String GENERATE_CLASS_FIELDS = "generate_class_fields";
-	private static final String GENERATE_CLASS_METHODS = "generate_class_methods";
-	private static final String GENERATE_CLASS_SIGNATURES = "generate_class_signatures";
-	private static final String GENERATE_CLASS_SORTINGS = "generate_class_sortings";
 
 	public static void loadConfig() {
 
@@ -112,35 +84,6 @@ public class ConfigHandler {
 			cfg.setProgram_size(getDimensionProperty(props, PROGRAM_SIZE, cfg.getProgram_size()));
 			cfg.setProgram_location(getPointProperty(props, PROGRAM_LOCATION, cfg.getProgram_location()));
 		}
-
-		String recentFiles = props.getProperty(RECENT_FILES);
-		if (recentFiles != null) {
-			RecentlyUsedFilesList.getInstance().addAll(Arrays.asList(props.getProperty(RECENT_FILES).split("\\|")));
-		}
-
-		/* Mail */
-		ConfigMail cfgMail = ConfigMail.getInstance();
-		cfgMail.setMail_smtp(getStringProperty(props, MAIL_SMTP, cfgMail.getMail_smtp()));
-		cfgMail.setMail_smtp_auth(getBoolProperty(props, MAIL_SMTP_AUTH, cfgMail.isMail_smtp_auth()));
-		cfgMail.setMail_smtp_user(getStringProperty(props, MAIL_SMTP_USER, cfgMail.getMail_smtp_user()));
-		cfgMail.setMail_smtp_pw_store(getBoolProperty(props, MAIL_SMTP_PW_STORE, cfgMail.isMail_smtp_pw_store()));
-		cfgMail.setMail_smtp_pw(getStringProperty(props, MAIL_SMTP_PW, cfgMail.getMail_smtp_pw()));
-		cfgMail.setMail_from(getStringProperty(props, MAIL_FROM, cfgMail.getMail_from()));
-		cfgMail.setMail_to(getStringProperty(props, MAIL_TO, cfgMail.getMail_to()));
-		cfgMail.setMail_cc(getStringProperty(props, MAIL_CC, cfgMail.getMail_cc()));
-		cfgMail.setMail_bcc(getStringProperty(props, MAIL_BCC, cfgMail.getMail_bcc()));
-		cfgMail.setMail_xml(getBoolProperty(props, MAIL_XML, cfgMail.isMail_xml()));
-		cfgMail.setMail_gif(getBoolProperty(props, MAIL_GIF, cfgMail.isMail_gif()));
-		cfgMail.setMail_pdf(getBoolProperty(props, MAIL_PDF, cfgMail.isMail_pdf()));
-
-		/* Generate Class Element Options */
-		ConfigClassGen genCfg = ConfigClassGen.getInstance();
-		genCfg.setGenerateClassPackage(getBoolProperty(props, GENERATE_CLASS_PACKAGE, genCfg.isGenerateClassPackage()));
-		genCfg.setGenerateClassFields(FieldOptions.getEnum(getStringProperty(props, GENERATE_CLASS_FIELDS, genCfg.getGenerateClassFields().toString())));
-		genCfg.setGenerateClassMethods(MethodOptions.getEnum(getStringProperty(props, GENERATE_CLASS_METHODS, genCfg.getGenerateClassMethods().toString())));
-		genCfg.setGenerateClassSignatures(SignatureOptions.getEnum(getStringProperty(props, GENERATE_CLASS_SIGNATURES, genCfg.getGenerateClassSignatures().toString())));
-		genCfg.setGenerateClassSortings(SortOptions.getEnum(getStringProperty(props, GENERATE_CLASS_SORTINGS, genCfg.getGenerateClassSortings().toString())));
-
 	}
 
 	private static Properties loadProperties() {

@@ -161,8 +161,8 @@ public class DrawPanel extends JLayeredPane implements Printable {
 	}
 
 	public List<com.baselet.element.relation.Relation> getStickables(Collection<GridElement> excludeList) {
-		if (!SharedConfig.getInstance().isStickingEnabled() || handler instanceof PaletteHandler) {
-			return Collections.<com.baselet.element.relation.Relation>emptyList();
+		if (!SharedConfig.getInstance().isStickingEnabled()) {
+			return Collections.emptyList();
 		}
 		List<com.baselet.element.relation.Relation> returnList = getHelper(com.baselet.element.relation.Relation.class);
 		returnList.removeAll(excludeList);
@@ -489,7 +489,6 @@ public class DrawPanel extends JLayeredPane implements Printable {
 	 *
 	 * @param oldGridSize the old grid size
 	 * @param newGridSize the new grid size
-	 * @see DiagramHandler#setGridAndZoom(int)
 	 */
 	public void zoomOrigin(int oldGridSize, int newGridSize) {
 		log.trace("Zoom origin to: " + origin);
