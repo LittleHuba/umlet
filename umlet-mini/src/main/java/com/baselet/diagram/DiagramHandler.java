@@ -304,7 +304,7 @@ public class DiagramHandler {
 				e.setLocationDifference(realignToGrid(false, diffx), realignToGrid(false, diffy));
 			}
 
-			/**
+			/*
 			 * Now we have to do some additional "clean up" stuff which is related to the zoom
 			 */
 

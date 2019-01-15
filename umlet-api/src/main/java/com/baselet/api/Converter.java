@@ -33,6 +33,9 @@ public class Converter {
 
     InputStream state = Thread.currentThread().getContextClassLoader().getResourceAsStream("./sm_complex_state.uxf");
     Files.write(Paths.get("state.png"), convert(read(state), "png"));
+
+    InputStream seq = Thread.currentThread().getContextClassLoader().getResourceAsStream("./sd_sequence.uxf");
+    Files.write(Paths.get("seq.png"), convert(read(seq), "png"));
   }
 
   public static String read(InputStream input) throws IOException {

@@ -526,18 +526,4 @@ public class DrawPanel extends JLayeredPane implements Printable {
 		int increment = scrollBar.getUnitIncrement();
 		scrollBar.setValue(scrollBar.getValue() + amount * increment);
 	}
-
-	private DiagramNotification notification;
-
-	public void setNotification(DiagramNotification newNotification) {
-		if (notification != null) {
-			remove(notification);
-		}
-
-		notification = newNotification;
-		add(notification);
-
-		repaint();
-	}
-
 }
