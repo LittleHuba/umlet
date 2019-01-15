@@ -14,6 +14,7 @@ import com.baselet.element.ElementFactorySwing;
 import com.baselet.element.interfaces.GridElement;
 import com.itextpdf.awt.FontMapper;
 import com.itextpdf.awt.PdfGraphics2D;
+import com.itextpdf.text.pdf.PdfDictionary;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.apache.batik.dom.GenericDOMImplementation;
 import org.apache.batik.svggen.SVGGraphics2D;
@@ -46,7 +47,7 @@ public class OutputHandler {
 		ostream.close();
 	}
 
-	public static void createToStream(String extension, OutputStream ostream, DiagramHandler handler) throws Exception {
+	public static void createToStream(String extension, OutputStream ostream, DiagramHandler handler) throws IOException {
 
 		int oldZoom = handler.getGridSize();
 		handler.setGridAndZoom(Constants.DEFAULTGRIDSIZE); // Zoom to the defaultGridsize before execution
