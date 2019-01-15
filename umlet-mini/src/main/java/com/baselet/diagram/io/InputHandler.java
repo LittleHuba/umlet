@@ -8,7 +8,6 @@ import com.baselet.element.ElementFactorySwing;
 import com.baselet.element.NewGridElement;
 import com.baselet.element.facet.common.GroupFacet;
 import com.baselet.element.interfaces.GridElement;
-import com.baselet.element.old.custom.CustomElementCompiler;
 import com.baselet.element.old.element.ErrorOccurred;
 import com.baselet.gui.command.HelpPanelChanged;
 import org.slf4j.Logger;
@@ -101,8 +100,6 @@ public class InputHandler extends DefaultHandler {
 				try {
 					if (code == null) {
 						e = InputHandler.getOldGridElementFromPath(entityname);
-					} else {
-						e = CustomElementCompiler.getInstance().genEntity(code);
 					}
 				} catch (InstantiationException e1) {
 					e = new ErrorOccurred();
